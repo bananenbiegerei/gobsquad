@@ -1,0 +1,8 @@
+[05-Sep-2026 07:48:56 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/fwzujpevago0/webseiten/wordpress/wp-content/themes/gob-theme-01/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/fwzujpevago0/webseiten/wordpress/wp-content/themes/gob-theme-01/index.php on line 1
+[05-Sep-2026 07:54:52 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function get_header() in /home/fwzujpevago0/webseiten/wordpress/wp-content/themes/gob-theme-01/index.php:1
+Stack trace:
+#0 {main}
+  thrown in /home/fwzujpevago0/webseiten/wordpress/wp-content/themes/gob-theme-01/index.php on line 1

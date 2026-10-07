@@ -1,0 +1,56 @@
+{
+    "key": "group_5cd9632d0cd60",
+    "title": "Pages Aside",
+    "fields": [
+        {
+            "key": "field_5cd9633452693",
+            "label": "Color Scheme",
+            "name": "color_scheme",
+            "type": "select",
+            "instructions": "",
+            "required": 0,
+            "conditional_logic": 0,
+            "wrapper": {
+                "width": "",
+                "class": "",
+                "id": ""
+            },
+            "choices": {
+                "orange": "orange",
+                "blue": "blue",
+                "purple": "purple",
+                "red": "red",
+                "fuchsia": "fuchsia",
+                "gray": "gray",
+                "cyan": "cyan",
+                "yellow": "yellow",
+                "green": "green"
+            },
+            "default_value": [],
+            "allow_null": 1,
+            "multiple": 0,
+            "ui": 0,
+            "return_format": "value",
+            "ajax": 0,
+            "placeholder": ""
+        }
+    ],
+    "location": [
+        [
+            {
+                "param": "post_type",
+                "operator": "==",
+                "value": "page"
+            }
+        ]
+    ],
+    "menu_order": 0,
+    "position": "side",
+    "style": "default",
+    "label_placement": "top",
+    "instruction_placement": "label",
+    "hide_on_screen": "",
+    "active": true,
+    "description": "",
+    "modified": 1622721058
+}
