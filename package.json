@@ -1,0 +1,74 @@
+{
+  "babel" : {
+    "presets" : [
+      "@babel\/env"
+    ],
+    "compact" : false
+  },
+  "repository" : {
+    "type" : "git",
+    "url" : "https:\/\/bitbucket.org\/bbteam2016\/bb_begin"
+  },
+  "main" : "gulpfile.babel.js",
+  "private" : true,
+  "scripts" : {
+    "start" : "gulp",
+    "build" : "gulp build --production"
+  },
+  "name" : "BB_Begin",
+  "version" : "1.0.0",
+  "description" : "Bananenbiegerei starter-template for rapid theme development. Based on Foundation Template",
+  "jshintConfig" : {
+    "esversion" : 6,
+    "laxbreak" : true,
+    "loopfunc" : true,
+    "nonbsp" : true
+  },
+  "devDependencies" : {
+    "gulp-load-plugins" : "^1.1.0",
+    "yargs" : "^3.8.0",
+    "gulp-cli" : "^1.2.1",
+    "ftps" : "^1.1.1",
+    "gulp-sourcemaps" : "^1.6.0",
+    "gulp-concat" : "^2.5.2",
+    "fancy-log" : "^1.3.3",
+    "webpack" : "^2.6.1",
+    "gulp-imagemin" : "^2.2.1",
+    "gulp-babel" : "^6.1.2",
+    "gulp" : "4.0",
+    "gulp-autoprefixer" : "^3.1.0",
+    "rimraf" : "^2.4.3",
+    "style-sherpa" : "^1.0.0",
+    "gulp-uglify" : "^3.0.0",
+    "gulp-clean-css" : "^3.3.1",
+    "gulp-if" : "^2.0.0",
+    "gulp-sass" : "^2.1.0",
+    "@babel\/preset-env" : "^7.2.3",
+    "@babel\/core" : "^7.2.2",
+    "@babel\/register" : "^7.0.0",
+    "vinyl-named" : "^1.1.0",
+    "js-yaml" : "^3.13.1",
+    "browser-sync" : "^2.26.7",
+    "webpack-stream" : "^3.2.0",
+    "babel-loader" : "^8.0.0",
+    "gulp-extname" : "^0.2.0",
+    "gulp-uncss" : "^1.0.1"
+  },
+  "author" : "Bananenbiegerei <hallo@bananenbiegerei.de>",
+  "license" : "MIT",
+  "optionalDependencies" : {
+
+  },
+  "dependencies" : {
+    "vue-cookie-law" : "^1.11.0",
+    "jquery" : "^3.4.1",
+    "jquery-bridget" : "^2.0.1",
+    "foundation-sites" : "^6.6.3",
+    "storm-cookie-banner" : "^1.0.2",
+    "swiper" : "^4.2.0",
+    "what-input" : "^5.2.10",
+    "js-cookie" : "^2.2.0",
+    "vue-cookie-accept-decline" : "^5.3.1",
+    "motion-ui" : "^2.0.3"
+  }
+}

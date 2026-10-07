@@ -1,0 +1,6 @@
+node_modules/
+/npm-debug.log
+/config.js
+dist/
+config.local.js
+package-lock.json
