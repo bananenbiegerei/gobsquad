@@ -11,7 +11,7 @@ $dates_meta_image_size = 'full';
     </a>
   </div>
 
-  <div class="swiper-container swiper-dates green-color">
+  <div class="swiper swiper-dates green-color">
     <?php get_template_part('template-parts/partials/swiper-navigation') ?>
     <div class="swiper-wrapper">
       <?php

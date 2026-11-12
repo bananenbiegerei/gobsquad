@@ -1,6 +1,6 @@
 <?php
-// Register scripts and stylesheets
-require_once(get_template_directory().'/functions/enqueue-scripts.php');
+// Register scripts and stylesheets (Vite dev-server / manifest build)
+require_once(get_template_directory().'/functions/vite.php');
 
 // custom image sizes
 require_once(get_template_directory().'/functions/image-sizes.php');

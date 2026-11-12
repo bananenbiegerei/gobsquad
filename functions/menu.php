@@ -12,57 +12,64 @@ function custom_navigation_menus() {
 }
 add_action( 'init', 'custom_navigation_menus' );
 
-// %%%%%%%%%% Custom Walker for foundation 6 menu %%%%%%%%%%
+// %%%%%%%%%% Desktop dropdown menu (CSS-only hover reveal, see .dropdown-submenu in layout.css) %%%%%%%%%%
 class insertcart_walker extends Walker_Nav_Menu
 {
-    /*
-     * Add vertical menu class and submenu data attribute to sub menus
-     */
-
     function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"horizontal menu\" data-submenu>\n";
+        $indent = str_repeat( "\t", $depth );
+        $output .= "\n$indent<ul class=\"dropdown-submenu\">\n";
     }
 }
 //Optional fallback
 function f6_topbar_menu_fallback($args)
 {
-    /*
-     * Instantiate new Page Walker class instead of applying a filter to the
-     * "wp_page_menu" function in the event there are multiple active menus in theme.
-     */
-
     $walker_page = new Walker_Page();
     $fallback = $walker_page->walk(get_pages(), 0);
-    $fallback = str_replace("<ul class='children'>", '<ul class="children submenu menu vertical" data-submenu>', $fallback);
+    $fallback = str_replace("<ul class='children'>", '<ul class="dropdown-submenu">', $fallback);
 
-    echo '<ul class="dropdown menu data-dropdown-menu">'.$fallback.'</ul>';
+    echo '<ul class="menu-horizontal">'.$fallback.'</ul>';
 }
 
-// Drilldown
+// %%%%%%%%%% Mobile drilldown menu (native <details>/<summary> disclosure, no custom JS state) %%%%%%%%%%
 class F6_DRILL_MENU_WALKER extends Walker_Nav_Menu
 {
-    /*
-     * Add vertical menu class
-     */
-
     function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $indent = str_repeat("\t", $depth);
-        $output .= "\n$indent<ul class=\"vertical menu\">\n";
+        $output .= "\n<ul class=\"drilldown-submenu\">\n";
+    }
+
+    function end_lvl( &$output, $depth = 0, $args = array() ) {
+        $output .= "</ul>\n";
+    }
+
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        $classes      = empty( $item->classes ) ? array() : (array) $item->classes;
+        $has_children = in_array( 'menu-item-has-children', $classes, true );
+        $title        = apply_filters( 'the_title', $item->title, $item->ID );
+        $href         = ! empty( $item->url ) ? esc_url( $item->url ) : '#';
+        $item_classes = 'drilldown-item' . ( $has_children ? ' menu-item-has-children' : '' );
+
+        if ( $has_children ) {
+            $output .= '<li class="' . esc_attr( $item_classes ) . '"><details class="drilldown-details"><summary class="drilldown-summary"><a href="' . $href . '" class="drilldown-link">' . $title . '</a><span class="drilldown-caret" aria-hidden="true"></span></summary>';
+        } else {
+            $output .= '<li class="' . esc_attr( $item_classes ) . '"><a href="' . $href . '" class="drilldown-link drilldown-link--leaf">' . $title . '</a>';
+        }
+    }
+
+    function end_el( &$output, $item, $depth = 0, $args = array() ) {
+        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
+        if ( in_array( 'menu-item-has-children', $classes, true ) ) {
+            $output .= '</details>';
+        }
+        $output .= "</li>\n";
     }
 }
 
 function f6_drill_menu_fallback($args)
 {
-    /*
-     * Instantiate new Page Walker class instead of applying a filter to the
-     * "wp_page_menu" function in the event there are multiple active menus in theme.
-     */
-
     $walker_page = new Walker_Page();
     $fallback = $walker_page->walk(get_pages(), 0);
-    $fallback = str_replace("children", "children vertical menu", $fallback);
-    echo '<ul class="vertical menu" data-drilldown="">'.$fallback.'</ul>';
+    $fallback = str_replace('children', 'children drilldown-submenu', $fallback);
+    echo '<ul class="drilldown-root">'.$fallback.'</ul>';
 }
 
 // %%%%%%%%%% Add menu Slug as Class %%%%%%%%

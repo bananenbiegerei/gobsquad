@@ -1,0 +1,1214 @@
+/*
+ * Hand-expanded from the old Sass `@each $color, $hex in $colors` loop
+ * (_custom-colors.scss). Only orange/blue/purple/red/fuchsia/gray/cyan/
+ * yellow/green are reachable via the ACF `color_scheme` field -> body
+ * class (see functions/features.php:add_acf_body_class) — the rest
+ * (primary-color/secondary-color/etc.) are carried over 1:1 from the
+ * source for parity but are not currently selectable anywhere.
+ */
+
+body.primary-color .colored,
+body.primary-color .button.menu-button {
+  color: #005CFF;
+}
+body.primary-color a,
+body.primary-color a:hover,
+body.primary-color a:focus,
+body.primary-color a:active {
+  color: #005CFF;
+}
+body.primary-color .menu li a {
+  color: var(--color-black);
+}
+body.primary-color a.button:not(.hollow),
+body.primary-color .label,
+body.primary-color .is-dropdown-submenu,
+body.primary-color .caption {
+  color: var(--color-white);
+  background-color: #005CFF;
+}
+
+.primary-color-bg {
+  background-color: #005CFF;
+}
+.primary-color-color,
+.primary-color {
+}
+.primary-color-color a,
+.primary-color a,
+.primary-color-color .swiper-button-next,
+.primary-color .swiper-button-next,
+.primary-color-color .swiper-button-prev,
+.primary-color .swiper-button-prev {
+  color: #005CFF;
+}
+.primary-color-color .label,
+.primary-color .label,
+.primary-color-color .swiper-pagination-bullet-active,
+.primary-color .swiper-pagination-bullet-active,
+.primary-color-color .caption,
+.primary-color .caption {
+  background-color: #005CFF;
+}
+.primary-color-color .button.hollow,
+.primary-color .button.hollow {
+  border-color: #005CFF;
+  color: #005CFF;
+}
+.primary-color-color .button.hollow:after,
+.primary-color .button.hollow:after {
+  border-color: #005CFF;
+}
+.primary-color-color .button:not(.menu-button),
+.primary-color .button:not(.menu-button) {
+  border-color: #005CFF;
+  background-color: #005CFF;
+  color: var(--color-white);
+}
+.primary-color-color .accordion-title,
+.primary-color .accordion-title,
+.primary-color-color .accordion-content,
+.primary-color .accordion-content {
+  border-color: #005CFF;
+}
+.primary-color-color .callout,
+.primary-color .callout {
+  border-color: #005CFF;
+}
+
+body.secondary-color .colored,
+body.secondary-color .button.menu-button {
+  color: #6B6B6B;
+}
+body.secondary-color a,
+body.secondary-color a:hover,
+body.secondary-color a:focus,
+body.secondary-color a:active {
+  color: #6B6B6B;
+}
+body.secondary-color .menu li a {
+  color: var(--color-black);
+}
+body.secondary-color a.button:not(.hollow),
+body.secondary-color .label,
+body.secondary-color .is-dropdown-submenu,
+body.secondary-color .caption {
+  color: var(--color-white);
+  background-color: #6B6B6B;
+}
+
+.secondary-color-bg {
+  background-color: #6B6B6B;
+}
+.secondary-color-color,
+.secondary-color {
+}
+.secondary-color-color a,
+.secondary-color a,
+.secondary-color-color .swiper-button-next,
+.secondary-color .swiper-button-next,
+.secondary-color-color .swiper-button-prev,
+.secondary-color .swiper-button-prev {
+  color: #6B6B6B;
+}
+.secondary-color-color .label,
+.secondary-color .label,
+.secondary-color-color .swiper-pagination-bullet-active,
+.secondary-color .swiper-pagination-bullet-active,
+.secondary-color-color .caption,
+.secondary-color .caption {
+  background-color: #6B6B6B;
+}
+.secondary-color-color .button.hollow,
+.secondary-color .button.hollow {
+  border-color: #6B6B6B;
+  color: #6B6B6B;
+}
+.secondary-color-color .button.hollow:after,
+.secondary-color .button.hollow:after {
+  border-color: #6B6B6B;
+}
+.secondary-color-color .button:not(.menu-button),
+.secondary-color .button:not(.menu-button) {
+  border-color: #6B6B6B;
+  background-color: #6B6B6B;
+  color: var(--color-white);
+}
+.secondary-color-color .accordion-title,
+.secondary-color .accordion-title,
+.secondary-color-color .accordion-content,
+.secondary-color .accordion-content {
+  border-color: #6B6B6B;
+}
+.secondary-color-color .callout,
+.secondary-color .callout {
+  border-color: #6B6B6B;
+}
+
+body.success-color .colored,
+body.success-color .button.menu-button {
+  color: #00CE57;
+}
+body.success-color a,
+body.success-color a:hover,
+body.success-color a:focus,
+body.success-color a:active {
+  color: #00CE57;
+}
+body.success-color .menu li a {
+  color: var(--color-black);
+}
+body.success-color a.button:not(.hollow),
+body.success-color .label,
+body.success-color .is-dropdown-submenu,
+body.success-color .caption {
+  color: var(--color-white);
+  background-color: #00CE57;
+}
+
+.success-color-bg {
+  background-color: #00CE57;
+}
+.success-color-color,
+.success-color {
+}
+.success-color-color a,
+.success-color a,
+.success-color-color .swiper-button-next,
+.success-color .swiper-button-next,
+.success-color-color .swiper-button-prev,
+.success-color .swiper-button-prev {
+  color: #00CE57;
+}
+.success-color-color .label,
+.success-color .label,
+.success-color-color .swiper-pagination-bullet-active,
+.success-color .swiper-pagination-bullet-active,
+.success-color-color .caption,
+.success-color .caption {
+  background-color: #00CE57;
+}
+.success-color-color .button.hollow,
+.success-color .button.hollow {
+  border-color: #00CE57;
+  color: #00CE57;
+}
+.success-color-color .button.hollow:after,
+.success-color .button.hollow:after {
+  border-color: #00CE57;
+}
+.success-color-color .button:not(.menu-button),
+.success-color .button:not(.menu-button) {
+  border-color: #00CE57;
+  background-color: #00CE57;
+  color: var(--color-white);
+}
+.success-color-color .accordion-title,
+.success-color .accordion-title,
+.success-color-color .accordion-content,
+.success-color .accordion-content {
+  border-color: #00CE57;
+}
+.success-color-color .callout,
+.success-color .callout {
+  border-color: #00CE57;
+}
+
+body.warning-color .colored,
+body.warning-color .button.menu-button {
+  color: #FF7F0E;
+}
+body.warning-color a,
+body.warning-color a:hover,
+body.warning-color a:focus,
+body.warning-color a:active {
+  color: #FF7F0E;
+}
+body.warning-color .menu li a {
+  color: var(--color-black);
+}
+body.warning-color a.button:not(.hollow),
+body.warning-color .label,
+body.warning-color .is-dropdown-submenu,
+body.warning-color .caption {
+  color: var(--color-white);
+  background-color: #FF7F0E;
+}
+
+.warning-color-bg {
+  background-color: #FF7F0E;
+}
+.warning-color-color,
+.warning-color {
+}
+.warning-color-color a,
+.warning-color a,
+.warning-color-color .swiper-button-next,
+.warning-color .swiper-button-next,
+.warning-color-color .swiper-button-prev,
+.warning-color .swiper-button-prev {
+  color: #FF7F0E;
+}
+.warning-color-color .label,
+.warning-color .label,
+.warning-color-color .swiper-pagination-bullet-active,
+.warning-color .swiper-pagination-bullet-active,
+.warning-color-color .caption,
+.warning-color .caption {
+  background-color: #FF7F0E;
+}
+.warning-color-color .button.hollow,
+.warning-color .button.hollow {
+  border-color: #FF7F0E;
+  color: #FF7F0E;
+}
+.warning-color-color .button.hollow:after,
+.warning-color .button.hollow:after {
+  border-color: #FF7F0E;
+}
+.warning-color-color .button:not(.menu-button),
+.warning-color .button:not(.menu-button) {
+  border-color: #FF7F0E;
+  background-color: #FF7F0E;
+  color: var(--color-white);
+}
+.warning-color-color .accordion-title,
+.warning-color .accordion-title,
+.warning-color-color .accordion-content,
+.warning-color .accordion-content {
+  border-color: #FF7F0E;
+}
+.warning-color-color .callout,
+.warning-color .callout {
+  border-color: #FF7F0E;
+}
+
+body.alert-color .colored,
+body.alert-color .button.menu-button {
+  color: #E60457;
+}
+body.alert-color a,
+body.alert-color a:hover,
+body.alert-color a:focus,
+body.alert-color a:active {
+  color: #E60457;
+}
+body.alert-color .menu li a {
+  color: var(--color-black);
+}
+body.alert-color a.button:not(.hollow),
+body.alert-color .label,
+body.alert-color .is-dropdown-submenu,
+body.alert-color .caption {
+  color: var(--color-white);
+  background-color: #E60457;
+}
+
+.alert-color-bg {
+  background-color: #E60457;
+}
+.alert-color-color,
+.alert-color {
+}
+.alert-color-color a,
+.alert-color a,
+.alert-color-color .swiper-button-next,
+.alert-color .swiper-button-next,
+.alert-color-color .swiper-button-prev,
+.alert-color .swiper-button-prev {
+  color: #E60457;
+}
+.alert-color-color .label,
+.alert-color .label,
+.alert-color-color .swiper-pagination-bullet-active,
+.alert-color .swiper-pagination-bullet-active,
+.alert-color-color .caption,
+.alert-color .caption {
+  background-color: #E60457;
+}
+.alert-color-color .button.hollow,
+.alert-color .button.hollow {
+  border-color: #E60457;
+  color: #E60457;
+}
+.alert-color-color .button.hollow:after,
+.alert-color .button.hollow:after {
+  border-color: #E60457;
+}
+.alert-color-color .button:not(.menu-button),
+.alert-color .button:not(.menu-button) {
+  border-color: #E60457;
+  background-color: #E60457;
+  color: var(--color-white);
+}
+.alert-color-color .accordion-title,
+.alert-color .accordion-title,
+.alert-color-color .accordion-content,
+.alert-color .accordion-content {
+  border-color: #E60457;
+}
+.alert-color-color .callout,
+.alert-color .callout {
+  border-color: #E60457;
+}
+
+body.light-gray .colored,
+body.light-gray .button.menu-button {
+  color: #EBEBEB;
+}
+body.light-gray a,
+body.light-gray a:hover,
+body.light-gray a:focus,
+body.light-gray a:active {
+  color: #EBEBEB;
+}
+body.light-gray .menu li a {
+  color: var(--color-black);
+}
+body.light-gray a.button:not(.hollow),
+body.light-gray .label,
+body.light-gray .is-dropdown-submenu,
+body.light-gray .caption {
+  color: var(--color-white);
+  background-color: #EBEBEB;
+}
+
+.light-gray-bg {
+  background-color: #EBEBEB;
+}
+.light-gray-color,
+.light-gray {
+}
+.light-gray-color a,
+.light-gray a,
+.light-gray-color .swiper-button-next,
+.light-gray .swiper-button-next,
+.light-gray-color .swiper-button-prev,
+.light-gray .swiper-button-prev {
+  color: #EBEBEB;
+}
+.light-gray-color .label,
+.light-gray .label,
+.light-gray-color .swiper-pagination-bullet-active,
+.light-gray .swiper-pagination-bullet-active,
+.light-gray-color .caption,
+.light-gray .caption {
+  background-color: #EBEBEB;
+}
+.light-gray-color .button.hollow,
+.light-gray .button.hollow {
+  border-color: #EBEBEB;
+  color: #EBEBEB;
+}
+.light-gray-color .button.hollow:after,
+.light-gray .button.hollow:after {
+  border-color: #EBEBEB;
+}
+.light-gray-color .button:not(.menu-button),
+.light-gray .button:not(.menu-button) {
+  border-color: #EBEBEB;
+  background-color: #EBEBEB;
+  color: var(--color-white);
+}
+.light-gray-color .accordion-title,
+.light-gray .accordion-title,
+.light-gray-color .accordion-content,
+.light-gray .accordion-content {
+  border-color: #EBEBEB;
+}
+.light-gray-color .callout,
+.light-gray .callout {
+  border-color: #EBEBEB;
+}
+
+body.medium-gray .colored,
+body.medium-gray .button.menu-button {
+  color: #cacaca;
+}
+body.medium-gray a,
+body.medium-gray a:hover,
+body.medium-gray a:focus,
+body.medium-gray a:active {
+  color: #cacaca;
+}
+body.medium-gray .menu li a {
+  color: var(--color-black);
+}
+body.medium-gray a.button:not(.hollow),
+body.medium-gray .label,
+body.medium-gray .is-dropdown-submenu,
+body.medium-gray .caption {
+  color: var(--color-white);
+  background-color: #cacaca;
+}
+
+.medium-gray-bg {
+  background-color: #cacaca;
+}
+.medium-gray-color,
+.medium-gray {
+}
+.medium-gray-color a,
+.medium-gray a,
+.medium-gray-color .swiper-button-next,
+.medium-gray .swiper-button-next,
+.medium-gray-color .swiper-button-prev,
+.medium-gray .swiper-button-prev {
+  color: #cacaca;
+}
+.medium-gray-color .label,
+.medium-gray .label,
+.medium-gray-color .swiper-pagination-bullet-active,
+.medium-gray .swiper-pagination-bullet-active,
+.medium-gray-color .caption,
+.medium-gray .caption {
+  background-color: #cacaca;
+}
+.medium-gray-color .button.hollow,
+.medium-gray .button.hollow {
+  border-color: #cacaca;
+  color: #cacaca;
+}
+.medium-gray-color .button.hollow:after,
+.medium-gray .button.hollow:after {
+  border-color: #cacaca;
+}
+.medium-gray-color .button:not(.menu-button),
+.medium-gray .button:not(.menu-button) {
+  border-color: #cacaca;
+  background-color: #cacaca;
+  color: var(--color-white);
+}
+.medium-gray-color .accordion-title,
+.medium-gray .accordion-title,
+.medium-gray-color .accordion-content,
+.medium-gray .accordion-content {
+  border-color: #cacaca;
+}
+.medium-gray-color .callout,
+.medium-gray .callout {
+  border-color: #cacaca;
+}
+
+body.dark-gray .colored,
+body.dark-gray .button.menu-button {
+  color: #6B6B6B;
+}
+body.dark-gray a,
+body.dark-gray a:hover,
+body.dark-gray a:focus,
+body.dark-gray a:active {
+  color: #6B6B6B;
+}
+body.dark-gray .menu li a {
+  color: var(--color-black);
+}
+body.dark-gray a.button:not(.hollow),
+body.dark-gray .label,
+body.dark-gray .is-dropdown-submenu,
+body.dark-gray .caption {
+  color: var(--color-white);
+  background-color: #6B6B6B;
+}
+
+.dark-gray-bg {
+  background-color: #6B6B6B;
+}
+.dark-gray-color,
+.dark-gray {
+}
+.dark-gray-color a,
+.dark-gray a,
+.dark-gray-color .swiper-button-next,
+.dark-gray .swiper-button-next,
+.dark-gray-color .swiper-button-prev,
+.dark-gray .swiper-button-prev {
+  color: #6B6B6B;
+}
+.dark-gray-color .label,
+.dark-gray .label,
+.dark-gray-color .swiper-pagination-bullet-active,
+.dark-gray .swiper-pagination-bullet-active,
+.dark-gray-color .caption,
+.dark-gray .caption {
+  background-color: #6B6B6B;
+}
+.dark-gray-color .button.hollow,
+.dark-gray .button.hollow {
+  border-color: #6B6B6B;
+  color: #6B6B6B;
+}
+.dark-gray-color .button.hollow:after,
+.dark-gray .button.hollow:after {
+  border-color: #6B6B6B;
+}
+.dark-gray-color .button:not(.menu-button),
+.dark-gray .button:not(.menu-button) {
+  border-color: #6B6B6B;
+  background-color: #6B6B6B;
+  color: var(--color-white);
+}
+.dark-gray-color .accordion-title,
+.dark-gray .accordion-title,
+.dark-gray-color .accordion-content,
+.dark-gray .accordion-content {
+  border-color: #6B6B6B;
+}
+.dark-gray-color .callout,
+.dark-gray .callout {
+  border-color: #6B6B6B;
+}
+
+body.orange .colored,
+body.orange .button.menu-button {
+  color: #FF7F0E;
+}
+body.orange a,
+body.orange a:hover,
+body.orange a:focus,
+body.orange a:active {
+  color: #FF7F0E;
+}
+body.orange .menu li a {
+  color: var(--color-black);
+}
+body.orange a.button:not(.hollow),
+body.orange .label,
+body.orange .is-dropdown-submenu,
+body.orange .caption {
+  color: var(--color-white);
+  background-color: #FF7F0E;
+}
+
+.orange-bg {
+  background-color: #FF7F0E;
+}
+.orange-color,
+.orange {
+}
+.orange-color a,
+.orange a,
+.orange-color .swiper-button-next,
+.orange .swiper-button-next,
+.orange-color .swiper-button-prev,
+.orange .swiper-button-prev {
+  color: #FF7F0E;
+}
+.orange-color .label,
+.orange .label,
+.orange-color .swiper-pagination-bullet-active,
+.orange .swiper-pagination-bullet-active,
+.orange-color .caption,
+.orange .caption {
+  background-color: #FF7F0E;
+}
+.orange-color .button.hollow,
+.orange .button.hollow {
+  border-color: #FF7F0E;
+  color: #FF7F0E;
+}
+.orange-color .button.hollow:after,
+.orange .button.hollow:after {
+  border-color: #FF7F0E;
+}
+.orange-color .button:not(.menu-button),
+.orange .button:not(.menu-button) {
+  border-color: #FF7F0E;
+  background-color: #FF7F0E;
+  color: var(--color-white);
+}
+.orange-color .accordion-title,
+.orange .accordion-title,
+.orange-color .accordion-content,
+.orange .accordion-content {
+  border-color: #FF7F0E;
+}
+.orange-color .callout,
+.orange .callout {
+  border-color: #FF7F0E;
+}
+
+body.blue .colored,
+body.blue .button.menu-button {
+  color: #005CFF;
+}
+body.blue a,
+body.blue a:hover,
+body.blue a:focus,
+body.blue a:active {
+  color: #005CFF;
+}
+body.blue .menu li a {
+  color: var(--color-black);
+}
+body.blue a.button:not(.hollow),
+body.blue .label,
+body.blue .is-dropdown-submenu,
+body.blue .caption {
+  color: var(--color-white);
+  background-color: #005CFF;
+}
+
+.blue-bg {
+  background-color: #005CFF;
+}
+.blue-color,
+.blue {
+}
+.blue-color a,
+.blue a,
+.blue-color .swiper-button-next,
+.blue .swiper-button-next,
+.blue-color .swiper-button-prev,
+.blue .swiper-button-prev {
+  color: #005CFF;
+}
+.blue-color .label,
+.blue .label,
+.blue-color .swiper-pagination-bullet-active,
+.blue .swiper-pagination-bullet-active,
+.blue-color .caption,
+.blue .caption {
+  background-color: #005CFF;
+}
+.blue-color .button.hollow,
+.blue .button.hollow {
+  border-color: #005CFF;
+  color: #005CFF;
+}
+.blue-color .button.hollow:after,
+.blue .button.hollow:after {
+  border-color: #005CFF;
+}
+.blue-color .button:not(.menu-button),
+.blue .button:not(.menu-button) {
+  border-color: #005CFF;
+  background-color: #005CFF;
+  color: var(--color-white);
+}
+.blue-color .accordion-title,
+.blue .accordion-title,
+.blue-color .accordion-content,
+.blue .accordion-content {
+  border-color: #005CFF;
+}
+.blue-color .callout,
+.blue .callout {
+  border-color: #005CFF;
+}
+
+body.purple .colored,
+body.purple .button.menu-button {
+  color: #9900F7;
+}
+body.purple a,
+body.purple a:hover,
+body.purple a:focus,
+body.purple a:active {
+  color: #9900F7;
+}
+body.purple .menu li a {
+  color: var(--color-black);
+}
+body.purple a.button:not(.hollow),
+body.purple .label,
+body.purple .is-dropdown-submenu,
+body.purple .caption {
+  color: var(--color-white);
+  background-color: #9900F7;
+}
+
+.purple-bg {
+  background-color: #9900F7;
+}
+.purple-color,
+.purple {
+}
+.purple-color a,
+.purple a,
+.purple-color .swiper-button-next,
+.purple .swiper-button-next,
+.purple-color .swiper-button-prev,
+.purple .swiper-button-prev {
+  color: #9900F7;
+}
+.purple-color .label,
+.purple .label,
+.purple-color .swiper-pagination-bullet-active,
+.purple .swiper-pagination-bullet-active,
+.purple-color .caption,
+.purple .caption {
+  background-color: #9900F7;
+}
+.purple-color .button.hollow,
+.purple .button.hollow {
+  border-color: #9900F7;
+  color: #9900F7;
+}
+.purple-color .button.hollow:after,
+.purple .button.hollow:after {
+  border-color: #9900F7;
+}
+.purple-color .button:not(.menu-button),
+.purple .button:not(.menu-button) {
+  border-color: #9900F7;
+  background-color: #9900F7;
+  color: var(--color-white);
+}
+.purple-color .accordion-title,
+.purple .accordion-title,
+.purple-color .accordion-content,
+.purple .accordion-content {
+  border-color: #9900F7;
+}
+.purple-color .callout,
+.purple .callout {
+  border-color: #9900F7;
+}
+
+body.red .colored,
+body.red .button.menu-button {
+  color: #E60457;
+}
+body.red a,
+body.red a:hover,
+body.red a:focus,
+body.red a:active {
+  color: #E60457;
+}
+body.red .menu li a {
+  color: var(--color-black);
+}
+body.red a.button:not(.hollow),
+body.red .label,
+body.red .is-dropdown-submenu,
+body.red .caption {
+  color: var(--color-white);
+  background-color: #E60457;
+}
+
+.red-bg {
+  background-color: #E60457;
+}
+.red-color,
+.red {
+}
+.red-color a,
+.red a,
+.red-color .swiper-button-next,
+.red .swiper-button-next,
+.red-color .swiper-button-prev,
+.red .swiper-button-prev {
+  color: #E60457;
+}
+.red-color .label,
+.red .label,
+.red-color .swiper-pagination-bullet-active,
+.red .swiper-pagination-bullet-active,
+.red-color .caption,
+.red .caption {
+  background-color: #E60457;
+}
+.red-color .button.hollow,
+.red .button.hollow {
+  border-color: #E60457;
+  color: #E60457;
+}
+.red-color .button.hollow:after,
+.red .button.hollow:after {
+  border-color: #E60457;
+}
+.red-color .button:not(.menu-button),
+.red .button:not(.menu-button) {
+  border-color: #E60457;
+  background-color: #E60457;
+  color: var(--color-white);
+}
+.red-color .accordion-title,
+.red .accordion-title,
+.red-color .accordion-content,
+.red .accordion-content {
+  border-color: #E60457;
+}
+.red-color .callout,
+.red .callout {
+  border-color: #E60457;
+}
+
+body.fuchsia .colored,
+body.fuchsia .button.menu-button {
+  color: #FF00E8;
+}
+body.fuchsia a,
+body.fuchsia a:hover,
+body.fuchsia a:focus,
+body.fuchsia a:active {
+  color: #FF00E8;
+}
+body.fuchsia .menu li a {
+  color: var(--color-black);
+}
+body.fuchsia a.button:not(.hollow),
+body.fuchsia .label,
+body.fuchsia .is-dropdown-submenu,
+body.fuchsia .caption {
+  color: var(--color-white);
+  background-color: #FF00E8;
+}
+
+.fuchsia-bg {
+  background-color: #FF00E8;
+}
+.fuchsia-color,
+.fuchsia {
+}
+.fuchsia-color a,
+.fuchsia a,
+.fuchsia-color .swiper-button-next,
+.fuchsia .swiper-button-next,
+.fuchsia-color .swiper-button-prev,
+.fuchsia .swiper-button-prev {
+  color: #FF00E8;
+}
+.fuchsia-color .label,
+.fuchsia .label,
+.fuchsia-color .swiper-pagination-bullet-active,
+.fuchsia .swiper-pagination-bullet-active,
+.fuchsia-color .caption,
+.fuchsia .caption {
+  background-color: #FF00E8;
+}
+.fuchsia-color .button.hollow,
+.fuchsia .button.hollow {
+  border-color: #FF00E8;
+  color: #FF00E8;
+}
+.fuchsia-color .button.hollow:after,
+.fuchsia .button.hollow:after {
+  border-color: #FF00E8;
+}
+.fuchsia-color .button:not(.menu-button),
+.fuchsia .button:not(.menu-button) {
+  border-color: #FF00E8;
+  background-color: #FF00E8;
+  color: var(--color-white);
+}
+.fuchsia-color .accordion-title,
+.fuchsia .accordion-title,
+.fuchsia-color .accordion-content,
+.fuchsia .accordion-content {
+  border-color: #FF00E8;
+}
+.fuchsia-color .callout,
+.fuchsia .callout {
+  border-color: #FF00E8;
+}
+
+body.gray .colored,
+body.gray .button.menu-button {
+  color: #6B6B6B;
+}
+body.gray a,
+body.gray a:hover,
+body.gray a:focus,
+body.gray a:active {
+  color: #6B6B6B;
+}
+body.gray .menu li a {
+  color: var(--color-black);
+}
+body.gray a.button:not(.hollow),
+body.gray .label,
+body.gray .is-dropdown-submenu,
+body.gray .caption {
+  color: var(--color-white);
+  background-color: #6B6B6B;
+}
+
+.gray-bg {
+  background-color: #6B6B6B;
+}
+.gray-color,
+.gray {
+}
+.gray-color a,
+.gray a,
+.gray-color .swiper-button-next,
+.gray .swiper-button-next,
+.gray-color .swiper-button-prev,
+.gray .swiper-button-prev {
+  color: #6B6B6B;
+}
+.gray-color .label,
+.gray .label,
+.gray-color .swiper-pagination-bullet-active,
+.gray .swiper-pagination-bullet-active,
+.gray-color .caption,
+.gray .caption {
+  background-color: #6B6B6B;
+}
+.gray-color .button.hollow,
+.gray .button.hollow {
+  border-color: #6B6B6B;
+  color: #6B6B6B;
+}
+.gray-color .button.hollow:after,
+.gray .button.hollow:after {
+  border-color: #6B6B6B;
+}
+.gray-color .button:not(.menu-button),
+.gray .button:not(.menu-button) {
+  border-color: #6B6B6B;
+  background-color: #6B6B6B;
+  color: var(--color-white);
+}
+.gray-color .accordion-title,
+.gray .accordion-title,
+.gray-color .accordion-content,
+.gray .accordion-content {
+  border-color: #6B6B6B;
+}
+.gray-color .callout,
+.gray .callout {
+  border-color: #6B6B6B;
+}
+
+body.cyan .colored,
+body.cyan .button.menu-button {
+  color: #00C1FF;
+}
+body.cyan a,
+body.cyan a:hover,
+body.cyan a:focus,
+body.cyan a:active {
+  color: #00C1FF;
+}
+body.cyan .menu li a {
+  color: var(--color-black);
+}
+body.cyan a.button:not(.hollow),
+body.cyan .label,
+body.cyan .is-dropdown-submenu,
+body.cyan .caption {
+  color: var(--color-white);
+  background-color: #00C1FF;
+}
+
+.cyan-bg {
+  background-color: #00C1FF;
+}
+.cyan-color,
+.cyan {
+}
+.cyan-color a,
+.cyan a,
+.cyan-color .swiper-button-next,
+.cyan .swiper-button-next,
+.cyan-color .swiper-button-prev,
+.cyan .swiper-button-prev {
+  color: #00C1FF;
+}
+.cyan-color .label,
+.cyan .label,
+.cyan-color .swiper-pagination-bullet-active,
+.cyan .swiper-pagination-bullet-active,
+.cyan-color .caption,
+.cyan .caption {
+  background-color: #00C1FF;
+}
+.cyan-color .button.hollow,
+.cyan .button.hollow {
+  border-color: #00C1FF;
+  color: #00C1FF;
+}
+.cyan-color .button.hollow:after,
+.cyan .button.hollow:after {
+  border-color: #00C1FF;
+}
+.cyan-color .button:not(.menu-button),
+.cyan .button:not(.menu-button) {
+  border-color: #00C1FF;
+  background-color: #00C1FF;
+  color: var(--color-white);
+}
+.cyan-color .accordion-title,
+.cyan .accordion-title,
+.cyan-color .accordion-content,
+.cyan .accordion-content {
+  border-color: #00C1FF;
+}
+.cyan-color .callout,
+.cyan .callout {
+  border-color: #00C1FF;
+}
+
+body.yellow .colored,
+body.yellow .button.menu-button {
+  color: #FFC000;
+}
+body.yellow a,
+body.yellow a:hover,
+body.yellow a:focus,
+body.yellow a:active {
+  color: #FFC000;
+}
+body.yellow .menu li a {
+  color: var(--color-black);
+}
+body.yellow a.button:not(.hollow),
+body.yellow .label,
+body.yellow .is-dropdown-submenu,
+body.yellow .caption {
+  color: var(--color-white);
+  background-color: #FFC000;
+}
+
+.yellow-bg {
+  background-color: #FFC000;
+}
+.yellow-color,
+.yellow {
+}
+.yellow-color a,
+.yellow a,
+.yellow-color .swiper-button-next,
+.yellow .swiper-button-next,
+.yellow-color .swiper-button-prev,
+.yellow .swiper-button-prev {
+  color: #FFC000;
+}
+.yellow-color .label,
+.yellow .label,
+.yellow-color .swiper-pagination-bullet-active,
+.yellow .swiper-pagination-bullet-active,
+.yellow-color .caption,
+.yellow .caption {
+  background-color: #FFC000;
+}
+.yellow-color .button.hollow,
+.yellow .button.hollow {
+  border-color: #FFC000;
+  color: #FFC000;
+}
+.yellow-color .button.hollow:after,
+.yellow .button.hollow:after {
+  border-color: #FFC000;
+}
+.yellow-color .button:not(.menu-button),
+.yellow .button:not(.menu-button) {
+  border-color: #FFC000;
+  background-color: #FFC000;
+  color: var(--color-white);
+}
+.yellow-color .accordion-title,
+.yellow .accordion-title,
+.yellow-color .accordion-content,
+.yellow .accordion-content {
+  border-color: #FFC000;
+}
+.yellow-color .callout,
+.yellow .callout {
+  border-color: #FFC000;
+}
+
+body.green .colored,
+body.green .button.menu-button {
+  color: #00CE57;
+}
+body.green a,
+body.green a:hover,
+body.green a:focus,
+body.green a:active {
+  color: #00CE57;
+}
+body.green .menu li a {
+  color: var(--color-black);
+}
+body.green a.button:not(.hollow),
+body.green .label,
+body.green .is-dropdown-submenu,
+body.green .caption {
+  color: var(--color-white);
+  background-color: #00CE57;
+}
+
+.green-bg {
+  background-color: #00CE57;
+}
+.green-color,
+.green {
+}
+.green-color a,
+.green a,
+.green-color .swiper-button-next,
+.green .swiper-button-next,
+.green-color .swiper-button-prev,
+.green .swiper-button-prev {
+  color: #00CE57;
+}
+.green-color .label,
+.green .label,
+.green-color .swiper-pagination-bullet-active,
+.green .swiper-pagination-bullet-active,
+.green-color .caption,
+.green .caption {
+  background-color: #00CE57;
+}
+.green-color .button.hollow,
+.green .button.hollow {
+  border-color: #00CE57;
+  color: #00CE57;
+}
+.green-color .button.hollow:after,
+.green .button.hollow:after {
+  border-color: #00CE57;
+}
+.green-color .button:not(.menu-button),
+.green .button:not(.menu-button) {
+  border-color: #00CE57;
+  background-color: #00CE57;
+  color: var(--color-white);
+}
+.green-color .accordion-title,
+.green .accordion-title,
+.green-color .accordion-content,
+.green .accordion-content {
+  border-color: #00CE57;
+}
+.green-color .callout,
+.green .callout {
+  border-color: #00CE57;
+}
+
+/* Static color schemes (hardcoded, not ACF-driven) */
+.tax-faq_categories .button.menu-button {
+  color: var(--color-green);
+}
+.tax-faq_categories .site-header .menu li.menu-item-faq a {
+  text-decoration: underline;
+  font-style: italic;
+  color: var(--color-green);
+}
+.tax-faq_categories .main-content a {
+  color: var(--color-green);
+}
+.tax-faq_categories .main-content .accordion-title,
+.tax-faq_categories .main-content .accordion-content {
+  border-color: var(--color-green);
+}
+.tax-faq_categories .main-content .button {
+  border-color: var(--color-green);
+  background-color: var(--color-green);
+}
+
+.post-type-archive-press .menu li.menu-item-press a {
+  text-decoration: underline;
+  font-style: italic;
+  color: var(--color-blue);
+}
+
+.woocommerce-page .menu li.menu-item-shop a {
+  text-decoration: underline;
+  font-style: italic;
+  color: var(--color-blue);
+}

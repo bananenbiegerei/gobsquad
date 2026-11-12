@@ -1,0 +1,107 @@
+/* Product loop */
+.onsale.label {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+/* Single product */
+.variations select {
+  margin-bottom: 0;
+}
+
+/* Messages */
+.woocommerce-message {
+  padding: 1rem;
+  border: 3px solid var(--color-primary);
+  margin: 0 0 1rem 0;
+}
+.woocommerce-message a.button {
+  margin-right: 30px;
+}
+
+/* Checkout */
+table.shop_table td {
+  vertical-align: top;
+}
+ul.wc_payment_methods {
+  list-style: none;
+  margin: 0;
+  padding: 1rem;
+  border: 3px solid var(--color-primary);
+}
+ul.wc_payment_methods label {
+  margin: 0;
+}
+ul.wc_payment_methods label[for="payment_method_paypal"] {
+  margin-bottom: 15px;
+}
+ul.wc_payment_methods label[for="payment_method_paypal"] img {
+  margin-right: 15px;
+}
+
+/* Pagination */
+.woocommerce-pagination ul.page-numbers {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+.woocommerce-pagination ul.page-numbers li {
+  display: inline-block;
+  text-align: center;
+  width: 30px;
+}
+
+.product.cell a.added_to_cart {
+  display: block;
+  margin-top: var(--gutter);
+}
+
+/* Shipping */
+ul#shipping_method {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 18px;
+}
+ul#shipping_method label {
+  font-size: 18px;
+}
+
+/* Product grid (WooCommerce 5 -> 11 core markup) */
+ul.products {
+  display: flex;
+  flex-flow: row wrap;
+  list-style: none;
+}
+ul.products > li {
+  text-shadow:
+    -1px -1px 0 var(--color-white),
+    1px -1px 0 var(--color-white),
+    -1px 1px 0 var(--color-white),
+    1px 1px 0 var(--color-white);
+  margin-bottom: 30px;
+  padding-right: 0.8333333333rem;
+  padding-left: 0.8333333333rem;
+  width: 50%;
+}
+@media (min-width: 640px) {
+  ul.products > li {
+    width: 33.3333333%;
+  }
+}
+@media (min-width: 1200px) {
+  ul.products > li {
+    width: 20%;
+  }
+}
+ul.products > li > a .price {
+  display: block;
+}
+ul.products > li > a > a {
+  display: block;
+}
+
+.woocommerce-shop #sidebar {
+  display: none !important;
+}

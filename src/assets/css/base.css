@@ -1,0 +1,170 @@
+/* Ported from _custom-fonts.scss — declared but not currently applied to
+   any selector (verified: no `gob_font_02regular` usage anywhere in the
+   theme). Kept for parity; browsers won't fetch it unless referenced. */
+@font-face {
+  font-family: "gob_font_02regular";
+  src:
+    url("../fonts/gob/gobfont02-regular-webfont.woff2") format("woff2"),
+    url("../fonts/gob/gobfont02-regular-webfont.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* Base typography (Foundation foundation-global-styles + foundation-typography) */
+body {
+  font-family: var(--font-sans);
+  font-size: 18px;
+  line-height: 1.5;
+  color: var(--color-black);
+  background: var(--color-white);
+  text-shadow:
+    -1px -1px 0 var(--color-white),
+    1px -1px 0 var(--color-white),
+    -1px 1px 0 var(--color-white),
+    1px 1px 0 var(--color-white);
+}
+body .button,
+body .eapps-instagram-feed-posts-grid-load-more-text,
+body .eapps-instagram-feed {
+  text-shadow: none;
+}
+.no-text-stroke,
+.elfsight-widget,
+.select2-results__options {
+  text-shadow: none;
+}
+.text-shadow {
+  text-shadow: var(--text-shadow-default);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-sans);
+  font-weight: bold;
+  font-style: normal;
+  color: inherit;
+  line-height: 1.2;
+  margin-bottom: 0.5rem;
+}
+h1 {
+  font-size: 34px;
+}
+h2 {
+  font-size: 24px;
+}
+h3 {
+  font-size: 19px;
+}
+h4 {
+  font-size: 18px;
+}
+h5 {
+  font-size: 17px;
+}
+h6 {
+  font-size: 16px;
+}
+@media (min-width: 640px) {
+  h1 {
+    font-size: 48px;
+  }
+  h2 {
+    font-size: 34px;
+  }
+  h3 {
+    font-size: 24px;
+  }
+  h4 {
+    font-size: 16px;
+  }
+  h5 {
+    font-size: 16px;
+  }
+  h6 {
+    font-size: 16px;
+  }
+}
+
+p {
+  font-size: 18px;
+}
+
+.font-size-h1 {
+  font-size: 34px;
+}
+.font-size-h2 {
+  font-size: 24px;
+}
+.font-size-h3 {
+  font-size: 19px;
+}
+.font-size-h4 {
+  font-size: 18px;
+}
+.font-size-h5 {
+  font-size: 17px;
+}
+.font-size-h6 {
+  font-size: 16px;
+}
+@media (min-width: 640px) {
+  .font-size-h1 {
+    font-size: 48px;
+  }
+  .font-size-h2 {
+    font-size: 34px;
+  }
+  .font-size-h3 {
+    font-size: 24px;
+  }
+  .font-size-h4 {
+    font-size: 16px;
+  }
+  .font-size-h5 {
+    font-size: 16px;
+  }
+  .font-size-h6 {
+    font-size: 16px;
+  }
+}
+
+p.small,
+.small {
+  font-size: 14.4px; /* 80% of global-font-size */
+  line-height: 1.35; /* 0.9 * 1.5 */
+}
+
+.lead {
+  font-size: 18px;
+}
+@media (min-width: 640px) {
+  .lead {
+    font-size: 22.5px; /* global-font-size * 1.25 */
+  }
+}
+
+a {
+  color: var(--color-primary);
+  text-decoration: none;
+}
+a:active:not(.accordion-title),
+a:focus:not(.accordion-title) {
+  outline: none;
+}
+
+.no-underline {
+  text-decoration: none;
+}
+.uppercase {
+  text-transform: uppercase;
+}
+.lowercase {
+  text-transform: none;
+}
+.italic {
+  font-style: italic;
+}

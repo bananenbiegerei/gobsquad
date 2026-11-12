@@ -1,0 +1,86 @@
+@import "tailwindcss";
+
+/*
+ * Design tokens ported from the old Foundation _settings.scss /
+ * _custom-variables.scss / _custom-colors.scss. Breakpoint names follow
+ * idiomatic Tailwind (sm/md/lg/xl) rather than Foundation's own
+ * (small/medium/large/xlarge/xxlarge) — same pixel values, new names:
+ *   Foundation small  (0)     -> base/unprefixed
+ *   Foundation medium (640px) -> sm
+ *   Foundation large  (1170px)-> md
+ *   Foundation xlarge (1200px)-> lg
+ *   Foundation xxlarge(1440px)-> xl
+ */
+@theme {
+  --breakpoint-sm: 640px;
+  --breakpoint-md: 1170px;
+  --breakpoint-lg: 1200px;
+  --breakpoint-xl: 1440px;
+
+  /* Brand near-black / near-white (Foundation's $black/$white overrides) */
+  --color-black: #0a0a0a;
+  --color-white: #fefefe;
+
+  /* Brand palette (flat tokens -> bg-primary, text-primary, border-primary, etc.) */
+  --color-primary: #005cff;
+  --color-secondary: #6b6b6b;
+  --color-success: #00ce57;
+  --color-warning: #ff7f0e;
+  --color-alert: #e60457;
+  --color-light-gray: #ebebeb;
+  --color-medium-gray: #cacaca;
+  --color-dark-gray: #6b6b6b;
+  --color-purple: #9900f7;
+  --color-fuchsia: #ff00e8;
+  --color-cyan: #00c1ff;
+  --color-yellow: #ffc000;
+
+  /* Aliases used by the ACF `color_scheme` -> body.{color} mechanism */
+  --color-blue: #005cff;
+  --color-red: #e60457;
+  --color-green: #00ce57;
+  --color-gray: #6b6b6b;
+  --color-orange: #ff7f0e;
+
+  --font-sans: Arial, sans-serif;
+
+  /* Named spacing scale (Foundation's $gutter: 15px derived scale), additive
+     to Tailwind's default numeric spacing scale. */
+  --spacing-xsmall: 7.5px;
+  --spacing-small: 15px;
+  --spacing-medium: 30px;
+  --spacing-large: 60px;
+  --spacing-xlarge: 90px;
+  --spacing-xxlarge: 180px;
+
+  --radius-global: 0px;
+
+  --shadow-default: 0 3px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* One-off layout constants: not a reusable scale, so plain custom properties
+   rather than @theme tokens. */
+:root {
+  --header-height: 140px;
+  --header-height-stuck: 95px;
+  --mobile-header-height: 100px;
+  --footer-height: 200px;
+  --mobile-footer-height: 260px;
+  --logo-height: 50px;
+  --gutter: 15px;
+
+  --text-shadow-default: 0 2px 4px rgba(0, 0, 0, 0.5);
+  --transparent-bg: rgba(255, 255, 255, 0.8);
+
+  --transition-default: all 0.8s ease;
+  --transition-quick: all 0.1s ease;
+}
+
+@import "./base.css";
+@import "./layout.css";
+@import "./components.css";
+@import "./color-schemes.css";
+@import "./pages.css";
+@import "./swiper.css";
+@import "./woocommerce.css";
+@import "./cookie-consent.css";

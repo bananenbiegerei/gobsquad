@@ -1,0 +1,58 @@
+/* WebToffee "Cookie Law Info" plugin DOM (not the unused vue-cookie-* npm packages) */
+#cookie-law-info-bar,
+.cli-modal-content,
+#cookie-law-info-again {
+  background-color: var(--color-light-gray) !important;
+  box-shadow: var(--shadow-default) !important;
+  text-align: left !important;
+  border-radius: 0 !important;
+  font-size: 14.4px !important;
+  padding: var(--gutter) !important;
+}
+#cookie-law-info-bar .cli-plugin-button,
+#cookie-law-info-bar .cli_setting_save_button,
+.cli-modal-content .cli-plugin-button,
+.cli-modal-content .cli_setting_save_button,
+#cookie-law-info-again .cli-plugin-button,
+#cookie-law-info-again .cli_setting_save_button {
+  text-shadow: none;
+  display: inline-block;
+  padding: 0.85em 1em;
+  border-radius: 0;
+  cursor: pointer;
+  margin: 0 !important;
+  margin-top: 7.5px !important;
+  margin-bottom: 7.5px !important;
+  background-color: transparent;
+}
+#cookie-law-info-bar .cli-plugin-button:hover,
+.cli-modal-content .cli-plugin-button:hover,
+#cookie-law-info-again .cli-plugin-button:hover {
+  background-color: inherit;
+}
+#cookie-law-info-bar .cli_settings_button,
+.cli-modal-content .cli_settings_button,
+#cookie-law-info-again .cli_settings_button {
+  margin: 0 !important;
+  margin-top: 7.5px !important;
+  margin-bottom: 7.5px !important;
+  color: var(--color-success) !important;
+}
+#cookie-law-info-bar .cli-plugin-main-button,
+#cookie-law-info-bar .cli_setting_save_button,
+.cli-modal-content .cli-plugin-main-button,
+.cli-modal-content .cli_setting_save_button,
+#cookie-law-info-again .cli-plugin-main-button,
+#cookie-law-info-again .cli_setting_save_button {
+  background-color: var(--color-success) !important;
+  color: var(--color-white) !important;
+}
+#cookie-law-info-bar .cli-tab-footer,
+.cli-modal-content .cli-tab-footer,
+#cookie-law-info-again .cli-tab-footer {
+  padding: 0 !important;
+}
+
+#cookie-law-info-again {
+  left: var(--gutter) !important;
+}

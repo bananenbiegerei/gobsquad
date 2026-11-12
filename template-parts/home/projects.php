@@ -9,7 +9,7 @@ $projects_title_image_size = 'full';
     </a>
   </div>
 
-  <div class="swiper-container swiper-current-projects">
+  <div class="swiper swiper-current-projects">
     <?php get_template_part('template-parts/partials/swiper-navigation') ?>
     <div class="swiper-wrapper margin-top-1">
       <?php

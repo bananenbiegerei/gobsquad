@@ -5,7 +5,7 @@
   $images = get_sub_field('gallery');
   $size = 'full'; // (thumbnail, medium, large, full or custom size)
   if( $images ):?>
-  <div class="swiper-container overlay-nav swiper-flex margin-top-3 margin-bottom-3">
+  <div class="swiper overlay-nav swiper-flex margin-top-3 margin-bottom-3">
     <div class="swiper-wrapper margin-bottom-1">
       <?php foreach( $images as $image ): ?>
         <div class="swiper-slide">

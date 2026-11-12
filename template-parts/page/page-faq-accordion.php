@@ -1,4 +1,4 @@
-<ul class="accordion" data-accordion data-multi-expand="true" data-allow-all-closed="true">
+<ul class="accordion">
 <?php
 // WP_Query arguments
 $args = array(

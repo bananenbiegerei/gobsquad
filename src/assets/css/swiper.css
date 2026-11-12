@@ -1,0 +1,85 @@
+.swiper-slide {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-slide img {
+  width: 100%;
+  height: auto;
+}
+
+.swiper-button-next,
+.swiper-button-prev {
+  position: relative;
+  background-image: none;
+  background-position: center;
+  background-repeat: no-repeat;
+  text-align: center;
+  top: 0;
+  margin: 0;
+  color: var(--color-primary);
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+  font-size: 30px;
+  line-height: 30px;
+}
+@media (min-width: 640px) {
+  .swiper-button-next,
+  .swiper-button-prev {
+    font-size: 30px;
+    line-height: 30px;
+    width: 30px;
+    height: 30px;
+  }
+}
+.swiper-button-next {
+  right: 0;
+}
+.swiper-button-prev {
+  left: 0;
+}
+.swiper-pagination-bullet-active {
+  background-color: var(--color-primary);
+}
+.swiper-button-next.swiper-button-disabled,
+.swiper-button-prev.swiper-button-disabled {
+  opacity: 0;
+}
+
+.swiper-pagination-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.swiper-pagination-container .swiper-pagination {
+  position: relative;
+  text-align: center;
+}
+.swiper-pagination-container .swiper-pagination span {
+  display: inline-block;
+  margin-left: 3.75px;
+  margin-right: 3.75px;
+}
+
+/* Overlay nav (project galleries) */
+.swiper.overlay-nav {
+  position: relative;
+}
+.swiper.overlay-nav .swiper-button-next {
+  position: absolute;
+  top: 0;
+  right: 0;
+  height: 100%;
+  width: 50%;
+  cursor: url(/wp-content/themes/gobsquad/dist/assets/img/chevron-right-solid.png), auto;
+}
+.swiper.overlay-nav .swiper-button-prev {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 50%;
+  cursor: url(/wp-content/themes/gobsquad/dist/assets/img/chevron-left-solid.png), auto;
+}

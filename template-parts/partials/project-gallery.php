@@ -7,7 +7,7 @@ $size = 'eight-columns'; // (thumbnail, medium, large, full or custom size)
 if ($images) : ?>
 
 
-<div class="swiper-container overlay-nav project-gallery">
+<div class="swiper overlay-nav project-gallery">
   <div class="swiper-wrapper">
     <div class="swiper-slide">
       <div class="caption-container">

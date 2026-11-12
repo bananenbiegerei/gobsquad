@@ -15,7 +15,7 @@ $projects_meta_image_size = 'full';
 $posts = get_field('faq_selection');
 
 if( $posts ): ?>
-<ul class="accordion" data-accordion data-allow-all-closed="true">
+<ul class="accordion">
   <?php foreach( $posts as $post): // variable must be called $post (IMPORTANT) ?>
     <?php setup_postdata($post); ?>
     <?php get_template_part('template-parts/partials/faq-card') ?>

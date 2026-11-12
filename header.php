@@ -34,7 +34,7 @@ $page_background_url_shop = $page_background_image_shop['url'];
 <?php else: // if neither blog or woocommerce ?>
 	<body <?php body_class('page-background-image'); ?> style="background-image: url('<?php echo $page_background_url; ?>')">
 <?php endif ?>
-	<div class="off-canvas-content" data-off-canvas-content>
+	<div class="off-canvas-content">
 	<?php get_template_part('template-parts/partials/header-desktop'); ?>
 	<?php get_template_part('template-parts/partials/header-mobile'); ?>
 <main id="main-content" class="main-content">
