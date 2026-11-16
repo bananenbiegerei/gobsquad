@@ -1,9 +1,9 @@
 <?php get_header();?>
-<div class="grid-container page-background">
-	<div class="grid-x grid-padding-x padding-bottom-large">
+<div class="mx-auto max-w-360 px-gutter-half page-background">
+	<div class="grid grid-cols-12 gap-x-gutter pb-large">
 		<?php get_template_part('template-parts/page/page','title-index'); ?>
 	</div>
-	<div class="grid-x grid-padding-x small-up-2 medium-up-3 large-up-4">
+	<div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-x-gutter">
 		<?php
 			$today = current_time('Ymd');
 			$args = array (
@@ -25,7 +25,7 @@
 			if ( $query->have_posts() ) {
 				while ( $query->have_posts() ) {
 					$query->the_post(); ?>
-					<div class="cell">
+					<div class="min-w-0">
 						<?php get_template_part('template-parts/partials/date-card'); ?>
 					</div>
 				<?php }

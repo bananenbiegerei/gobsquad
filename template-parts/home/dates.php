@@ -4,8 +4,8 @@ $dates_title_image_size = 'full';
 $dates_meta_image = get_field('meta_image', 56);
 $dates_meta_image_size = 'full';
 ?>
-<section class="dates green position-relative padding-bottom-xxlarge">
-  <div class="text-center space-bottom-large">
+<section class="dates green relative pb-xxlarge">
+  <div class="text-center mb-large">
     <a href="<?php the_permalink(56); ?>">
       <?php echo wp_get_attachment_image( $dates_title_image, $dates_title_image_size ); ?>
     </a>
@@ -51,5 +51,7 @@ $dates_meta_image_size = 'full';
   <div class="text-center">
     <a class="button" href="<?php the_permalink('56') ?>">View all dates</a>
   </div>
-  <img class="meta-image" src="<?php echo $dates_meta_image['url']; ?>" alt="<?php echo $dates_meta_image['alt']; ?>" />
+  <?php if ( ! empty( $dates_meta_image['url'] ) ) : ?>
+    <img class="meta-image" src="<?php echo esc_url( $dates_meta_image['url'] ); ?>" alt="<?php echo esc_attr( $dates_meta_image['alt'] ?? '' ); ?>" />
+  <?php endif; ?>
 </section>

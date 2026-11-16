@@ -2,15 +2,30 @@
   display: none !important;
 }
 
-/* General nav menu typography (ported from _custom.scss "Menues") */
+/* NAVIGATION MENUS (Foundation .menu + _custom.scss "Menues")
+   Applied to the top and footer menus via the `menu` class on the <ul>. */
+.menu {
+  position: relative;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.menu a {
+  display: block;
+  padding: 0.7rem 1rem;
+  line-height: 1;
+  text-decoration: none;
+}
 .menu li a {
   color: var(--color-black);
-  font-size: 34px; /* small-font-size-h1 */
+  font-size: var(--text-xl);
   font-weight: bold;
 }
-@media (min-width: 640px) {
+@media (width >= theme(--breakpoint-sm)) {
   .menu li a {
-    font-size: 24px; /* medium-font-size-h3 */
+    font-size: var(--text-lg);
   }
 }
 .menu li a:hover,
@@ -22,27 +37,47 @@
   text-decoration: underline;
   font-style: italic;
 }
+/* Pull the first item's padding out so the link text aligns with the
+   container edge. */
 .top-menu,
 .footer-menu {
   margin-left: -1rem;
 }
 
-/* Desktop dropdown (CSS-only hover/focus reveal) */
-.menu-item-has-children {
+/* Desktop dropdown (CSS-only hover/focus reveal; markup from
+   insertcart_walker in functions/menu.php) */
+.top-menu .menu-item-has-children {
   position: relative;
+}
+.top-menu .menu-item-has-children > a {
+  position: relative;
+  padding-right: 1.5rem;
+}
+/* Foundation's dropdown caret */
+.top-menu .menu-item-has-children > a::after {
+  content: "";
+  position: absolute;
+  right: 5px;
+  top: 50%;
+  margin-top: -3px;
+  width: 0;
+  height: 0;
+  border: inset 6px;
+  border-bottom-width: 0;
+  border-top-style: solid;
+  border-color: var(--color-black) transparent transparent;
 }
 .dropdown-submenu {
   display: none;
   position: absolute;
   top: 100%;
   left: 0;
-  min-width: 12rem;
-  padding: 0.5rem 0;
+  z-index: 20;
+  min-width: 300px;
   margin: 0;
+  padding: 0;
   list-style: none;
   background: transparent !important; /* ported from the old .is-dropdown-submenu override */
-  font-size: 34px; /* medium-font-size-h2 */
-  z-index: 20;
 }
 .dropdown-submenu .dropdown-submenu {
   top: 0;
@@ -51,11 +86,6 @@
 .menu-item-has-children:hover > .dropdown-submenu,
 .menu-item-has-children:focus-within > .dropdown-submenu {
   display: block;
-}
-.dropdown-submenu li a {
-  display: block;
-  padding: 0.5rem 1rem;
-  font-size: 1rem;
 }
 
 /* Mobile drilldown (native <details>/<summary>, see functions/menu.php) */
@@ -86,6 +116,8 @@
   flex: 1;
   padding: 0.7rem 1rem;
   color: var(--color-black);
+  font-size: var(--text-lg);
+  font-weight: bold;
 }
 .drilldown-caret {
   width: 0.5rem;
@@ -103,7 +135,7 @@
 /* Off-canvas (Alpine-driven: see template-parts/partials/header-mobile.php)
    background-image uses an absolute /wp-content/... path (not a relative
    Vite-resolved one): in dev mode Vite injects this CSS via a <script>
-   module served cross-origin from localhost:5173, and the browser
+   module served cross-origin from the dev server, and the browser
    resolves relative url()s in injected <style> tags against the *page's*
    origin (gob.local), not the dev server's — an absolute path is the only
    form that works identically in dev and in the built production CSS. */
@@ -130,7 +162,7 @@
   transition: transform 0.3s ease;
 }
 .off-canvas img.logo.mobile {
-  margin-left: var(--gutter);
+  margin-left: var(--spacing-small);
   height: calc(var(--mobile-header-height) - 2rem);
 }
 
@@ -143,7 +175,9 @@
   transition: var(--transition-default);
   z-index: 999;
 }
-.site-header.hidden {
+/* Scroll-away state (not toggled by any JS at the moment; kept for parity
+   with the old theme — named so it can't collide with Tailwind's `hidden`). */
+.site-header.is-scrolled-away {
   top: -60px;
 }
 .site-header #main-menu {
@@ -151,11 +185,6 @@
 }
 .site-header img.logo.mobile {
   height: calc(var(--mobile-header-height) - 2rem);
-}
-@media (min-width: 640px) {
-  .site-header img.logo.desktop {
-    height: calc(var(--header-height) - 2rem);
-  }
 }
 .mobile-header {
   background-color: transparent;
@@ -169,7 +198,7 @@
   background-color: var(--color-white);
 }
 .mobile-header .menu-button i {
-  font-size: 24px;
+  font-size: var(--text-lg);
 }
 
 /* FOOTER */
@@ -181,17 +210,17 @@
   background-size: contain;
 }
 .site-footer p {
-  font-size: 14.4px;
+  font-size: var(--text-xs);
 }
 .site-footer .menu li a {
-  font-size: 19px; /* small-font-size-h3 */
+  font-size: var(--text-md);
 }
-@media (min-width: 640px) {
+@media (width >= theme(--breakpoint-sm)) {
   .site-footer {
     height: var(--footer-height);
   }
   .site-footer .menu li a {
-    font-size: 24px; /* medium-font-size-h3 */
+    font-size: var(--text-lg);
   }
 }
 
@@ -200,7 +229,7 @@
   margin-top: var(--mobile-header-height);
   min-height: calc(100vh - (var(--mobile-header-height) + var(--mobile-footer-height)));
 }
-@media (min-width: 1170px) {
+@media (width >= theme(--breakpoint-md)) {
   .main-content {
     margin-top: var(--header-height);
     min-height: calc(100vh - (var(--header-height) + var(--footer-height)));

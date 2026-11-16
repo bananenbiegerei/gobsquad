@@ -5,17 +5,25 @@
 .transparent-bg {
   background-color: var(--transparent-bg);
 }
+.fullwidth,
+.fullwidth img,
+img.fullwidth {
+  width: 100%;
+  height: auto;
+}
 
+/* Page background illustration (ACF `background_image`, see header.php).
+   Offset by 4 gutters right / 4 gutters up, like the old $bg-offset-*. */
 .page,
 .single,
 .page-background-image,
 .single-projects {
   background-attachment: fixed;
   background-repeat: no-repeat;
-  background-position: calc(100% + 60px) calc(-60px);
+  background-position: calc(100% + 4 * var(--spacing-small)) calc(-4 * var(--spacing-small));
   background-size: auto 80%;
 }
-@media (min-width: 640px) {
+@media (width >= theme(--breakpoint-sm)) {
   .page,
   .single,
   .page-background-image,
@@ -42,10 +50,11 @@ section.block {
   position: absolute;
   height: 160px;
   width: auto;
+  max-width: none;
   top: -70px;
   left: 5px;
 }
-@media (min-width: 640px) {
+@media (width >= theme(--breakpoint-sm)) {
   .home .now-image-container img {
     height: 160px;
     top: -60px;
@@ -81,7 +90,8 @@ section.block {
 .caption-container {
   position: relative;
 }
-.caption-container:hover .caption {
+.caption-container:hover .caption,
+.swiper:hover .caption {
   opacity: 1;
 }
 .caption-container .caption {
@@ -95,9 +105,7 @@ section.block {
   line-height: 2rem;
   padding-left: 10px;
   padding-right: 10px;
-}
-.swiper:hover .caption {
-  opacity: 1;
+  margin-bottom: 0;
 }
 
 /* FAQ */
@@ -123,4 +131,16 @@ section.block {
 
 .block-grid .cell {
   margin-bottom: var(--spacing-medium);
+}
+
+/* Newsletter (Mailchimp embed) */
+#mc_embed_signup input[type="email"],
+#mc_embed_signup input[type="text"] {
+  display: block;
+  width: 100%;
+  margin-bottom: 1rem;
+  padding: 0.5rem;
+  border: 1px solid var(--color-medium-gray);
+  background: var(--color-white);
+  font-size: var(--text-base);
 }

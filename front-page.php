@@ -1,23 +1,23 @@
 <?php get_header();?>
-<div class="grid-container">
-  <div class="grid-x grid-margin-x">
-    <div class="medium-6 cell purple-color transparent-bg">
+<div class="mx-auto max-w-360 px-gutter-half">
+  <div class="grid grid-cols-12 gap-x-gutter">
+    <div class="col-span-12 sm:col-span-6 purple-color transparent-bg">
       <?php get_template_part('template-parts/home/featured-project') ?>
     </div>
-    <div class="medium-6 cell fuchsia-color transparent-bg">
+    <div class="col-span-12 sm:col-span-6 fuchsia-color transparent-bg">
       <?php get_template_part('template-parts/home/about-us') ?>
     </div>
-    <div class="medium-12 cell home-content padding-top-large padding-bottom-large text-center transparent-bg">
+    <div class="col-span-12 home-content pt-large pb-large text-center transparent-bg">
       <?php the_content(); ?>
     </div>
-    <div class="medium-12 cell position-relative green-color">
+    <div class="col-span-12 min-w-0 relative green-color">
       <?php get_template_part('template-parts/home/dates') ?>
     </div>
-    <div class="medium-12 cell padding-top-large position-relative purple-color">
+    <div class="col-span-12 min-w-0 pt-large relative purple-color">
       <?php get_template_part('template-parts/home/projects') ?>
     </div>
     <?php get_template_part('template-parts/home/news') ?>
-    <div class="medium-12 cell padding-top-large padding-bottom-large position-relative red-color">
+    <div class="col-span-12 pt-large pb-large relative red-color">
       <?php get_template_part('template-parts/home/faqs') ?>
     </div>
   </div>

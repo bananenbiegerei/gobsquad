@@ -30,14 +30,14 @@ $related_dates = get_posts(array(
   'order'     			=> 'ASC',
 ));
 ?>
-<div class="mx-auto max-w-360 px-4">
-  <div class="flex flex-wrap gap-4">
-    <div class="w-full">
+<div class="mx-auto max-w-360 px-gutter-half">
+  <div class="grid grid-cols-12 gap-x-gutter">
+    <div class="col-span-12">
       <?php get_template_part('template-parts/page/page-title-project'); ?>
     </div>
-    <div class="w-full sm:w-2/3 sm:mx-auto" x-data="{ activeTab: 'panel1' }">
+    <div class="col-span-12 sm:col-span-8 sm:col-start-3 min-w-0" x-data="{ activeTab: 'panel1' }">
       <?php get_template_part('template-parts/partials/project-gallery'); ?>
-      <ul class="tabs mt-8" id="example-tabs">
+      <ul class="tabs mt-9" id="example-tabs">
         <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel1' }">
           <a href="#panel1" role="tab" aria-controls="panel1" id="panel1-label" @click.prevent="activeTab = 'panel1'">
             <button type="button" name="button" class="button">
@@ -57,7 +57,7 @@ $related_dates = get_posts(array(
         <?php if ( have_rows('custom_meta_infos') ): ?>
           <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel<?php echo $uniq_id; ?>' }">
             <a href="#panel<?php echo $uniq_id; ?>" role="tab" aria-controls="panel<?php echo $uniq_id; ?>" id="panel<?php echo $uniq_id; ?>-label" @click.prevent="activeTab = 'panel<?php echo $uniq_id; ?>'">
-              <h3 class="no-space">
+              <h3 class="m-0">
                 <button type="button" name="button" class="button">
                   Credits
                 </button>
@@ -72,7 +72,7 @@ $related_dates = get_posts(array(
           <?php while ( have_rows( 'custom_infos' ) ) : the_row(); ?>
             <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel-custom-info-<?php echo $i; ?>' }">
               <a href="#panel-custom-info-<?php echo $i; ?>" role="tab" aria-controls="panel-custom-info-<?php echo $i; ?>" id="panel<?php echo $uniq_id; ?>-label" @click.prevent="activeTab = 'panel-custom-info-<?php echo $i; ?>'">
-                <h3 class="no-space">
+                <h3 class="m-0">
                   <button type="button" name="button" class="button">
                     <?php the_sub_field( 'custom_meta_infos_title' ); ?>
                   </button>

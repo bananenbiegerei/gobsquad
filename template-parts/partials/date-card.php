@@ -1,7 +1,7 @@
 <div class="card">
   <div class="card-section">
     <?php the_post_thumbnail('four-columns-four-three'); ?>
-    <h2 class="padding-top-small text-hide"><?php the_title(); ?></h2>
+    <h2 class="pt-small text-hide"><?php the_title(); ?></h2>
     <h2>
     <?php
       $post_object = get_field('related_project');

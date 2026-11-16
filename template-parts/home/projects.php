@@ -2,8 +2,8 @@
 $projects_title_image = get_field('title_image', 201);
 $projects_title_image_size = 'full';
 ?>
-<section class="projects purple-color padding-bottom-xxlarge position-relative">
-  <div class="text-center space-bottom-large">
+<section class="projects purple-color pb-xxlarge relative">
+  <div class="text-center mb-large">
       <a href="<?php the_permalink(201); ?>">
       <?php echo wp_get_attachment_image( $projects_title_image, $projects_title_image_size ); ?>
     </a>
@@ -11,7 +11,7 @@ $projects_title_image_size = 'full';
 
   <div class="swiper swiper-current-projects">
     <?php get_template_part('template-parts/partials/swiper-navigation') ?>
-    <div class="swiper-wrapper margin-top-1">
+    <div class="swiper-wrapper mt-4">
       <?php
       // WP_Query arguments
       $args = array(

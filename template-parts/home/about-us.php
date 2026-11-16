@@ -9,7 +9,7 @@ $query = new WP_Query( $args );
 if ( $query->have_posts() ) {
   while ( $query->have_posts() ) {
     $query->the_post(); ?>
-    <div class="title-image space-bottom-small">
+    <div class="title-image mb-small">
       <a href="<?php the_permalink(); ?>">
       <?php
       $image = get_field('title_image');
@@ -20,7 +20,7 @@ if ( $query->have_posts() ) {
       ?>
       </a>
     </div>
-    <div class="caption-container margin-bottom-1">
+    <div class="caption-container mb-4">
       <?php the_post_thumbnail('six-columns'); ?>
       <?php get_template_part('template-parts/partials/post-thumbnail-caption'); ?>
     </div>

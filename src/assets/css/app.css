@@ -44,18 +44,85 @@
 
   --font-sans: Arial, sans-serif;
 
-  /* Named spacing scale (Foundation's $gutter: 15px derived scale), additive
-     to Tailwind's default numeric spacing scale. */
+  /*
+   * Type scale. Replaces Tailwind's default scale with the brand's
+   * Foundation $header-styles / $global-font-size values so `text-*`
+   * utilities map 1:1 to the design. The root font-size is 18px (see
+   * base.css), exactly like the old build, so 1rem = 18px = body copy and
+   * every rem value ported from the old SCSS keeps its pixel size.
+   *
+   *   2xs  12px    accordion titles (Foundation $accordion-title-font-size)
+   *   xs   14.4px  .small, captions (80% of body)
+   *   sm   16px    h4–h6 from `sm`
+   *   base 18px    body copy, p, h4
+   *   md   19px    h3
+   *   lg   24px    h2, nav links, h3 from `sm`
+   *   xl   34px    h1, h2 from `sm`
+   *   2xl  48px    h1 from `sm`
+   *   lead 22.5px  .lead from `sm` (body × 1.25)
+   *
+   * Responsive heading roles (h1 = xl -> 2xl at `sm`, …) live in
+   * utilities.css as `text-h1` … `text-h6`.
+   */
+  --text-*: initial;
+  --text-2xs: 12px;
+  --text-xs: 0.8rem;
+  --text-xs--line-height: 1.35;
+  --text-sm: 16px;
+  --text-base: 1rem;
+  --text-md: 19px;
+  --text-lg: 24px;
+  --text-xl: 34px;
+  --text-2xl: 48px;
+  --text-lead: 1.25rem;
+
+  --leading-body: 1.5;
+  --leading-copy: 1.6;
+  --leading-heading: 1.2;
+
+  /*
+   * Named spacing scale (Foundation's $gutter: 15px derived scale), additive
+   * to Tailwind's default numeric scale. With the 18px root, Tailwind's
+   * numeric step is 4.5px, so the old rem helpers map to whole steps:
+   * margin-bottom-1 (1rem) -> mb-4, -2 (2rem) -> mb-8, -3 (3rem) -> mb-12.
+   * The values below are the *mobile*
+   * values; Foundation stepped them up above its `large` breakpoint
+   * (-> `md` here), which is reproduced with the :root overrides further
+   * down so that e.g. `pt-large` is 30px on mobile and 60px from `md`,
+   * exactly like the old `.padding-top-large` helper.
+   *
+   * gutter / gutter-half mirror Foundation's $grid-column-gutter
+   * (20px small, 30px medium): container padding is `px-gutter-half`,
+   * column gaps are `gap-x-gutter`.
+   */
+  --spacing-gutter: 20px;
+  --spacing-gutter-half: 10px;
   --spacing-xsmall: 7.5px;
   --spacing-small: 15px;
-  --spacing-medium: 30px;
-  --spacing-large: 60px;
-  --spacing-xlarge: 90px;
-  --spacing-xxlarge: 180px;
+  --spacing-medium: 15px;
+  --spacing-large: 30px;
+  --spacing-xlarge: 75px;
+  --spacing-xxlarge: 120px;
 
   --radius-global: 0px;
 
   --shadow-default: 0 3px 1px 0 rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive step-ups for the named spacing scale (see note in @theme). */
+@media (width >= theme(--breakpoint-sm)) {
+  :root {
+    --spacing-gutter: 30px;
+    --spacing-gutter-half: 15px;
+  }
+}
+@media (width >= theme(--breakpoint-md)) {
+  :root {
+    --spacing-medium: 30px;
+    --spacing-large: 60px;
+    --spacing-xlarge: 90px;
+    --spacing-xxlarge: 180px;
+  }
 }
 
 /* One-off layout constants: not a reusable scale, so plain custom properties
@@ -67,7 +134,6 @@
   --footer-height: 200px;
   --mobile-footer-height: 260px;
   --logo-height: 50px;
-  --gutter: 15px;
 
   --text-shadow-default: 0 2px 4px rgba(0, 0, 0, 0.5);
   --transparent-bg: rgba(255, 255, 255, 0.8);
@@ -76,11 +142,16 @@
   --transition-quick: all 0.1s ease;
 }
 
-@import "./base.css";
-@import "./layout.css";
-@import "./components.css";
-@import "./color-schemes.css";
-@import "./pages.css";
-@import "./swiper.css";
-@import "./woocommerce.css";
-@import "./cookie-consent.css";
+/*
+ * Theme CSS is layered so that Tailwind utilities in templates always win
+ * over element defaults and component classes (e.g. `mb-0` beats `.button`).
+ */
+@import "./base.css" layer(base);
+@import "./layout.css" layer(components);
+@import "./components.css" layer(components);
+@import "./color-schemes.css" layer(components);
+@import "./pages.css" layer(components);
+@import "./swiper.css" layer(components);
+@import "./woocommerce.css" layer(components);
+@import "./cookie-consent.css" layer(components);
+@import "./utilities.css";

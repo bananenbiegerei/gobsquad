@@ -11,7 +11,7 @@
       $post = $post_object;
       setup_postdata( $post );
       ?>
-      <p class="small no-space">related project:</p>
+      <p class="small m-0">related project:</p>
       <h6><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h6>
       <?php wp_reset_postdata(); // IMPORTANT - reset the $post object so the rest of the page works correctly ?>
     <?php endif; ?>

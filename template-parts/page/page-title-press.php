@@ -1,7 +1,7 @@
 <?php
 $press_page_id = '64';
 ?>
-<div class="medium-12 cell">
+<div class="col-span-12">
   <?php
   $value = get_field( "title_image", $press_page_id );
   if ( $value ) : ?>

@@ -1,6 +1,6 @@
 <div x-data="{ navOpen: false }" @keydown.escape.window="navOpen = false">
 <header class="site-header mobile-header md:hidden">
-  <div class="flex flex-wrap items-center gap-4 px-4">
+  <div class="flex items-center gap-x-gutter px-gutter-half h-(--mobile-header-height)">
     <div class="flex-1">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>">
         <img class="logo mobile" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/gob-squad-logo.png" alt="Logo">

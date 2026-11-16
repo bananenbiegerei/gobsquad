@@ -10,13 +10,27 @@
   font-style: normal;
 }
 
-/* Base typography (Foundation foundation-global-styles + foundation-typography) */
+/*
+ * Element defaults (Foundation global-styles + typography), expressed with
+ * the @theme tokens from app.css. The old build ran with
+ * `$global-font-size: 18px`, i.e. html { font-size: 112.5% }; keeping that
+ * root means every rem value ported from the old SCSS (menu padding,
+ * paragraph margins, caption line-height, …) renders at the same pixel
+ * size, and Tailwind's numeric spacing step becomes 4.5px (mb-4 = 1rem).
+ */
+html {
+  font-size: 112.5%;
+}
 body {
   font-family: var(--font-sans);
-  font-size: 18px;
-  line-height: 1.5;
+  font-size: var(--text-base);
+  line-height: var(--leading-body);
   color: var(--color-black);
   background: var(--color-white);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  /* Brand "text stroke": white outline so copy stays legible over the
+     page background illustrations. */
   text-shadow:
     -1px -1px 0 var(--color-white),
     1px -1px 0 var(--color-white),
@@ -25,18 +39,26 @@ body {
 }
 body .button,
 body .eapps-instagram-feed-posts-grid-load-more-text,
-body .eapps-instagram-feed {
-  text-shadow: none;
-}
+body .eapps-instagram-feed,
 .no-text-stroke,
 .elfsight-widget,
 .select2-results__options {
   text-shadow: none;
 }
-.text-shadow {
-  text-shadow: var(--text-shadow-default);
+
+/* Foundation rendered images inline (so `text-center` wrappers center
+   them); Tailwind's preflight makes them block. Restore the old behaviour,
+   templates opt into `block` where needed. */
+img,
+svg,
+video,
+canvas {
+  display: inline-block;
+  vertical-align: middle;
 }
 
+/* Headings — sizes are the responsive heading roles, see `text-h*` in
+   utilities.css for the same scale as utilities. */
 h1,
 h2,
 h3,
@@ -47,115 +69,128 @@ h6 {
   font-weight: bold;
   font-style: normal;
   color: inherit;
-  line-height: 1.2;
+  line-height: var(--leading-heading);
+  margin-top: 0;
   margin-bottom: 0.5rem;
+  text-rendering: optimizeLegibility;
 }
 h1 {
-  font-size: 34px;
+  font-size: var(--text-xl);
 }
 h2 {
-  font-size: 24px;
+  font-size: var(--text-lg);
 }
 h3 {
-  font-size: 19px;
+  font-size: var(--text-md);
 }
-h4 {
-  font-size: 18px;
-}
+h4,
 h5 {
-  font-size: 17px;
+  font-size: var(--text-base);
 }
 h6 {
-  font-size: 16px;
+  font-size: var(--text-sm);
 }
-@media (min-width: 640px) {
+@media (width >= theme(--breakpoint-sm)) {
   h1 {
-    font-size: 48px;
+    font-size: var(--text-2xl);
   }
   h2 {
-    font-size: 34px;
+    font-size: var(--text-xl);
   }
   h3 {
-    font-size: 24px;
+    font-size: var(--text-lg);
   }
-  h4 {
-    font-size: 16px;
-  }
-  h5 {
-    font-size: 16px;
-  }
+  h4,
+  h5,
   h6 {
-    font-size: 16px;
+    font-size: var(--text-sm);
   }
 }
 
+/* Copy */
 p {
-  font-size: 18px;
+  margin-bottom: 1rem;
+  font-size: var(--text-base);
+  line-height: var(--leading-copy);
+  text-rendering: optimizeLegibility;
 }
-
-.font-size-h1 {
-  font-size: 34px;
-}
-.font-size-h2 {
-  font-size: 24px;
-}
-.font-size-h3 {
-  font-size: 19px;
-}
-.font-size-h4 {
-  font-size: 18px;
-}
-.font-size-h5 {
-  font-size: 17px;
-}
-.font-size-h6 {
-  font-size: 16px;
-}
-@media (min-width: 640px) {
-  .font-size-h1 {
-    font-size: 48px;
-  }
-  .font-size-h2 {
-    font-size: 34px;
-  }
-  .font-size-h3 {
-    font-size: 24px;
-  }
-  .font-size-h4 {
-    font-size: 16px;
-  }
-  .font-size-h5 {
-    font-size: 16px;
-  }
-  .font-size-h6 {
-    font-size: 16px;
-  }
-}
-
 p.small,
 .small {
-  font-size: 14.4px; /* 80% of global-font-size */
-  line-height: 1.35; /* 0.9 * 1.5 */
+  font-size: var(--text-xs);
+  line-height: var(--text-xs--line-height);
 }
-
 .lead {
-  font-size: 18px;
+  font-size: var(--text-base);
+  line-height: var(--leading-copy);
 }
-@media (min-width: 640px) {
+@media (width >= theme(--breakpoint-sm)) {
   .lead {
-    font-size: 22.5px; /* global-font-size * 1.25 */
+    font-size: var(--text-lead);
   }
 }
 
+/* Lists inside editor content. Scoped to class-less lists so navigation
+   and layout lists (which always carry classes) keep Tailwind's reset. */
+.main-content :is(ul, ol):not([class]) {
+  margin-bottom: 1rem;
+  margin-left: 1.25rem;
+  line-height: var(--leading-copy);
+  list-style-position: outside;
+}
+.main-content ul:not([class]) {
+  list-style-type: disc;
+}
+.main-content ol:not([class]) {
+  list-style-type: decimal;
+}
+.main-content :is(ul, ol):not([class]) :is(ul, ol) {
+  margin-bottom: 0;
+}
+
+blockquote {
+  margin: 0 0 1rem;
+  /* Old build: rem-calc(30) on every side. The named token keeps 30px on
+     desktop and halves on mobile like the other Foundation spacing helpers. */
+  padding: var(--spacing-medium);
+  line-height: var(--leading-copy);
+  color: var(--color-black);
+}
+hr {
+  clear: both;
+  max-width: 100%;
+  height: 0;
+  margin: 1.25rem auto;
+  border-top: 0;
+  border-right: 0;
+  border-bottom: 1px solid var(--color-medium-gray);
+  border-left: 0;
+}
+strong,
+b {
+  font-weight: bold;
+}
+em,
+i {
+  font-style: italic;
+}
+
+/* Links */
 a {
   color: var(--color-primary);
   text-decoration: none;
+  cursor: pointer;
 }
 a:active:not(.accordion-title),
-a:focus:not(.accordion-title) {
+a:focus:not(.accordion-title),
+button:focus,
+.button:focus {
   outline: none;
 }
 
+/* Legacy text helpers still used in templates. */
+.text-shadow {
+  text-shadow: var(--text-shadow-default);
+}
 .no-underline {
   text-decoration: none;
 }
@@ -167,4 +202,13 @@ a:focus:not(.accordion-title) {
 }
 .italic {
   font-style: italic;
+}
+/* Foundation prototype helper: visually hide heading text that is replaced
+   by a title image, while keeping it in the document for a11y/SEO. */
+.text-hide {
+  font: 0/0 a !important;
+  color: transparent !important;
+  text-shadow: none !important;
+  background-color: transparent !important;
+  border: 0 !important;
 }

@@ -1,7 +1,7 @@
 <?php
 $page_id = get_the_ID();
 ?>
-<div class="medium-12 cell margin-bottom-2">
+<div class="col-span-12 mb-9">
   <?php $post = get_queried_object(); ?>
   <?php
   $value = get_field( 'title_image', $page_id );

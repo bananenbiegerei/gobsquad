@@ -1,8 +1,7 @@
 <?php
 $archive_page_id = get_the_ID();
-echo $archive_page_id;
 ?>
-<div class="medium-12 cell margin-bottom-2">
+<div class="col-span-12 mb-9">
   <?php
   $value = get_field( "title_image", $archive_page_id );
   if ( $value ) : ?>
@@ -18,7 +17,7 @@ echo $archive_page_id;
     <h1><?php the_archive_title();?></h1>
   <?php endif;
   ?>
-  <div class="page-content margin-top-3">
+  <div class="page-content mt-13.5">
     <?php
     while ( have_posts() ) : the_post();
       the_content();

@@ -16,7 +16,7 @@ add_action('woocommerce_before_main_content', 'my_theme_wrapper_start', 10);
 add_action('woocommerce_after_main_content', 'my_theme_wrapper_end', 10);
 
 function my_theme_wrapper_start() {
-    echo '<section id="wc-container" class="grid-container">';
+    echo '<section id="wc-container" class="mx-auto max-w-360 px-gutter-half">';
 }
 
 function my_theme_wrapper_end() {
@@ -37,7 +37,7 @@ remove_action('woocommerce_shop_loop_item_title','woocommerce_template_loop_prod
 add_action('woocommerce_shop_loop_item_title','woocommerce_template_loop_product_title',10);
 function woocommerce_template_loop_product_title()
 {
-   echo '<h2 class="font-size-h3 space-top-small">' . get_the_title() . '</h2>';
+   echo '<h2 class="text-h3 mt-small">' . get_the_title() . '</h2>';
 }
 
 // Single Product

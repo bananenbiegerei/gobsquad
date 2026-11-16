@@ -52,10 +52,11 @@ if( function_exists('acf_add_options_page') ) {
 // add color scheme to body_class
 add_filter('body_class', 'add_acf_body_class');
 function add_acf_body_class($class) {
-    $field = get_field_object('color_scheme', get_queried_object_id());
-    $value = $field['value'];
-    $label = str_replace( '_', '-', $value ); //Change _ to -
-    $class[] = $label;
+    $field = get_field_object( 'color_scheme', get_queried_object_id() );
+    $value = ( is_array( $field ) && ! empty( $field['value'] ) ) ? $field['value'] : '';
+    if ( $value ) {
+        $class[] = str_replace( '_', '-', $value ); // Change _ to -.
+    }
 
     return $class;
 }

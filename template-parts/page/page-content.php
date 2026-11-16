@@ -1,4 +1,4 @@
-<div class="page-content medium-8 medium-offset-2 cell">
+<div class="page-content col-span-12 sm:col-span-8 sm:col-start-3 min-w-0">
   <?php
   if( have_rows('flexible_contents') ): ?>
     <?php while ( have_rows('flexible_contents') ) : the_row();
@@ -8,13 +8,13 @@
     else : ?>
     <?php
     if ( has_post_thumbnail() ) { ?>
-      <div class="margin-bottom-2">
+      <div class="mb-9">
         <div class="caption-container">
           <?php the_post_thumbnail('eight-columns'); ?>
           <p class="small caption"><?php echo get_post(get_post_thumbnail_id())->post_content; ?></p>
         </div>
       </div>
-    <? }
+    <?php }
     ?>
   <?php endif;
   ?>

@@ -3,9 +3,10 @@ $projects_title_image = get_field('title_image', 106);
 $projects_title_image_size = 'full';
 $projects_meta_image = get_field('meta_image', 106);
 $projects_meta_image_size = 'full';
+$projects_meta_image_url = ( is_array( $projects_meta_image ) && ! empty( $projects_meta_image['url'] ) ) ? $projects_meta_image['url'] : '';
 ?>
-<section class="projects purple-color" style="background-image: url('<?php echo $projects_meta_image['url']; ?>')">
-  <div class="text-center space-bottom-large">
+<section class="projects purple-color"<?php if ( $projects_meta_image_url ) : ?> style="background-image: url('<?php echo esc_url( $projects_meta_image_url ); ?>')"<?php endif; ?>>
+  <div class="text-center mb-large">
     <a href="<?php the_permalink(106) ?>">
     <?php echo wp_get_attachment_image( $projects_title_image, $projects_title_image_size ); ?>
     </a>

@@ -6,11 +6,11 @@ if ($value) : ?>
 $image = get_field('title_image');
 $size = 'full'; // (thumbnail, medium, large, full or custom size)
 if ($image) : ?>
-<div class="margin-bottom-2">
+<div class="mb-9">
   <?php echo wp_get_attachment_image($image, $size); ?>
 </div>
 <?php endif; ?>
 <?php else : ?>
-  <h1 class="margin-bottom-2"><?php the_title(); ?></h1>
+  <h1 class="mb-9"><?php the_title(); ?></h1>
 <?php endif;
 ?>

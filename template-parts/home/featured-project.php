@@ -17,7 +17,7 @@ if( $posts ): ?>
     <?php the_post_thumbnail('six-columns'); ?>
     <?php get_template_part('template-parts/partials/post-thumbnail-caption'); ?>
   </div>
-<a href="<?php the_permalink(); ?>"><h2 class="space-top-small"><?php the_title(); ?></h2></a>
+<a href="<?php the_permalink(); ?>"><h2 class="mt-small"><?php the_title(); ?></h2></a>
 <?php the_excerpt(); ?>
 <a href="<?php the_permalink(); ?>" class="button">More</a>
 <?php endforeach; ?>

@@ -1,11 +1,9 @@
 <?php
 $projects_title_image = get_field('title_image', 59);
 $projects_title_image_size = 'full';
-$projects_meta_image = get_field('meta_image', 59);
-$projects_meta_image_size = 'full';
 ?>
-<div class="medium-12 cell">
-  <div class="text-center space-bottom-large">
+<div class="col-span-12">
+  <div class="text-center mb-large">
     <a href="<?php the_permalink(59); ?>">
       <?php echo wp_get_attachment_image( $projects_title_image, $projects_title_image_size ); ?>
     </a>

@@ -7,9 +7,9 @@
   <!-- Accordion tab content -->
   <div class="accordion-content" :class="{ 'is-active': open }" x-show="open" x-collapse>
     <?php if ( have_rows('faq_videos') ): ?>
-      <div class="block-grid grid gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-gutter">
         <?php while ( have_rows('faq_videos') ) : the_row(); ?>
-          <div class="cell">
+          <div class="mb-medium">
             <?php if( get_field( 'faq_video_title' ) ) : ?>
               <h4>
                 <?php the_sub_field('faq_video_title'); ?>

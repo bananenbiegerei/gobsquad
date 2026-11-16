@@ -1,12 +1,10 @@
 <?php get_header(); ?>
-<div class="grid-container">
-	<div class="grid-x grid-margin-x">
-		<div class="medium-12 cell">
-			<?php get_template_part('template-parts/page/page', 'title'); ?>
-		</div>
-		<div class="medium-8 medium-offset-2 cell">
-			<div class="grid-x grid-margin-x">
-				<div class="cell medium-6">
+<div class="mx-auto max-w-360 px-gutter-half">
+	<div class="grid grid-cols-12 gap-x-gutter">
+		<?php get_template_part('template-parts/page/page', 'title'); ?>
+		<div class="col-span-12 sm:col-span-8 sm:col-start-3 min-w-0">
+			<div class="grid grid-cols-12 gap-x-gutter">
+				<div class="col-span-12 sm:col-span-6">
 					<?php
 					if ( have_posts() ) {
 						while ( have_posts() ) {
@@ -18,19 +16,19 @@
 					} // end if
 					?>
 				</div>
-				<div class="cell medium-6">
+				<div class="col-span-12 sm:col-span-6">
 					<?php echo get_field("faq_video"); ?>
 				</div>
 			</div>
 			<?php
 			$terms = get_field('faq_category_selection');
 			if ($terms) : ?>
-			<div class="grid-x grid-margin-x small-up-1 medium-up-2 large-up-3 padding-top-medium">
+			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-gutter pt-medium">
 				<?php foreach ($terms as $term) : ?>
-					<div class="cell">
+					<div>
 						<div class="callout">
-							<a href="<?php echo get_term_link($term); ?>">
-								<h3 class="no-space"><?php echo $term->name; ?></h3>
+							<a href="<?php echo esc_url( get_term_link($term) ); ?>">
+								<h3 class="m-0"><?php echo esc_html( $term->name ); ?></h3>
 							</a>
 						</div>
 					</div>

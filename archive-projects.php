@@ -1,8 +1,8 @@
 <?php
 //Template Name: Archive Template for Projects
 get_header(); ?>
-<div class="grid-container page-background">
-	<div class="grid-x grid-padding-x padding-bottom-large">
+<div class="mx-auto max-w-360 px-gutter-half page-background">
+	<div class="grid grid-cols-12 gap-x-gutter pb-large">
 		<?php get_template_part('template-parts/page/page-title') ?>
 	</div>
 	<?php
@@ -52,12 +52,12 @@ get_header(); ?>
 										<?php else: // closing divs if not 1st loop ?>
 											</div></div></div>
 										<?php endif;?>
-										<div class="grid-x grid-padding-x padding-bottom-large">
-											<div class="medium-4 large-3 cell">
-												<img src="<?php echo $thumb; ?>" alt="<?php echo $alt; ?>" />
+										<div class="grid grid-cols-12 gap-x-gutter pb-large">
+											<div class="col-span-12 sm:col-span-4 md:col-span-3">
+												<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" />
 											</div>
-											<div class="medium-8 large-9 cell">
-												<div class="grid-x grid-padding-x">
+											<div class="col-span-12 sm:col-span-8 md:col-span-9">
+												<div class="grid grid-cols-12 gap-x-gutter">
 										<?php endif; ?>
 									<?php endif; ?>
 								<?php endwhile; ?>
@@ -66,7 +66,7 @@ get_header(); ?>
 								<h2><?php echo $year; ?></h2>
 							<?php endif; ?>
 					<?php endif; ?>
-					<div class="small-6 medium-6 large-4 cell">
+					<div class="col-span-6 md:col-span-4 min-w-0">
 						<?php include(locate_template('template-parts/partials/project-card.php')); ?>
 					</div>
 			<?php endif; ?>

@@ -1,18 +1,17 @@
 <?php $press_item_id = uniqid(); ?>
-<div class="callout">
-  <a data-toggle="press-item-<?php echo $press_item_id ?>"><h3><?php the_title(); ?></h3></a>
+<div class="callout" x-data="{ open: false }">
+  <a href="#press-item-<?php echo esc_attr( $press_item_id ); ?>" @click.prevent="open = !open" :aria-expanded="open.toString()" aria-controls="press-item-<?php echo esc_attr( $press_item_id ); ?>"><h3><?php the_title(); ?></h3></a>
   <?php if ( have_rows('press_kit_item') ): ?>
-    <ul class="no-bullet"  id="press-item-<?php echo $press_item_id ?>" data-toggler data-animate="fade-in fade-out" aria-expanded="false" style="display: none;">
+    <ul class="list-none m-0" id="press-item-<?php echo esc_attr( $press_item_id ); ?>" x-show="open" x-collapse x-cloak>
       <?php while ( have_rows('press_kit_item') ) : the_row(); ?>
         <li>
           <?php if( get_sub_field( 'title' ) ) : ?>
             <hr>
-
           <?php endif; ?>
           <?php if ( have_rows('files') ): ?>
-            <div class="grid-x grid-margin-x small-up-1 medium-up-1 large-up-2">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter">
               <?php while ( have_rows('files') ) : the_row(); ?>
-                <div class="cell">
+                <div class="min-w-0">
                   <?php
                   $file = get_sub_field('file');
                   if( $file ):
@@ -26,13 +25,13 @@
                       $icon =  $file['sizes']['two-columns'];
                     }
                     ?>
-                    <div class="space-bottom-xsmall padding-top-1 text-center">
-                      <a href="<?php echo $url; ?>" title="<?php echo $title; ?>" target="_blank">
-                        <img src="<?php echo $icon; ?>" />
+                    <div class="mb-xsmall pt-4 text-center">
+                      <a href="<?php echo esc_url( $url ); ?>" title="<?php echo esc_attr( $title ); ?>" target="_blank">
+                        <img src="<?php echo esc_url( $icon ); ?>" alt="<?php echo esc_attr( $title ); ?>" />
                       </a>
                     </div>
 
-                    <p class="small"><?php echo $title; ?></p>
+                    <p class="small"><?php echo esc_html( $title ); ?></p>
                   <?php endif; ?>
                 </div>
               <?php endwhile; ?>

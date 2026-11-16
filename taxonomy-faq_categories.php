@@ -3,10 +3,10 @@
 
 get_header();
 ?>
-<div class="mx-auto max-w-360 px-4">
-	<div class="flex flex-wrap gap-4">
-		<div class="w-full">
-			<h1 class="mb-8"><?php the_archive_title(); ?></h1>
+<div class="mx-auto max-w-360 px-gutter-half">
+	<div class="grid grid-cols-12 gap-x-gutter">
+		<div class="col-span-12 sm:col-span-8 sm:col-start-3 min-w-0">
+			<h1 class="mb-9"><?php the_archive_title(); ?></h1>
 			<ul class="accordion">
 				<?php
 				$query = new WP_Query( array ( 'orderby' => 'date', 'order' => 'ASC' ) ); /* @BS query not working… need to sort after date and descending */

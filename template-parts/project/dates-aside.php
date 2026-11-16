@@ -26,17 +26,17 @@ $related_dates = get_posts(array(
   'order'     			=> 'ASC',
 ));
 ?>
-<div class="grid-x grid-margin-x">
+<div class="grid grid-cols-12 gap-x-gutter">
   <?php if($related_dates):?>
-    <div class="cell medium-6">
+    <div class="col-span-12 sm:col-span-6">
       <h3>Forthcoming Dates:</h3>
       <?php foreach($related_dates as $related_date):?>
-        <div class="grid-x grid-margin-x small-up-2 medium-up-2 large-up-2 margin-bottom-1">
-          <div class="cell padding-bottom-1">
+        <div class="grid grid-cols-2 gap-x-gutter mb-4">
+          <div class="pb-4">
             <?php $thumb_url = wp_get_attachment_image_src(get_post_thumbnail_id($related_date->ID), array('220','220'), true );?>
-            <img src="<?php echo $thumb_url[0];?> " alt=""/>
+            <img src="<?php echo esc_url( $thumb_url[0] );?>" alt=""/>
           </div>
-          <div class="cell">
+          <div class="min-w-0">
             <?php $date = DateTime::createFromFormat('Ymd', $related_date->end);?>
             <?php $date_start = DateTime::createFromFormat('Ymd', $related_date->start);?>
             <?php // check if start date and end date are the same
@@ -73,7 +73,7 @@ $related_dates = get_posts(array(
       <?php endforeach;?>
     </div>
   <?php endif;?>
-  <div class="cell medium-6">
+  <div class="col-span-12 sm:col-span-6">
     <?php  // show past dates: ?>
     <?php
     $related_dates = get_posts(array(
@@ -101,9 +101,9 @@ $related_dates = get_posts(array(
     ?>
     <?php  if($related_dates):?>
       <h3>Past Dates:</h3>
-      <div class="grid-x grid-margin-x small-up-1">
+      <div class="grid grid-cols-1 gap-x-gutter">
         <?php foreach($related_dates as $related_date):?>
-          <div class="cell margin-bottom-1">
+          <div class="mb-4">
             <?php $date = DateTime::createFromFormat('Ymd', $related_date->end);?>
             <?php if(!empty($date)):?>
               <strong><?php echo $date->format('F Y');?></strong>
@@ -120,7 +120,7 @@ $related_dates = get_posts(array(
               if($past_link):
                 $link_url = $past_link['url'];
                 $link_title = $past_link['title'];
-                $link_target = $past_link['target'] ? $link['target'] : '_self';
+                $link_target = $past_link['target'] ? $past_link['target'] : '_self';
                 echo esc_html( $link_title );
               endif;
             endif;

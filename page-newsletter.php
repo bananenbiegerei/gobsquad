@@ -1,7 +1,7 @@
 <?php get_header();?>
-<div class="grid-container">
-	<div class="grid-x grid-margin-x">
-		<div class="medium-12 cell">
+<div class="mx-auto max-w-360 px-gutter-half">
+	<div class="grid grid-cols-12 gap-x-gutter">
+		<div class="col-span-12">
 		  <?php $post = get_queried_object(); ?>
 		  <?php
 		  $value = get_field( 'title_image', '2991' );
@@ -19,7 +19,7 @@
 		  <?php endif;
 		  ?>
 		</div>
-		<div class="medium-8 cell">
+		<div class="col-span-12 sm:col-span-8">
 			<?php
 	    if ( have_posts() ) {
 	      while ( have_posts() ) {
@@ -31,7 +31,7 @@
 	    } // end if
 	    ?>
 			<!-- Begin Mailchimp Signup Form -->
-			<div id="mc_embed_signup margin-top-2 margin-bottom-2">
+			<div id="mc_embed_signup" class="mt-9 mb-9">
 				<form action="https://gobsquad.us5.list-manage.com/subscribe/post?u=ba8aa97d0616b568bde5fe98f&amp;id=b604a4e92a" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" class="validate" target="_blank" novalidate>
 					<div id="mc_embed_signup_scroll">
 						<h2>Subscribe</h2>
@@ -60,7 +60,7 @@
 					</div>
 				</form>
 			</div>
-			<p class="small margin-top-2">
+			<p class="small mt-9">
 				By clicking 'Subscribe' and confirming your mail address, you consent to receiving our newsletter via email, informing you about events and news from Gob Squad. You can revoke this at any time. Please find detailed information on the data we gather by sending you the newsletter in <a href="https://www.gobsquad.com/privacy-policy-2/">our privacy policy.</a>
 			</p>
 			<!--End mc_embed_signup-->
