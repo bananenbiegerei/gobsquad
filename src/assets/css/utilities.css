@@ -15,41 +15,20 @@
  *   text-h6  sm  (16px)  sm  (16px)
  */
 @utility text-h1 {
-  font-size: var(--text-xl);
-  line-height: var(--leading-heading);
-  @media (width >= theme(--breakpoint-sm)) {
-    font-size: var(--text-2xl);
-  }
+  @apply text-xl leading-heading sm:text-2xl;
 }
 @utility text-h2 {
-  font-size: var(--text-lg);
-  line-height: var(--leading-heading);
-  @media (width >= theme(--breakpoint-sm)) {
-    font-size: var(--text-xl);
-  }
+  @apply text-lg leading-heading sm:text-xl;
 }
 @utility text-h3 {
-  font-size: var(--text-md);
-  line-height: var(--leading-heading);
-  @media (width >= theme(--breakpoint-sm)) {
-    font-size: var(--text-lg);
-  }
+  @apply text-md leading-heading sm:text-lg;
 }
 @utility text-h4 {
-  font-size: var(--text-base);
-  line-height: var(--leading-heading);
-  @media (width >= theme(--breakpoint-sm)) {
-    font-size: var(--text-sm);
-  }
+  @apply text-base leading-heading sm:text-sm;
 }
 @utility text-h5 {
-  font-size: var(--text-base);
-  line-height: var(--leading-heading);
-  @media (width >= theme(--breakpoint-sm)) {
-    font-size: var(--text-sm);
-  }
+  @apply text-base leading-heading sm:text-sm;
 }
 @utility text-h6 {
-  font-size: var(--text-sm);
-  line-height: var(--leading-heading);
+  @apply text-sm leading-heading;
 }

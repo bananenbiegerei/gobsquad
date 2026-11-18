@@ -5,849 +5,238 @@
  * Every scheme sets two custom properties and all component rules below
  * read from them, so a scheme is a two-line definition:
  *
- *   --scheme-accent  the brand hue. Decorative use only: borders, pagination
- *                    bullets, hollow-button outlines, `.{name}-bg` fills.
- *   --scheme-text    an AA-safe variant of the hue (>= 4.5:1 against the
- *                    near-white page background, and white text >= 4.5:1 on
- *                    it). Used wherever the colour carries text: links, solid
- *                    buttons, captions, labels, accordion titles, swiper arrows.
+ *   --scheme-accent  the brand hue (theme colour token). Decorative use
+ *                    only: borders, pagination bullets, hollow-button
+ *                    outlines, `.{name}-bg` fills.
+ *   --scheme-text    the AA-safe `--color-*-text` token (>= 4.5:1 against
+ *                    the near-white page background, and white text
+ *                    >= 4.5:1 on it). Used wherever the colour carries text:
+ *                    links, solid buttons, captions, labels, accordion
+ *                    titles, swiper arrows. Hues that already pass AA
+ *                    (blue/primary, purple, red, the greys) use the same
+ *                    token for both — see the "color-contrast" a11y to-dos.
  *
- * Hues that already pass AA (blue/primary, purple, red, the greys) use the
- * same value for both. green, fuchsia, cyan, yellow and orange are darkened
- * just far enough to reach 4.5:1 (WCAG 1.4.3) — see the a11y to-dos
- * "color-contrast" in Basecamp.
+ * The shared rules are written once per selector group with `:is()`; the
+ * two groups keep the original specificities (body.X … = 0,1,2 / .X … =
+ * 0,1,1) so the cascade against .menu / .drilldown rules is unchanged.
  */
 
 body.primary-color,
 .primary-color,
 .primary-color-color {
-  --scheme-accent: #005CFF;
-  --scheme-text: #005CFF;
+  --scheme-accent: var(--color-primary);
+  --scheme-text: var(--color-primary);
 }
 .primary-color-bg {
-  background-color: #005CFF;
+  @apply bg-primary;
 }
 body.secondary-color,
 .secondary-color,
 .secondary-color-color {
-  --scheme-accent: #6B6B6B;
-  --scheme-text: #6B6B6B;
+  --scheme-accent: var(--color-secondary);
+  --scheme-text: var(--color-secondary);
 }
 .secondary-color-bg {
-  background-color: #6B6B6B;
+  @apply bg-secondary;
 }
 body.success-color,
 .success-color,
 .success-color-color {
-  --scheme-accent: #00CE57;
-  --scheme-text: #008839;
+  --scheme-accent: var(--color-success);
+  --scheme-text: var(--color-green-text);
 }
 .success-color-bg {
-  background-color: #00CE57;
+  @apply bg-success;
 }
 body.warning-color,
 .warning-color,
 .warning-color-color {
-  --scheme-accent: #FF7F0E;
-  --scheme-text: #BC5800;
+  --scheme-accent: var(--color-warning);
+  --scheme-text: var(--color-orange-text);
 }
 .warning-color-bg {
-  background-color: #FF7F0E;
+  @apply bg-warning;
 }
 body.alert-color,
 .alert-color,
 .alert-color-color {
-  --scheme-accent: #E60457;
-  --scheme-text: #E60457;
+  --scheme-accent: var(--color-alert);
+  --scheme-text: var(--color-alert);
 }
 .alert-color-bg {
-  background-color: #E60457;
+  @apply bg-alert;
 }
 body.light-gray,
 .light-gray,
 .light-gray-color {
-  --scheme-accent: #EBEBEB;
-  --scheme-text: #6B6B6B;
+  --scheme-accent: var(--color-light-gray);
+  --scheme-text: var(--color-light-gray-text);
 }
 .light-gray-bg {
-  background-color: #EBEBEB;
+  @apply bg-light-gray;
 }
 body.medium-gray,
 .medium-gray,
 .medium-gray-color {
-  --scheme-accent: #cacaca;
-  --scheme-text: #757575;
+  --scheme-accent: var(--color-medium-gray);
+  --scheme-text: var(--color-medium-gray-text);
 }
 .medium-gray-bg {
-  background-color: #cacaca;
+  @apply bg-medium-gray;
 }
 body.dark-gray,
 .dark-gray,
 .dark-gray-color {
-  --scheme-accent: #6B6B6B;
-  --scheme-text: #6B6B6B;
+  --scheme-accent: var(--color-dark-gray);
+  --scheme-text: var(--color-dark-gray);
 }
 .dark-gray-bg {
-  background-color: #6B6B6B;
+  @apply bg-dark-gray;
 }
 body.orange,
 .orange,
 .orange-color {
-  --scheme-accent: #FF7F0E;
-  --scheme-text: #BC5800;
+  --scheme-accent: var(--color-orange);
+  --scheme-text: var(--color-orange-text);
 }
 .orange-bg {
-  background-color: #FF7F0E;
+  @apply bg-orange;
 }
 body.blue,
 .blue,
 .blue-color {
-  --scheme-accent: #005CFF;
-  --scheme-text: #005CFF;
+  --scheme-accent: var(--color-blue);
+  --scheme-text: var(--color-blue);
 }
 .blue-bg {
-  background-color: #005CFF;
+  @apply bg-blue;
 }
 body.purple,
 .purple,
 .purple-color {
-  --scheme-accent: #9900F7;
-  --scheme-text: #9900F7;
+  --scheme-accent: var(--color-purple);
+  --scheme-text: var(--color-purple);
 }
 .purple-bg {
-  background-color: #9900F7;
+  @apply bg-purple;
 }
 body.red,
 .red,
 .red-color {
-  --scheme-accent: #E60457;
-  --scheme-text: #E60457;
+  --scheme-accent: var(--color-red);
+  --scheme-text: var(--color-red);
 }
 .red-bg {
-  background-color: #E60457;
+  @apply bg-red;
 }
 body.fuchsia,
 .fuchsia,
 .fuchsia-color {
-  --scheme-accent: #FF00E8;
-  --scheme-text: #D400C1;
+  --scheme-accent: var(--color-fuchsia);
+  --scheme-text: var(--color-fuchsia-text);
 }
 .fuchsia-bg {
-  background-color: #FF00E8;
+  @apply bg-fuchsia;
 }
 body.gray,
 .gray,
 .gray-color {
-  --scheme-accent: #6B6B6B;
-  --scheme-text: #6B6B6B;
+  --scheme-accent: var(--color-gray);
+  --scheme-text: var(--color-gray);
 }
 .gray-bg {
-  background-color: #6B6B6B;
+  @apply bg-gray;
 }
 body.cyan,
 .cyan,
 .cyan-color {
-  --scheme-accent: #00C1FF;
-  --scheme-text: #007FA8;
+  --scheme-accent: var(--color-cyan);
+  --scheme-text: var(--color-cyan-text);
 }
 .cyan-bg {
-  background-color: #00C1FF;
+  @apply bg-cyan;
 }
 body.yellow,
 .yellow,
 .yellow-color {
-  --scheme-accent: #FFC000;
-  --scheme-text: #946F00;
+  --scheme-accent: var(--color-yellow);
+  --scheme-text: var(--color-yellow-text);
 }
 .yellow-bg {
-  background-color: #FFC000;
+  @apply bg-yellow;
 }
 body.green,
 .green,
 .green-color {
-  --scheme-accent: #00CE57;
-  --scheme-text: #008839;
+  --scheme-accent: var(--color-green);
+  --scheme-text: var(--color-green-text);
 }
 .green-bg {
-  background-color: #00CE57;
+  @apply bg-green;
 }
 
 /* ---- shared rules, driven by --scheme-accent / --scheme-text ---- */
 
-/* body.{scheme}: whole-page scheme set via ACF */
-body.primary-color .colored,
-body.secondary-color .colored,
-body.success-color .colored,
-body.warning-color .colored,
-body.alert-color .colored,
-body.light-gray .colored,
-body.medium-gray .colored,
-body.dark-gray .colored,
-body.orange .colored,
-body.blue .colored,
-body.purple .colored,
-body.red .colored,
-body.fuchsia .colored,
-body.gray .colored,
-body.cyan .colored,
-body.yellow .colored,
-body.green .colored,
-body.primary-color .button.menu-button,
-body.secondary-color .button.menu-button,
-body.success-color .button.menu-button,
-body.warning-color .button.menu-button,
-body.alert-color .button.menu-button,
-body.light-gray .button.menu-button,
-body.medium-gray .button.menu-button,
-body.dark-gray .button.menu-button,
-body.orange .button.menu-button,
-body.blue .button.menu-button,
-body.purple .button.menu-button,
-body.red .button.menu-button,
-body.fuchsia .button.menu-button,
-body.gray .button.menu-button,
-body.cyan .button.menu-button,
-body.yellow .button.menu-button,
-body.green .button.menu-button {
-  color: var(--scheme-text);
-}
-body.primary-color a,
-body.secondary-color a,
-body.success-color a,
-body.warning-color a,
-body.alert-color a,
-body.light-gray a,
-body.medium-gray a,
-body.dark-gray a,
-body.orange a,
-body.blue a,
-body.purple a,
-body.red a,
-body.fuchsia a,
-body.gray a,
-body.cyan a,
-body.yellow a,
-body.green a,
-body.primary-color a:hover,
-body.secondary-color a:hover,
-body.success-color a:hover,
-body.warning-color a:hover,
-body.alert-color a:hover,
-body.light-gray a:hover,
-body.medium-gray a:hover,
-body.dark-gray a:hover,
-body.orange a:hover,
-body.blue a:hover,
-body.purple a:hover,
-body.red a:hover,
-body.fuchsia a:hover,
-body.gray a:hover,
-body.cyan a:hover,
-body.yellow a:hover,
-body.green a:hover,
-body.primary-color a:focus,
-body.secondary-color a:focus,
-body.success-color a:focus,
-body.warning-color a:focus,
-body.alert-color a:focus,
-body.light-gray a:focus,
-body.medium-gray a:focus,
-body.dark-gray a:focus,
-body.orange a:focus,
-body.blue a:focus,
-body.purple a:focus,
-body.red a:focus,
-body.fuchsia a:focus,
-body.gray a:focus,
-body.cyan a:focus,
-body.yellow a:focus,
-body.green a:focus,
-body.primary-color a:active,
-body.secondary-color a:active,
-body.success-color a:active,
-body.warning-color a:active,
-body.alert-color a:active,
-body.light-gray a:active,
-body.medium-gray a:active,
-body.dark-gray a:active,
-body.orange a:active,
-body.blue a:active,
-body.purple a:active,
-body.red a:active,
-body.fuchsia a:active,
-body.gray a:active,
-body.cyan a:active,
-body.yellow a:active,
-body.green a:active {
-  color: var(--scheme-text);
-}
-body.primary-color .menu li a,
-body.secondary-color .menu li a,
-body.success-color .menu li a,
-body.warning-color .menu li a,
-body.alert-color .menu li a,
-body.light-gray .menu li a,
-body.medium-gray .menu li a,
-body.dark-gray .menu li a,
-body.orange .menu li a,
-body.blue .menu li a,
-body.purple .menu li a,
-body.red .menu li a,
-body.fuchsia .menu li a,
-body.gray .menu li a,
-body.cyan .menu li a,
-body.yellow .menu li a,
-body.green .menu li a {
-  color: var(--color-black);
-}
-body.primary-color a.button:not(.hollow),
-body.secondary-color a.button:not(.hollow),
-body.success-color a.button:not(.hollow),
-body.warning-color a.button:not(.hollow),
-body.alert-color a.button:not(.hollow),
-body.light-gray a.button:not(.hollow),
-body.medium-gray a.button:not(.hollow),
-body.dark-gray a.button:not(.hollow),
-body.orange a.button:not(.hollow),
-body.blue a.button:not(.hollow),
-body.purple a.button:not(.hollow),
-body.red a.button:not(.hollow),
-body.fuchsia a.button:not(.hollow),
-body.gray a.button:not(.hollow),
-body.cyan a.button:not(.hollow),
-body.yellow a.button:not(.hollow),
-body.green a.button:not(.hollow),
-body.primary-color .label,
-body.secondary-color .label,
-body.success-color .label,
-body.warning-color .label,
-body.alert-color .label,
-body.light-gray .label,
-body.medium-gray .label,
-body.dark-gray .label,
-body.orange .label,
-body.blue .label,
-body.purple .label,
-body.red .label,
-body.fuchsia .label,
-body.gray .label,
-body.cyan .label,
-body.yellow .label,
-body.green .label,
-body.primary-color .caption,
-body.secondary-color .caption,
-body.success-color .caption,
-body.warning-color .caption,
-body.alert-color .caption,
-body.light-gray .caption,
-body.medium-gray .caption,
-body.dark-gray .caption,
-body.orange .caption,
-body.blue .caption,
-body.purple .caption,
-body.red .caption,
-body.fuchsia .caption,
-body.gray .caption,
-body.cyan .caption,
-body.yellow .caption,
-body.green .caption {
-  color: var(--color-white);
-  background-color: var(--scheme-text);
+/* body.{scheme}: whole-page scheme set via ACF. Nested selectors keep the
+   original `body.X .child` specificity (0,1,2). */
+:is(
+  body.primary-color, body.secondary-color, body.success-color, body.warning-color, body.alert-color,
+  body.light-gray, body.medium-gray, body.dark-gray, body.orange, body.blue, body.purple, body.red,
+  body.fuchsia, body.gray, body.cyan, body.yellow, body.green
+) {
+  .colored,
+  .button.menu-button,
+  a,
+  a:hover,
+  a:active,
+  a:focus {
+    @apply text-(--scheme-text);
+  }
+  .menu li a {
+    @apply text-black;
+  }
+  .caption,
+  .label,
+  a.button:not(.hollow) {
+    @apply text-white bg-(--scheme-text);
+  }
 }
 
-/* .{scheme} / .{scheme}-color: section-level scheme */
-.primary-color a,
-.primary-color-color a,
-.secondary-color a,
-.secondary-color-color a,
-.success-color a,
-.success-color-color a,
-.warning-color a,
-.warning-color-color a,
-.alert-color a,
-.alert-color-color a,
-.light-gray a,
-.light-gray-color a,
-.medium-gray a,
-.medium-gray-color a,
-.dark-gray a,
-.dark-gray-color a,
-.orange a,
-.orange-color a,
-.blue a,
-.blue-color a,
-.purple a,
-.purple-color a,
-.red a,
-.red-color a,
-.fuchsia a,
-.fuchsia-color a,
-.gray a,
-.gray-color a,
-.cyan a,
-.cyan-color a,
-.yellow a,
-.yellow-color a,
-.green a,
-.green-color a,
-.primary-color .swiper-button-next,
-.primary-color-color .swiper-button-next,
-.secondary-color .swiper-button-next,
-.secondary-color-color .swiper-button-next,
-.success-color .swiper-button-next,
-.success-color-color .swiper-button-next,
-.warning-color .swiper-button-next,
-.warning-color-color .swiper-button-next,
-.alert-color .swiper-button-next,
-.alert-color-color .swiper-button-next,
-.light-gray .swiper-button-next,
-.light-gray-color .swiper-button-next,
-.medium-gray .swiper-button-next,
-.medium-gray-color .swiper-button-next,
-.dark-gray .swiper-button-next,
-.dark-gray-color .swiper-button-next,
-.orange .swiper-button-next,
-.orange-color .swiper-button-next,
-.blue .swiper-button-next,
-.blue-color .swiper-button-next,
-.purple .swiper-button-next,
-.purple-color .swiper-button-next,
-.red .swiper-button-next,
-.red-color .swiper-button-next,
-.fuchsia .swiper-button-next,
-.fuchsia-color .swiper-button-next,
-.gray .swiper-button-next,
-.gray-color .swiper-button-next,
-.cyan .swiper-button-next,
-.cyan-color .swiper-button-next,
-.yellow .swiper-button-next,
-.yellow-color .swiper-button-next,
-.green .swiper-button-next,
-.green-color .swiper-button-next,
-.primary-color .swiper-button-prev,
-.primary-color-color .swiper-button-prev,
-.secondary-color .swiper-button-prev,
-.secondary-color-color .swiper-button-prev,
-.success-color .swiper-button-prev,
-.success-color-color .swiper-button-prev,
-.warning-color .swiper-button-prev,
-.warning-color-color .swiper-button-prev,
-.alert-color .swiper-button-prev,
-.alert-color-color .swiper-button-prev,
-.light-gray .swiper-button-prev,
-.light-gray-color .swiper-button-prev,
-.medium-gray .swiper-button-prev,
-.medium-gray-color .swiper-button-prev,
-.dark-gray .swiper-button-prev,
-.dark-gray-color .swiper-button-prev,
-.orange .swiper-button-prev,
-.orange-color .swiper-button-prev,
-.blue .swiper-button-prev,
-.blue-color .swiper-button-prev,
-.purple .swiper-button-prev,
-.purple-color .swiper-button-prev,
-.red .swiper-button-prev,
-.red-color .swiper-button-prev,
-.fuchsia .swiper-button-prev,
-.fuchsia-color .swiper-button-prev,
-.gray .swiper-button-prev,
-.gray-color .swiper-button-prev,
-.cyan .swiper-button-prev,
-.cyan-color .swiper-button-prev,
-.yellow .swiper-button-prev,
-.yellow-color .swiper-button-prev,
-.green .swiper-button-prev,
-.green-color .swiper-button-prev,
-.primary-color .accordion-title,
-.primary-color-color .accordion-title,
-.secondary-color .accordion-title,
-.secondary-color-color .accordion-title,
-.success-color .accordion-title,
-.success-color-color .accordion-title,
-.warning-color .accordion-title,
-.warning-color-color .accordion-title,
-.alert-color .accordion-title,
-.alert-color-color .accordion-title,
-.light-gray .accordion-title,
-.light-gray-color .accordion-title,
-.medium-gray .accordion-title,
-.medium-gray-color .accordion-title,
-.dark-gray .accordion-title,
-.dark-gray-color .accordion-title,
-.orange .accordion-title,
-.orange-color .accordion-title,
-.blue .accordion-title,
-.blue-color .accordion-title,
-.purple .accordion-title,
-.purple-color .accordion-title,
-.red .accordion-title,
-.red-color .accordion-title,
-.fuchsia .accordion-title,
-.fuchsia-color .accordion-title,
-.gray .accordion-title,
-.gray-color .accordion-title,
-.cyan .accordion-title,
-.cyan-color .accordion-title,
-.yellow .accordion-title,
-.yellow-color .accordion-title,
-.green .accordion-title,
-.green-color .accordion-title {
-  color: var(--scheme-text);
-}
-.primary-color .label,
-.primary-color-color .label,
-.secondary-color .label,
-.secondary-color-color .label,
-.success-color .label,
-.success-color-color .label,
-.warning-color .label,
-.warning-color-color .label,
-.alert-color .label,
-.alert-color-color .label,
-.light-gray .label,
-.light-gray-color .label,
-.medium-gray .label,
-.medium-gray-color .label,
-.dark-gray .label,
-.dark-gray-color .label,
-.orange .label,
-.orange-color .label,
-.blue .label,
-.blue-color .label,
-.purple .label,
-.purple-color .label,
-.red .label,
-.red-color .label,
-.fuchsia .label,
-.fuchsia-color .label,
-.gray .label,
-.gray-color .label,
-.cyan .label,
-.cyan-color .label,
-.yellow .label,
-.yellow-color .label,
-.green .label,
-.green-color .label,
-.primary-color .caption,
-.primary-color-color .caption,
-.secondary-color .caption,
-.secondary-color-color .caption,
-.success-color .caption,
-.success-color-color .caption,
-.warning-color .caption,
-.warning-color-color .caption,
-.alert-color .caption,
-.alert-color-color .caption,
-.light-gray .caption,
-.light-gray-color .caption,
-.medium-gray .caption,
-.medium-gray-color .caption,
-.dark-gray .caption,
-.dark-gray-color .caption,
-.orange .caption,
-.orange-color .caption,
-.blue .caption,
-.blue-color .caption,
-.purple .caption,
-.purple-color .caption,
-.red .caption,
-.red-color .caption,
-.fuchsia .caption,
-.fuchsia-color .caption,
-.gray .caption,
-.gray-color .caption,
-.cyan .caption,
-.cyan-color .caption,
-.yellow .caption,
-.yellow-color .caption,
-.green .caption,
-.green-color .caption {
-  background-color: var(--scheme-text);
-}
-.primary-color .swiper-pagination-bullet-active,
-.primary-color-color .swiper-pagination-bullet-active,
-.secondary-color .swiper-pagination-bullet-active,
-.secondary-color-color .swiper-pagination-bullet-active,
-.success-color .swiper-pagination-bullet-active,
-.success-color-color .swiper-pagination-bullet-active,
-.warning-color .swiper-pagination-bullet-active,
-.warning-color-color .swiper-pagination-bullet-active,
-.alert-color .swiper-pagination-bullet-active,
-.alert-color-color .swiper-pagination-bullet-active,
-.light-gray .swiper-pagination-bullet-active,
-.light-gray-color .swiper-pagination-bullet-active,
-.medium-gray .swiper-pagination-bullet-active,
-.medium-gray-color .swiper-pagination-bullet-active,
-.dark-gray .swiper-pagination-bullet-active,
-.dark-gray-color .swiper-pagination-bullet-active,
-.orange .swiper-pagination-bullet-active,
-.orange-color .swiper-pagination-bullet-active,
-.blue .swiper-pagination-bullet-active,
-.blue-color .swiper-pagination-bullet-active,
-.purple .swiper-pagination-bullet-active,
-.purple-color .swiper-pagination-bullet-active,
-.red .swiper-pagination-bullet-active,
-.red-color .swiper-pagination-bullet-active,
-.fuchsia .swiper-pagination-bullet-active,
-.fuchsia-color .swiper-pagination-bullet-active,
-.gray .swiper-pagination-bullet-active,
-.gray-color .swiper-pagination-bullet-active,
-.cyan .swiper-pagination-bullet-active,
-.cyan-color .swiper-pagination-bullet-active,
-.yellow .swiper-pagination-bullet-active,
-.yellow-color .swiper-pagination-bullet-active,
-.green .swiper-pagination-bullet-active,
-.green-color .swiper-pagination-bullet-active {
-  background-color: var(--scheme-accent);
-}
-.primary-color .button.hollow,
-.primary-color-color .button.hollow,
-.secondary-color .button.hollow,
-.secondary-color-color .button.hollow,
-.success-color .button.hollow,
-.success-color-color .button.hollow,
-.warning-color .button.hollow,
-.warning-color-color .button.hollow,
-.alert-color .button.hollow,
-.alert-color-color .button.hollow,
-.light-gray .button.hollow,
-.light-gray-color .button.hollow,
-.medium-gray .button.hollow,
-.medium-gray-color .button.hollow,
-.dark-gray .button.hollow,
-.dark-gray-color .button.hollow,
-.orange .button.hollow,
-.orange-color .button.hollow,
-.blue .button.hollow,
-.blue-color .button.hollow,
-.purple .button.hollow,
-.purple-color .button.hollow,
-.red .button.hollow,
-.red-color .button.hollow,
-.fuchsia .button.hollow,
-.fuchsia-color .button.hollow,
-.gray .button.hollow,
-.gray-color .button.hollow,
-.cyan .button.hollow,
-.cyan-color .button.hollow,
-.yellow .button.hollow,
-.yellow-color .button.hollow,
-.green .button.hollow,
-.green-color .button.hollow {
-  border-color: var(--scheme-accent);
-  color: var(--scheme-text);
-}
-.primary-color .button.hollow:after,
-.primary-color-color .button.hollow:after,
-.secondary-color .button.hollow:after,
-.secondary-color-color .button.hollow:after,
-.success-color .button.hollow:after,
-.success-color-color .button.hollow:after,
-.warning-color .button.hollow:after,
-.warning-color-color .button.hollow:after,
-.alert-color .button.hollow:after,
-.alert-color-color .button.hollow:after,
-.light-gray .button.hollow:after,
-.light-gray-color .button.hollow:after,
-.medium-gray .button.hollow:after,
-.medium-gray-color .button.hollow:after,
-.dark-gray .button.hollow:after,
-.dark-gray-color .button.hollow:after,
-.orange .button.hollow:after,
-.orange-color .button.hollow:after,
-.blue .button.hollow:after,
-.blue-color .button.hollow:after,
-.purple .button.hollow:after,
-.purple-color .button.hollow:after,
-.red .button.hollow:after,
-.red-color .button.hollow:after,
-.fuchsia .button.hollow:after,
-.fuchsia-color .button.hollow:after,
-.gray .button.hollow:after,
-.gray-color .button.hollow:after,
-.cyan .button.hollow:after,
-.cyan-color .button.hollow:after,
-.yellow .button.hollow:after,
-.yellow-color .button.hollow:after,
-.green .button.hollow:after,
-.green-color .button.hollow:after {
-  border-color: var(--scheme-accent);
-}
-.primary-color .button:not(.menu-button):not(.hollow),
-.primary-color-color .button:not(.menu-button):not(.hollow),
-.secondary-color .button:not(.menu-button):not(.hollow),
-.secondary-color-color .button:not(.menu-button):not(.hollow),
-.success-color .button:not(.menu-button):not(.hollow),
-.success-color-color .button:not(.menu-button):not(.hollow),
-.warning-color .button:not(.menu-button):not(.hollow),
-.warning-color-color .button:not(.menu-button):not(.hollow),
-.alert-color .button:not(.menu-button):not(.hollow),
-.alert-color-color .button:not(.menu-button):not(.hollow),
-.light-gray .button:not(.menu-button):not(.hollow),
-.light-gray-color .button:not(.menu-button):not(.hollow),
-.medium-gray .button:not(.menu-button):not(.hollow),
-.medium-gray-color .button:not(.menu-button):not(.hollow),
-.dark-gray .button:not(.menu-button):not(.hollow),
-.dark-gray-color .button:not(.menu-button):not(.hollow),
-.orange .button:not(.menu-button):not(.hollow),
-.orange-color .button:not(.menu-button):not(.hollow),
-.blue .button:not(.menu-button):not(.hollow),
-.blue-color .button:not(.menu-button):not(.hollow),
-.purple .button:not(.menu-button):not(.hollow),
-.purple-color .button:not(.menu-button):not(.hollow),
-.red .button:not(.menu-button):not(.hollow),
-.red-color .button:not(.menu-button):not(.hollow),
-.fuchsia .button:not(.menu-button):not(.hollow),
-.fuchsia-color .button:not(.menu-button):not(.hollow),
-.gray .button:not(.menu-button):not(.hollow),
-.gray-color .button:not(.menu-button):not(.hollow),
-.cyan .button:not(.menu-button):not(.hollow),
-.cyan-color .button:not(.menu-button):not(.hollow),
-.yellow .button:not(.menu-button):not(.hollow),
-.yellow-color .button:not(.menu-button):not(.hollow),
-.green .button:not(.menu-button):not(.hollow),
-.green-color .button:not(.menu-button):not(.hollow) {
-  border-color: var(--scheme-text);
-  background-color: var(--scheme-text);
-  color: var(--color-white);
-}
-.primary-color .accordion-title,
-.primary-color-color .accordion-title,
-.secondary-color .accordion-title,
-.secondary-color-color .accordion-title,
-.success-color .accordion-title,
-.success-color-color .accordion-title,
-.warning-color .accordion-title,
-.warning-color-color .accordion-title,
-.alert-color .accordion-title,
-.alert-color-color .accordion-title,
-.light-gray .accordion-title,
-.light-gray-color .accordion-title,
-.medium-gray .accordion-title,
-.medium-gray-color .accordion-title,
-.dark-gray .accordion-title,
-.dark-gray-color .accordion-title,
-.orange .accordion-title,
-.orange-color .accordion-title,
-.blue .accordion-title,
-.blue-color .accordion-title,
-.purple .accordion-title,
-.purple-color .accordion-title,
-.red .accordion-title,
-.red-color .accordion-title,
-.fuchsia .accordion-title,
-.fuchsia-color .accordion-title,
-.gray .accordion-title,
-.gray-color .accordion-title,
-.cyan .accordion-title,
-.cyan-color .accordion-title,
-.yellow .accordion-title,
-.yellow-color .accordion-title,
-.green .accordion-title,
-.green-color .accordion-title,
-.primary-color .accordion-content,
-.primary-color-color .accordion-content,
-.secondary-color .accordion-content,
-.secondary-color-color .accordion-content,
-.success-color .accordion-content,
-.success-color-color .accordion-content,
-.warning-color .accordion-content,
-.warning-color-color .accordion-content,
-.alert-color .accordion-content,
-.alert-color-color .accordion-content,
-.light-gray .accordion-content,
-.light-gray-color .accordion-content,
-.medium-gray .accordion-content,
-.medium-gray-color .accordion-content,
-.dark-gray .accordion-content,
-.dark-gray-color .accordion-content,
-.orange .accordion-content,
-.orange-color .accordion-content,
-.blue .accordion-content,
-.blue-color .accordion-content,
-.purple .accordion-content,
-.purple-color .accordion-content,
-.red .accordion-content,
-.red-color .accordion-content,
-.fuchsia .accordion-content,
-.fuchsia-color .accordion-content,
-.gray .accordion-content,
-.gray-color .accordion-content,
-.cyan .accordion-content,
-.cyan-color .accordion-content,
-.yellow .accordion-content,
-.yellow-color .accordion-content,
-.green .accordion-content,
-.green-color .accordion-content,
-.primary-color .callout,
-.primary-color-color .callout,
-.secondary-color .callout,
-.secondary-color-color .callout,
-.success-color .callout,
-.success-color-color .callout,
-.warning-color .callout,
-.warning-color-color .callout,
-.alert-color .callout,
-.alert-color-color .callout,
-.light-gray .callout,
-.light-gray-color .callout,
-.medium-gray .callout,
-.medium-gray-color .callout,
-.dark-gray .callout,
-.dark-gray-color .callout,
-.orange .callout,
-.orange-color .callout,
-.blue .callout,
-.blue-color .callout,
-.purple .callout,
-.purple-color .callout,
-.red .callout,
-.red-color .callout,
-.fuchsia .callout,
-.fuchsia-color .callout,
-.gray .callout,
-.gray-color .callout,
-.cyan .callout,
-.cyan-color .callout,
-.yellow .callout,
-.yellow-color .callout,
-.green .callout,
-.green-color .callout {
-  border-color: var(--scheme-accent);
-}
-.primary-color .accordion-item,
-.primary-color-color .accordion-item,
-.secondary-color .accordion-item,
-.secondary-color-color .accordion-item,
-.success-color .accordion-item,
-.success-color-color .accordion-item,
-.warning-color .accordion-item,
-.warning-color-color .accordion-item,
-.alert-color .accordion-item,
-.alert-color-color .accordion-item,
-.light-gray .accordion-item,
-.light-gray-color .accordion-item,
-.medium-gray .accordion-item,
-.medium-gray-color .accordion-item,
-.dark-gray .accordion-item,
-.dark-gray-color .accordion-item,
-.orange .accordion-item,
-.orange-color .accordion-item,
-.blue .accordion-item,
-.blue-color .accordion-item,
-.purple .accordion-item,
-.purple-color .accordion-item,
-.red .accordion-item,
-.red-color .accordion-item,
-.fuchsia .accordion-item,
-.fuchsia-color .accordion-item,
-.gray .accordion-item,
-.gray-color .accordion-item,
-.cyan .accordion-item,
-.cyan-color .accordion-item,
-.yellow .accordion-item,
-.yellow-color .accordion-item,
-.green .accordion-item,
-.green-color .accordion-item {
-  border-color: var(--scheme-accent);
+/* .{scheme} / .{scheme}-color: section-level scheme (specificity 0,1,1 +
+   child, as before) */
+:is(
+  .primary-color, .secondary-color, .success-color, .warning-color, .alert-color,
+  .light-gray, .medium-gray, .dark-gray, .orange, .blue, .purple, .red, .fuchsia, .gray, .cyan, .yellow, .green,
+  .primary-color-color, .secondary-color-color, .success-color-color, .warning-color-color, .alert-color-color,
+  .light-gray-color, .medium-gray-color, .dark-gray-color, .orange-color, .blue-color, .purple-color, .red-color,
+  .fuchsia-color, .gray-color, .cyan-color, .yellow-color, .green-color
+) {
+  a,
+  .accordion-title,
+  .swiper-button-next,
+  .swiper-button-prev {
+    @apply text-(--scheme-text);
+  }
+  .caption,
+  .label {
+    @apply bg-(--scheme-text);
+  }
+  .swiper-pagination-bullet-active {
+    @apply bg-(--scheme-accent);
+  }
+  .button.hollow {
+    @apply border-(--scheme-accent) text-(--scheme-text);
+  }
+  .button.hollow:after {
+    @apply border-(--scheme-accent);
+  }
+  .button:not(.menu-button):not(.hollow) {
+    @apply border-(--scheme-text) bg-(--scheme-text) text-white;
+  }
+  .accordion-item,
+  .accordion-content,
+  .accordion-title,
+  .callout {
+    @apply border-(--scheme-accent);
+  }
 }

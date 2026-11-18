@@ -1,295 +1,167 @@
 /* Button (Foundation button settings + _custom.scss overrides) */
 .button {
-  display: inline-block;
-  vertical-align: middle;
-  margin: 0;
-  padding: 0.85em 1em;
-  border: 1px solid transparent;
-  border-radius: 0;
-  background-color: var(--color-primary);
-  color: var(--color-white);
   font-family: inherit;
-  font-size: var(--text-sm);
-  line-height: 1;
-  font-weight: bold;
-  font-style: italic;
-  text-transform: uppercase;
-  text-align: center;
-  cursor: pointer;
-  -webkit-appearance: none;
-  transition:
-    background-color 0.25s ease-out,
-    color 0.25s ease-out;
+  @apply inline-block align-middle m-0 py-[0.85em] px-[1em] border border-transparent rounded-none bg-primary text-white
+    text-sm leading-none font-bold italic uppercase text-center cursor-pointer appearance-none
+    transition-colors duration-250 ease-out;
 }
 .button:hover,
 .button:focus {
-  background-color: color-mix(in srgb, var(--color-primary) 85%, black);
-  color: var(--color-white);
+  @apply text-white bg-[color-mix(in_srgb,var(--color-primary)_85%,black)];
 }
 .button.tiny {
-  font-size: 0.6rem;
+  @apply text-[0.6rem];
 }
 .button.small {
-  font-size: 0.75rem;
+  @apply text-[0.75rem];
 }
 .button.large {
-  font-size: 1.25rem;
+  @apply text-[1.25rem];
 }
 .button.clear,
 .button.clear:hover,
 .button.clear:focus {
-  border-color: transparent;
-  background-color: transparent;
-  color: var(--color-primary);
+  @apply border-transparent bg-transparent text-primary;
 }
 .button.hollow {
-  position: relative;
-  background-color: var(--color-white);
-  color: var(--color-primary);
-  border: 2px solid var(--color-primary);
+  @apply relative bg-white text-primary border-2 border-primary;
 }
 .button.hollow:hover,
 .button.hollow:focus {
-  background-color: var(--color-white);
+  @apply bg-white;
 }
 .button.hollow:after {
-  content: "";
-  border: 2px solid var(--color-primary);
-  width: calc(100% + 16px);
-  height: calc(100% - 6px);
-  display: block;
-  position: absolute;
-  top: 3px;
-  left: -8px;
+  @apply content-[''] block absolute top-[3px] -left-[8px] w-[calc(100%_+_16px)] h-[calc(100%_-_6px)] border-2 border-primary;
 }
 
 /* Label (Foundation) */
 .label {
-  display: inline-block;
-  padding: 0.33333rem 0.5rem;
-  border-radius: 0;
-  font-size: var(--text-xs);
-  line-height: 1;
-  white-space: nowrap;
-  cursor: default;
-  background: var(--color-primary);
-  color: var(--color-white);
+  @apply inline-block py-[0.33333rem] px-2 rounded-none text-xs leading-none whitespace-nowrap cursor-default bg-primary text-white;
 }
 
 /* Callout */
 .callout {
-  position: relative;
-  margin: 0 0 1rem 0;
-  padding: 1rem;
-  border: 3px solid var(--color-primary);
-  border-radius: 0;
-  background-color: white;
-  color: var(--color-black);
+  @apply relative m-0 mb-4 p-4 border-[3px] border-primary rounded-none bg-[white] text-black;
 }
 .callout > :first-child {
-  margin-top: 0;
+  @apply mt-0;
 }
 .callout > :last-child {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 
 /* Card */
 .card {
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-  margin-bottom: 1rem;
-  border: 0 solid var(--color-light-gray);
-  border-radius: 0;
-  background: transparent;
-  box-shadow: none;
-  overflow: hidden;
-  color: var(--color-black);
+  @apply flex flex-col grow mb-4 border-0 border-light-gray rounded-none bg-transparent shadow-none overflow-hidden text-black;
 }
 .card > :last-child,
 .card-section > :last-child {
-  margin-bottom: 0;
+  @apply mb-0;
 }
 .card-section {
-  flex: 1 0 auto;
-  padding: 1rem 0;
+  @apply flex-[1_0_auto] py-4 px-0;
 }
 .card-divider {
-  display: flex;
-  flex: 0 1 auto;
-  padding: 1rem 0;
-  background: var(--color-light-gray);
+  @apply flex flex-[0_1_auto] py-4 px-0 bg-light-gray;
 }
 
 /* Close button */
 .close-button {
-  position: absolute;
-  z-index: 10;
-  right: 1rem;
-  top: 0.5rem;
-  font-size: 3em;
-  line-height: 1;
-  color: var(--color-black);
-  background: none;
-  border: none;
-  cursor: pointer;
+  @apply absolute z-10 right-4 top-2 text-[3em] leading-none text-black bg-transparent border-none cursor-pointer;
 }
 .close-button:hover,
 .close-button:focus {
-  color: var(--color-black);
+  @apply text-black;
 }
 
 /* Table */
 table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-bottom: 1rem;
+  @apply w-full border-collapse mb-4;
 }
 table th,
 table td {
-  padding: 0.5rem 0.625rem;
-  border-bottom: 1px solid var(--color-light-gray);
+  @apply py-2 px-2.5 border-b border-light-gray;
 }
 
 /* Responsive embed (video/iframe wrapper) */
 .embed-container {
-  position: relative;
-  padding-bottom: 56.25%;
-  overflow: hidden;
-  max-width: 100%;
-  height: auto;
+  @apply relative pb-[56.25%] overflow-hidden max-w-full h-auto;
 }
 .embed-container iframe,
 .embed-container object,
 .embed-container embed {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+  @apply absolute top-0 left-0 w-full h-full;
 }
 
 /* Accordion (FAQ) — Alpine-driven, see template-parts/partials/faq-card.php */
 .accordion {
-  margin: 0;
-  padding: 0;
-  list-style: none;
-  background: var(--transparent-bg);
+  @apply m-0 p-0 list-none bg-translucent-white;
 }
 .accordion-item {
-  border-bottom: 2px solid var(--color-primary);
+  @apply border-b-2 border-primary;
 }
 /* The title is a <button> inside an <h3> (disclosure pattern); reset the
    button chrome so it renders like the old block-level link. */
 .accordion-heading {
-  margin: 0;
   font-size: inherit;
+  @apply m-0;
 }
 .accordion-title {
-  position: relative;
-  display: block;
-  width: 100%;
-  margin: 0;
-  padding: 1em 1.6rem 1em 0.8rem;
-  border: 2px solid var(--color-primary);
-  border-bottom: 0;
-  border-radius: 0;
-  background: transparent;
   font: inherit;
-  font-size: var(--text-md);
-  font-weight: bold;
-  line-height: var(--leading-heading);
-  text-align: left;
-  cursor: pointer;
-  color: var(--color-primary);
-}
-@media (width >= theme(--breakpoint-sm)) {
-  .accordion-title {
-    font-size: var(--text-lg);
-  }
+  @apply relative block w-full m-0 py-[1em] pr-[1.6rem] pl-[0.8rem] border-2 border-b-0 border-primary rounded-none bg-transparent
+    text-md font-bold leading-heading text-left cursor-pointer text-primary sm:text-lg;
 }
 .accordion-title:hover,
 .accordion-title:focus {
-  background-color: transparent;
+  @apply bg-transparent;
 }
 .accordion-title::before {
-  content: "+";
-  position: absolute;
-  top: 50%;
-  right: 1rem;
-  margin-top: -0.5rem;
-  font-size: var(--text-base);
-  line-height: 1;
+  @apply content-['+'] absolute top-1/2 right-4 -mt-2 text-base leading-none;
 }
 .accordion-title.is-active::before,
 .accordion-title[aria-expanded="true"]::before {
-  content: "\2013"; /* en dash, Foundation's "minus" glyph */
+  /* en dash, Foundation's "minus" glyph */
+  @apply content-['–'];
 }
 
 /* Press kit disclosure toggle (template-parts/partials/press-card.php):
    a <button> styled as the heading link it replaced. */
 .press-toggle {
-  margin: 0;
-  padding: 0;
-  border: 0;
-  background: transparent;
   font: inherit;
-  text-align: left;
-  color: var(--color-primary);
-  cursor: pointer;
+  @apply m-0 p-0 border-0 bg-transparent text-left text-primary cursor-pointer;
 }
 .press-toggle::after {
-  content: " +";
+  @apply content-['_+'];
 }
 .press-toggle[aria-expanded="true"]::after {
-  content: " \2013";
+  @apply content-['_–'];
 }
 .accordion-content {
-  display: none;
-  padding: 1rem;
-  border: 2px solid var(--color-primary);
-  border-bottom: 0;
-  background-color: var(--color-white);
-  color: var(--color-black);
+  @apply hidden p-4 border-2 border-b-0 border-primary bg-white text-black;
 }
 .accordion-content.is-active {
-  display: block;
+  @apply block;
 }
 
 /* Tabs (project detail) — Alpine-driven, see single-projects.php */
 .tabs {
-  display: flex;
-  flex-wrap: wrap;
-  margin: 0;
-  padding: 0;
-  border: 1px solid transparent;
-  background: var(--color-white);
-  list-style: none;
+  @apply flex flex-wrap m-0 p-0 border border-transparent bg-white list-none;
 }
 .tabs-title > a {
-  display: block;
-  padding: 0 1rem;
-  font-size: var(--text-sm);
-  line-height: 1;
-  color: var(--color-white);
+  @apply block py-0 px-4 text-sm leading-none text-white;
 }
 .tabs-title > a:first-child {
-  padding-left: 0;
+  @apply pl-0;
 }
 .tabs-title:not(.is-active) > a .button {
-  background-color: var(--color-medium-gray);
+  @apply bg-medium-gray;
 }
 .tabs-content {
-  border: 1px solid transparent;
-  border-top: 0;
-  background: var(--transparent-bg);
-  color: var(--color-black);
-  transition: all 0.5s ease;
+  @apply border border-t-0 border-transparent bg-translucent-white text-black transition-all duration-500 ease-[ease];
 }
 .tabs-panel {
-  display: none;
-  padding: 1rem 0;
+  @apply hidden py-4 px-0;
 }
 .tabs-panel.is-active {
-  display: block;
+  @apply block;
 }

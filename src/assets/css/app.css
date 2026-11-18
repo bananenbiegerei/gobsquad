@@ -42,6 +42,24 @@
   --color-gray: #6b6b6b;
   --color-orange: #ff7f0e;
 
+  /*
+   * AA text variants (WCAG 1.4.3, >= 4.5:1 on the near-white background and
+   * white text >= 4.5:1 on them). The bright hues above stay for decorative
+   * use; wherever a scheme colour carries text (links, solid buttons,
+   * captions, labels) color-schemes.css reads these instead.
+   */
+  --color-green-text: #008839;
+  --color-orange-text: #bc5800;
+  --color-fuchsia-text: #d400c1;
+  --color-cyan-text: #007fa8;
+  --color-yellow-text: #946f00;
+  --color-light-gray-text: #6b6b6b;
+  --color-medium-gray-text: #757575;
+
+  /* 80 % white used for content panels over the page illustration
+     (`.transparent-bg`, accordions, tab content). */
+  --color-translucent-white: rgb(255 255 255 / 0.8);
+
   --font-sans: Arial, sans-serif;
 
   /*
@@ -67,7 +85,7 @@
   --text-*: initial;
   --text-2xs: 12px;
   --text-xs: 0.8rem;
-  --text-xs--line-height: 1.35;
+  --text-xs--line-height: var(--leading-small);
   --text-sm: 16px;
   --text-base: 1rem;
   --text-md: 19px;
@@ -79,6 +97,7 @@
   --leading-body: 1.5;
   --leading-copy: 1.6;
   --leading-heading: 1.2;
+  --leading-small: 1.35;
 
   /*
    * Named spacing scale (Foundation's $gutter: 15px derived scale), additive
@@ -107,17 +126,27 @@
   --radius-global: 0px;
 
   --shadow-default: 0 3px 1px 0 rgba(0, 0, 0, 0.1);
+
+  /* Brand "text stroke": white outline so copy stays legible over the
+     page background illustrations (-> `text-shadow-stroke`). */
+  --text-shadow-stroke:
+    -1px -1px 0 var(--color-white),
+    1px -1px 0 var(--color-white),
+    -1px 1px 0 var(--color-white),
+    1px 1px 0 var(--color-white);
+  --text-shadow-default: 0 2px 4px rgba(0, 0, 0, 0.5);
 }
 
+/* Touch devices (no hover): used to keep hover-revealed captions visible. */
+@custom-variant touch (@media (hover: none));
+
 /* Responsive step-ups for the named spacing scale (see note in @theme). */
-@media (width >= theme(--breakpoint-sm)) {
-  :root {
+:root {
+  @variant sm {
     --spacing-gutter: 30px;
     --spacing-gutter-half: 15px;
   }
-}
-@media (width >= theme(--breakpoint-md)) {
-  :root {
+  @variant md {
     --spacing-medium: 30px;
     --spacing-large: 60px;
     --spacing-xlarge: 90px;
@@ -126,7 +155,7 @@
 }
 
 /* One-off layout constants: not a reusable scale, so plain custom properties
-   rather than @theme tokens. */
+   rather than @theme tokens. Templates read them with `h-(--header-height)`. */
 :root {
   --header-height: 140px;
   --header-height-stuck: 95px;
@@ -134,12 +163,6 @@
   --footer-height: 200px;
   --mobile-footer-height: 260px;
   --logo-height: 50px;
-
-  --text-shadow-default: 0 2px 4px rgba(0, 0, 0, 0.5);
-  --transparent-bg: rgba(255, 255, 255, 0.8);
-
-  --transition-default: all 0.8s ease;
-  --transition-quick: all 0.1s ease;
 }
 
 /*

@@ -1,13 +1,11 @@
-/* WebToffee "Cookie Law Info" plugin DOM (not the unused vue-cookie-* npm packages) */
+/* WebToffee "Cookie Law Info" plugin DOM (not the unused vue-cookie-* npm
+   packages). The plugin ships inline styles, hence the `!` (important)
+   suffixes. (The old rules read the never-defined `--gutter`; they now
+   use the gutter token.) */
 #cookie-law-info-bar,
 .cli-modal-content,
 #cookie-law-info-again {
-  background-color: var(--color-light-gray) !important;
-  box-shadow: var(--shadow-default) !important;
-  text-align: left !important;
-  border-radius: 0 !important;
-  font-size: 14.4px !important;
-  padding: var(--gutter) !important;
+  @apply bg-light-gray! shadow-default! text-left! rounded-none! text-[14.4px]! p-gutter!;
 }
 #cookie-law-info-bar .cli-plugin-button,
 #cookie-law-info-bar .cli_setting_save_button,
@@ -15,28 +13,17 @@
 .cli-modal-content .cli_setting_save_button,
 #cookie-law-info-again .cli-plugin-button,
 #cookie-law-info-again .cli_setting_save_button {
-  text-shadow: none;
-  display: inline-block;
-  padding: 0.85em 1em;
-  border-radius: 0;
-  cursor: pointer;
-  margin: 0 !important;
-  margin-top: 7.5px !important;
-  margin-bottom: 7.5px !important;
-  background-color: transparent;
+  @apply text-shadow-none inline-block py-[0.85em] px-[1em] rounded-none cursor-pointer m-0! my-[7.5px]! bg-transparent;
 }
 #cookie-law-info-bar .cli-plugin-button:hover,
 .cli-modal-content .cli-plugin-button:hover,
 #cookie-law-info-again .cli-plugin-button:hover {
-  background-color: inherit;
+  @apply bg-inherit;
 }
 #cookie-law-info-bar .cli_settings_button,
 .cli-modal-content .cli_settings_button,
 #cookie-law-info-again .cli_settings_button {
-  margin: 0 !important;
-  margin-top: 7.5px !important;
-  margin-bottom: 7.5px !important;
-  color: var(--color-success) !important;
+  @apply m-0! my-[7.5px]! text-success!;
 }
 #cookie-law-info-bar .cli-plugin-main-button,
 #cookie-law-info-bar .cli_setting_save_button,
@@ -44,15 +31,14 @@
 .cli-modal-content .cli_setting_save_button,
 #cookie-law-info-again .cli-plugin-main-button,
 #cookie-law-info-again .cli_setting_save_button {
-  background-color: var(--color-success) !important;
-  color: var(--color-white) !important;
+  @apply bg-success! text-white!;
 }
 #cookie-law-info-bar .cli-tab-footer,
 .cli-modal-content .cli-tab-footer,
 #cookie-law-info-again .cli-tab-footer {
-  padding: 0 !important;
+  @apply p-0!;
 }
 
 #cookie-law-info-again {
-  left: var(--gutter) !important;
+  @apply left-gutter!;
 }
