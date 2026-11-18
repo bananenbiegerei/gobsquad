@@ -1,6 +1,6 @@
 <?php get_header();?>
 <div class="mx-auto max-w-320 px-gutter-half">
-  <h1 class="screen-reader-text"><?php echo esc_html( get_bloginfo( 'name' ) ); ?> – <?php echo esc_html( get_bloginfo( 'description' ) ); ?></h1>
+  <h1 class="sr-only"><?php echo esc_html( get_bloginfo( 'name' ) ); ?> – <?php echo esc_html( get_bloginfo( 'description' ) ); ?></h1>
   <div class="grid grid-cols-12 gap-x-gutter">
     <div class="col-span-12 sm:col-span-6 purple-color bg-translucent-white">
       <?php get_template_part('template-parts/home/featured-project') ?>

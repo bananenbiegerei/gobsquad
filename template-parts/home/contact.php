@@ -21,7 +21,7 @@ if ( $query->have_posts() ) {
       </a>
     </div>
     <?php the_post_thumbnail(); ?>
-    <a href="<?php the_permalink(); ?>"><h2 class="mt-small screen-reader-text"><?php the_title(); ?></h2></a>
+    <a href="<?php the_permalink(); ?>"><h2 class="mt-small sr-only"><?php the_title(); ?></h2></a>
     <?php the_content(); ?>
   <?php }
 } else {

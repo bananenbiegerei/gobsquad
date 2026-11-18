@@ -1,5 +1,5 @@
 <?php $press_item_id = uniqid(); ?>
-<div class="<?php echo esc_attr( gob_callout_class() ); ?>" x-data="{ open: false }">
+<div class="callout relative m-0 mb-4 p-4 border-[3px] border-[var(--scheme-accent,var(--color-primary))] rounded-none bg-white text-black [&_:first-child]:mt-0 [&_:last-child]:mb-0" x-data="{ open: false }">
   <?php
   /*
    * aria-expanded is only allowed on roles that support it (axe:
@@ -39,7 +39,7 @@
                       </a>
                     </div>
 
-                    <p class="<?php echo esc_attr( gob_small_class() ); ?>"><?php echo esc_html( $title ); ?></p>
+                    <p class="text-xs leading-small"><?php echo esc_html( $title ); ?></p>
                   <?php endif; ?>
                 </div>
               <?php endwhile; ?>

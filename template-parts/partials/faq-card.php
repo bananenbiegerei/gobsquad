@@ -27,7 +27,7 @@
                 <?php the_sub_field('faq_video_title'); ?>
               </h4>
             <?php endif; ?>
-            <div class="<?php echo esc_attr( gob_embed_class() ); ?>">
+            <div class="relative aspect-video overflow-hidden max-w-full [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:size-full [&_object]:absolute [&_object]:inset-0 [&_object]:size-full [&_embed]:absolute [&_embed]:inset-0 [&_embed]:size-full">
               <?php the_sub_field('faq_video') ?>
             </div>
           </div>

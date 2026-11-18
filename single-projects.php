@@ -131,7 +131,7 @@ $related_dates = get_posts(array(
         <div class="tabs-panel py-4 px-0" :class="{ 'is-active': activeTab === 'panel-video' }" x-show="activeTab === 'panel-video'" id="panel-video" role="tabpanel" tabindex="0" aria-labelledby="panel-video-label">
           <?php if( have_rows('project_videos') ):?>
             <?php while ( have_rows('project_videos') ) : the_row(); ?>
-              <div class="<?php echo esc_attr( gob_embed_class() ); ?> mb-4">
+              <div class="relative aspect-video overflow-hidden max-w-full [&_iframe]:absolute [&_iframe]:inset-0 [&_iframe]:size-full [&_object]:absolute [&_object]:inset-0 [&_object]:size-full [&_embed]:absolute [&_embed]:inset-0 [&_embed]:size-full mb-4">
                 <?php the_sub_field('video'); ?>
               </div>
             <?php endwhile;?>

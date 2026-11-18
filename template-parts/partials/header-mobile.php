@@ -21,7 +21,7 @@
       } ?>
     </div>
     <div class="shrink-0">
-      <button type="button" class="<?php echo esc_attr( gob_button_clear_class( 'menu-button text-primary bg-white hover:bg-white [&_i]:text-lg' ) ); ?>" x-ref="menuButton"
+      <button type="button" class="button clear menu-button text-primary bg-white hover:bg-white [&_i]:text-lg" x-ref="menuButton"
               @click="navOpen = true; $nextTick(() => $refs.closeButton.focus())"
               :aria-expanded="navOpen.toString()" aria-controls="mobile-navigation"
               aria-label="<?php esc_attr_e( 'Open menu', 'gobsquad' ); ?>">

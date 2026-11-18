@@ -26,7 +26,7 @@
 			<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-gutter pt-medium">
 				<?php foreach ($terms as $term) : ?>
 					<div>
-						<div class="<?php echo esc_attr( gob_callout_class() ); ?>">
+						<div class="callout relative m-0 mb-4 p-4 border-[3px] border-[var(--scheme-accent,var(--color-primary))] rounded-none bg-white text-black [&_:first-child]:mt-0 [&_:last-child]:mb-0">
 							<a href="<?php echo esc_url( get_term_link($term) ); ?>">
 								<h3 class="m-0"><?php echo esc_html( $term->name ); ?></h3>
 							</a>

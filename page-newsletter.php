@@ -6,7 +6,7 @@
 		  <?php
 		  $value = get_field( 'title_image', '2991' );
 		  if ( $value ) : ?>
-		    <h1 class="screen-reader-text"><?php the_title(); ?></h1>
+		    <h1 class="sr-only"><?php the_title(); ?></h1>
 		    <?php
 		    $image = get_field('title_image', '2991');
 		    $size = 'full'; // (thumbnail, medium, large, full or custom size)
@@ -36,11 +36,11 @@
 					<div id="mc_embed_signup_scroll">
 						<h2 id="newsletter-heading"><?php esc_html_e( 'Subscribe to the Gob Squad newsletter', 'gobsquad' ); ?></h2>
 						<p id="newsletter-intro"><?php esc_html_e( 'Get tour dates, new projects and workshop news a few times a year. No spam, unsubscribe any time.', 'gobsquad' ); ?></p>
-						<p class="indicates-required <?php echo esc_attr( gob_small_class() ); ?>"><?php esc_html_e( 'All fields are required.', 'gobsquad' ); ?></p>
+						<p class="indicates-required text-xs leading-small"><?php esc_html_e( 'All fields are required.', 'gobsquad' ); ?></p>
 						<div class="mc-field-group">
 							<label for="mce-EMAIL"><?php esc_html_e( 'Email address', 'gobsquad' ); ?> <span class="required-mark" aria-hidden="true">*</span></label>
 							<input type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required aria-required="true" autocomplete="email" inputmode="email" placeholder="<?php esc_attr_e( 'e.g. name@example.com', 'gobsquad' ); ?>" aria-describedby="mce-EMAIL-hint">
-							<span id="mce-EMAIL-hint" class="field-hint <?php echo esc_attr( gob_small_class() ); ?>"><?php esc_html_e( 'We will send a confirmation email to this address.', 'gobsquad' ); ?></span>
+							<span id="mce-EMAIL-hint" class="field-hint text-xs leading-small"><?php esc_html_e( 'We will send a confirmation email to this address.', 'gobsquad' ); ?></span>
 						</div>
 						<div class="mc-field-group">
 							<label for="mce-FNAME"><?php esc_html_e( 'First name', 'gobsquad' ); ?> <span class="required-mark" aria-hidden="true">*</span></label>
@@ -56,7 +56,7 @@
 						</div>    <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
 						<div style="position: absolute; left: -5000px;" aria-hidden="true"><input type="text" name="b_ba8aa97d0616b568bde5fe98f_b604a4e92a" tabindex="-1" value="" autocomplete="off"></div>
 						<div class="clear"><button type="submit" name="subscribe" id="mc-embedded-subscribe" class="button"><?php esc_html_e( 'Subscribe to the newsletter', 'gobsquad' ); ?></button></div>
-						<p class="<?php echo esc_attr( gob_small_class() ); ?> mt-4" id="newsletter-privacy">
+						<p class="text-xs leading-small mt-4" id="newsletter-privacy">
 							<?php
 							printf(
 								/* translators: %s: link to the privacy policy */

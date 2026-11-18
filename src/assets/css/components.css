@@ -1,6 +1,6 @@
 /* Button (Foundation button settings + _custom.scss overrides).
    Kept as a component class: WooCommerce templates and colour schemes still
-   target `.button`. Theme templates may also layer utilities via gob_button_*. */
+   target `.button`. */
 .button {
   font-family: inherit;
   @apply inline-block align-middle m-0 py-[0.85em] px-[1em] border border-transparent rounded-none bg-primary text-white

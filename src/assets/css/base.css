@@ -76,13 +76,6 @@ p {
   @apply mb-4 text-base leading-copy;
   text-rendering: optimizeLegibility;
 }
-p.small,
-.small {
-  @apply text-xs leading-small;
-}
-.lead {
-  @apply text-base leading-copy sm:text-lead;
-}
 
 /* Lists inside editor content. Scoped to class-less lists so navigation
    and layout lists (which always carry classes) keep Tailwind's reset. */
@@ -153,11 +146,10 @@ a {
   @apply outline-none;
 }
 
-/* Screen-reader-only text (WordPress convention; Tailwind's `sr-only` plus
-   the clip-path WordPress adds for older AT). */
+/* Alias for WordPress / plugin markup that still emits `.screen-reader-text`.
+   Theme templates use Tailwind's `sr-only` directly. */
 .screen-reader-text {
   @apply sr-only;
-  clip-path: inset(50%);
 }
 
 /* Lock page scroll while the mobile off-canvas is open. */

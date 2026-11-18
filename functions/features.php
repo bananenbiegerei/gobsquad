@@ -22,7 +22,7 @@ add_filter( 'excerpt_more', 'new_excerpt_more' );
 add_filter( "the_excerpt", "add_class_to_excerpt" );
 
 function add_class_to_excerpt( $excerpt ) {
-	return str_replace( '<p', '<p class="' . esc_attr( gob_lead_class() ) . '"', $excerpt );
+	return str_replace( '<p', '<p class="text-base leading-copy sm:text-lead"', $excerpt );
 }
 
 // %%%%%%%%% Custom Post Archive Page

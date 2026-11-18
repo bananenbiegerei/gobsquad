@@ -1,7 +1,7 @@
 <?php
 $value = get_field("title_image");
 if ($value) : ?>
-<h1 class="screen-reader-text"><?php the_title(); ?></h1>
+<h1 class="sr-only"><?php the_title(); ?></h1>
 <?php
 $image = get_field('title_image');
 $size = 'full'; // (thumbnail, medium, large, full or custom size)
