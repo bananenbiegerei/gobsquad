@@ -48,7 +48,7 @@ $projects_title_image_size = 'full';
   if( ! empty( $image['url'] ) ): ?>
 
   <?php // Decorative background illustration. ?>
-  <img class="meta-image" src="<?php echo esc_url( $image['url'] ); ?>" alt="" aria-hidden="true" />
+  <img class="absolute -bottom-xlarge right-0 z-[-1]" src="<?php echo esc_url( $image['url'] ); ?>" alt="" aria-hidden="true" />
 
   <?php endif; ?>
 </section>

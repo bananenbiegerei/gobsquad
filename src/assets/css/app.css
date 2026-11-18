@@ -57,7 +57,7 @@
   --color-medium-gray-text: #757575;
 
   /* 80 % white used for content panels over the page illustration
-     (`.transparent-bg`, accordions, tab content). */
+     (panels, accordions, tab content). */
   --color-translucent-white: rgb(255 255 255 / 0.8);
 
   --font-sans: Arial, sans-serif;

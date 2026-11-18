@@ -1,4 +1,4 @@
-<ul class="accordion">
+<ul class="accordion m-0 p-0 list-none bg-translucent-white">
 <?php
 // WP_Query arguments
 $args = array(

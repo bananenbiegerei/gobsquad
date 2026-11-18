@@ -2,13 +2,20 @@
 /*
  * Context text for a featured image. Uses the attachment's Description
  * (post_content) first, then its Caption (post_excerpt), so editors have two
- * places to add photo credit / context. The text stays in the DOM when
- * visually hidden on hover-capable devices (see .caption in pages.css).
+ * places to add photo credit / context. Hidden until hover or keyboard
+ * focus on pointer devices; always visible where there is no hover
+ * (`touch:`). The background follows the nearest colour scheme
+ * (`--scheme-text`, else primary). Pass `caption` in $args to print a
+ * gallery image's own text instead of the featured image's.
  */
-$thumbnail_id = get_post_thumbnail_id();
-$attachment   = $thumbnail_id ? get_post( $thumbnail_id ) : null;
-$caption      = $attachment ? ( $attachment->post_content ?: $attachment->post_excerpt ) : '';
+if ( isset( $args ) && array_key_exists( 'caption', $args ) ) {
+  $caption = $args['caption'];
+} else {
+  $thumbnail_id = get_post_thumbnail_id();
+  $attachment   = $thumbnail_id ? get_post( $thumbnail_id ) : null;
+  $caption      = $attachment ? ( $attachment->post_content ?: $attachment->post_excerpt ) : '';
+}
 ?>
 <?php if ( $caption ) { ?>
-  <p class="small caption"><?php echo wp_kses_post( $caption ); ?></p>
+  <p class="absolute translate-y-full bottom-0 mb-0 w-auto px-[10px] text-xs leading-[2rem] text-white text-shadow-none bg-[var(--scheme-text,var(--color-primary))] opacity-50 group-hover:opacity-100 group-focus-within:opacity-100 group-hover/swiper:opacity-100 group-focus-within/swiper:opacity-100 touch:opacity-100"><?php echo wp_kses_post( $caption ); ?></p>
 <?php } ?>

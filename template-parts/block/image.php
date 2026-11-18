@@ -1,4 +1,4 @@
-<section class="block">
+<section class="mb-medium">
   <?php
 
   $image = get_sub_field('image');

@@ -1,11 +1,11 @@
 <div x-data="{ navOpen: false }"
      @keydown.escape.window="if (navOpen) { navOpen = false; $refs.menuButton.focus() }"
      x-effect="document.body.classList.toggle('nav-open', navOpen)">
-<header class="site-header mobile-header md:hidden">
+<header class="absolute top-0 left-0 w-full z-[9] transition-all duration-800 ease-[ease] bg-transparent md:hidden">
   <div class="flex items-center gap-x-gutter px-gutter-half h-(--mobile-header-height)">
     <div class="flex-1">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: site name */ __( '%s – home', 'gobsquad' ), get_bloginfo( 'name' ) ) ); ?>">
-        <img class="logo mobile" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/gob-squad-logo.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+        <img class="logo mobile ml-small h-[calc(var(--mobile-header-height)_-_2rem)]" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/gob-squad-logo.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
       </a>
     </div>
     <div class="shrink-0">
@@ -21,7 +21,7 @@
       } ?>
     </div>
     <div class="shrink-0">
-      <button type="button" class="button clear menu-button" x-ref="menuButton"
+      <button type="button" class="<?php echo esc_attr( gob_button_clear_class( 'menu-button text-primary bg-white hover:bg-white [&_i]:text-lg' ) ); ?>" x-ref="menuButton"
               @click="navOpen = true; $nextTick(() => $refs.closeButton.focus())"
               :aria-expanded="navOpen.toString()" aria-controls="mobile-navigation"
               aria-label="<?php esc_attr_e( 'Open menu', 'gobsquad' ); ?>">
@@ -31,9 +31,9 @@
   </div>
 </header>
 
-<div class="offcanvas-backdrop" x-show="navOpen" x-transition.opacity @click="navOpen = false; $refs.menuButton.focus()" x-cloak></div>
+<div class="fixed inset-0 z-[998] bg-black/50" x-show="navOpen" x-transition.opacity @click="navOpen = false; $refs.menuButton.focus()" x-cloak></div>
 
-<nav id="mobile-navigation" class="off-canvas" :class="navOpen ? 'translate-x-0' : '-translate-x-full'"
+<nav id="mobile-navigation" class="fixed top-0 left-0 bottom-0 z-[999] w-64 max-w-[85vw] overflow-y-auto bg-white bg-no-repeat bg-bottom-right bg-auto transition-transform duration-300 ease-[ease] bg-[url('/wp-content/themes/gobsquad/dist/assets/img/lady.png')] aria-hidden:invisible" :class="navOpen ? 'translate-x-0' : '-translate-x-full'"
      :aria-hidden="(!navOpen).toString()" :inert="!navOpen" aria-label="<?php esc_attr_e( 'Mobile', 'gobsquad' ); ?>" x-cloak>
   <?php
   wp_nav_menu(array(
@@ -47,7 +47,7 @@
     'walker' => new F6_DRILL_MENU_WALKER(),
 ));
   ?>
-  <button class="close-button" x-ref="closeButton" aria-label="<?php esc_attr_e( 'Close menu', 'gobsquad' ); ?>" type="button"
+  <button class="absolute z-10 right-4 top-2 text-[3em] leading-none text-black bg-transparent border-none cursor-pointer hover:text-black focus:text-black" x-ref="closeButton" aria-label="<?php esc_attr_e( 'Close menu', 'gobsquad' ); ?>" type="button"
           @click="navOpen = false; $refs.menuButton.focus()">
     <span aria-hidden="true">&times;</span>
   </button>

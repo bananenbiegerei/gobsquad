@@ -1,17 +1,23 @@
-<section class="block">
+<section class="mb-medium">
   <!-- Swiper -->
   <?php
 
   $images = get_sub_field('gallery');
   $size = 'full'; // (thumbnail, medium, large, full or custom size)
   if( $images ):?>
-  <div class="swiper overlay-nav swiper-flex mt-12 mb-12">
+  <div class="swiper overlay-nav swiper-flex group/swiper relative mt-12 mb-12">
     <div class="swiper-wrapper mb-4">
       <?php foreach( $images as $image ): ?>
         <div class="swiper-slide">
-          <div class="caption-container">
+          <div class="group relative">
             <?php echo wp_get_attachment_image( $image['ID'], $size, false, ['loading' => 'eager'] ); ?>
-            <p class="small caption"><?php echo $image['description']; ?></p>
+            <?php
+            get_template_part(
+              'template-parts/partials/post-thumbnail-caption',
+              null,
+              array( 'caption' => $image['description'] )
+            );
+            ?>
           </div>
         </div>
       <?php endforeach; ?>

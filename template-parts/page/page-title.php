@@ -12,7 +12,7 @@ $size    = 'full'; // (thumbnail, medium, large, full or custom size)
 ?>
 <div class="col-span-12 mb-8">
   <?php if ( $image ) : ?>
-    <h1 class="text-hide"><?php echo esc_html( $title ); ?></h1>
+    <h1 class="screen-reader-text"><?php echo esc_html( $title ); ?></h1>
     <?php /* Decorative: the visually hidden <h1> above carries the title text. */ echo wp_get_attachment_image( $image, $size, false, array( 'alt' => '', 'aria-hidden' => 'true' ) ); ?>
   <?php else : ?>
     <h1><?php echo esc_html( $title ); ?></h1>

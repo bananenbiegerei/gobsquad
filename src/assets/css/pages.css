@@ -1,14 +1,8 @@
-.hidden-title {
-  @apply absolute -left-[999px];
-}
-.transparent-bg {
-  @apply bg-translucent-white;
-}
-.fullwidth,
-.fullwidth img,
-img.fullwidth {
-  @apply w-full h-auto;
-}
+/*
+ * Rules that still need a stylesheet: body-level background, WordPress menu
+ * context, and third-party form markup we do not own. Layout/component
+ * chrome that used to live here is now Tailwind utilities in the templates.
+ */
 
 /* Page background illustration (ACF `background_image`, see header.php).
    Offset by 4 gutters right / 4 gutters up, like the old $bg-offset-*. */
@@ -24,50 +18,6 @@ img.fullwidth {
   @apply no-underline not-italic;
 }
 
-section.block {
-  @apply mb-medium;
-}
-
-/* Home */
-.home .now-image-container {
-  @apply relative z-[9];
-}
-.home .now-image-container img {
-  @apply absolute h-[160px] w-auto max-w-none -top-[70px] left-[5px] sm:-top-[60px] sm:-left-[45px];
-}
-.home .projects img.meta-image {
-  @apply absolute -bottom-xlarge right-0 z-[-1];
-}
-.home .dates img.meta-image {
-  @apply absolute z-[-1] -bottom-[80px] left-0 w-[500px];
-}
-
-/* Projects */
-.project-card {
-  @apply relative;
-}
-.project-card h2 {
-  @apply hyphens-auto;
-}
-.project-card .label {
-  @apply absolute top-0 left-0;
-}
-.caption-container {
-  @apply relative;
-}
-.caption-container:hover .caption,
-.caption-container:focus-within .caption,
-.swiper:hover .caption,
-.swiper:focus-within .caption {
-  @apply opacity-100;
-}
-/* Touch devices have no hover: keep the image context text visible. The
-   text is always in the DOM (opacity, not display:none) so screen readers
-   get it regardless. */
-.caption-container .caption {
-  @apply text-shadow-none opacity-0 touch:opacity-100 absolute -bottom-4 bg-primary text-white w-auto leading-[2rem] px-[10px] mb-0;
-}
-
 /* FAQ */
 .tax-faq_categories .menu li.menu-item-faq a {
   @apply underline italic;
@@ -75,20 +25,9 @@ section.block {
 .tax-faq_categories .menu li.menu-item-dates a {
   @apply no-underline not-italic;
 }
-.faq-card iframe {
-  @apply w-full;
-}
 /* FAQ category archive */
 .category .menu.submenu {
   @apply hidden;
-}
-/* Press */
-#press-item {
-  @apply hidden;
-}
-
-.block-grid .cell {
-  @apply mb-medium;
 }
 
 /* Newsletter (Mailchimp embed). Labels, hints and the required marker use

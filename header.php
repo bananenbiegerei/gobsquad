@@ -26,4 +26,4 @@ $page_background_url = ( is_array( $page_background_image ) && ! empty( $page_ba
 	<div class="off-canvas-content">
 	<?php get_template_part('template-parts/partials/header-desktop'); ?>
 	<?php get_template_part('template-parts/partials/header-mobile'); ?>
-<main id="main-content" class="main-content" tabindex="-1">
+<main id="main-content" class="mt-(--mobile-header-height) min-h-[calc(100vh_-_(var(--mobile-header-height)_+_var(--mobile-footer-height)))] md:mt-(--header-height) md:min-h-[calc(100vh_-_(var(--header-height)_+_var(--footer-height)))]" tabindex="-1">

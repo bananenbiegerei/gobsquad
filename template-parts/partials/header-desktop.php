@@ -1,4 +1,4 @@
-<header id="site-header" class="site-header hidden md:block" role="banner">
+<header id="site-header" class="absolute top-0 left-0 w-full z-[999] transition-all duration-800 ease-[ease] hidden md:block [&_#main-menu]:h-(--header-height)" role="banner">
   <div class="mx-auto max-w-320 px-gutter-half">
     <div class="flex items-center gap-x-gutter" id="main-menu">
       <div class="flex-1">

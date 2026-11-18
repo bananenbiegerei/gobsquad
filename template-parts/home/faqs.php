@@ -16,7 +16,7 @@ $projects_meta_image_url = ( is_array( $projects_meta_image ) && ! empty( $proje
 $posts = get_field('faq_selection');
 
 if( $posts ): ?>
-<ul class="accordion">
+<ul class="accordion m-0 p-0 list-none bg-translucent-white">
   <?php foreach( $posts as $post): // variable must be called $post (IMPORTANT) ?>
     <?php setup_postdata($post); ?>
     <?php get_template_part('template-parts/partials/faq-card') ?>

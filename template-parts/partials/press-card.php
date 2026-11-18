@@ -1,5 +1,5 @@
 <?php $press_item_id = uniqid(); ?>
-<div class="callout" x-data="{ open: false }">
+<div class="<?php echo esc_attr( gob_callout_class() ); ?>" x-data="{ open: false }">
   <?php
   /*
    * aria-expanded is only allowed on roles that support it (axe:
@@ -7,7 +7,7 @@
    * inside the heading (disclosure pattern).
    */
   ?>
-  <h3><button type="button" class="press-toggle" @click="open = !open" :aria-expanded="open.toString()" aria-controls="press-item-<?php echo esc_attr( $press_item_id ); ?>"><?php the_title(); ?></button></h3>
+  <h3><button type="button" class="press-toggle m-0 p-0 border-0 bg-transparent text-left text-[var(--scheme-text,var(--color-primary))] cursor-pointer font-[inherit]" @click="open = !open" :aria-expanded="open.toString()" aria-controls="press-item-<?php echo esc_attr( $press_item_id ); ?>"><?php the_title(); ?></button></h3>
   <?php if ( have_rows('press_kit_item') ): ?>
     <ul class="list-none m-0" id="press-item-<?php echo esc_attr( $press_item_id ); ?>" x-show="open" x-collapse x-cloak>
       <?php while ( have_rows('press_kit_item') ) : the_row(); ?>
@@ -39,7 +39,7 @@
                       </a>
                     </div>
 
-                    <p class="small"><?php echo esc_html( $title ); ?></p>
+                    <p class="<?php echo esc_attr( gob_small_class() ); ?>"><?php echo esc_html( $title ); ?></p>
                   <?php endif; ?>
                 </div>
               <?php endwhile; ?>

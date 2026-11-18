@@ -1,4 +1,4 @@
-<div class="card project-card purple-color">
+<div class="relative flex flex-col grow mb-4 overflow-hidden text-black purple-color [&_:last-child]:mb-0">
   <?php
   /*
    * One link per card (WCAG 2.4.4 link-name): the thumbnail and the title
@@ -7,10 +7,10 @@
    * title provides the accessible name.
    */
   ?>
-  <a href="<?php the_permalink(); ?>" class="project-card-link">
+  <a href="<?php the_permalink(); ?>">
     <?php the_post_thumbnail( 'four-columns-four-three', array( 'alt' => '', 'aria-hidden' => 'true' ) ); ?>
-    <div class="card-section">
-      <h2><?php the_title(); ?></h2>
+    <div class="flex-[1_0_auto] py-4 px-0 [&_:last-child]:mb-0">
+      <h2 class="hyphens-auto"><?php the_title(); ?></h2>
     </div>
   </a>
 </div>

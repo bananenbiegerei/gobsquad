@@ -165,9 +165,3 @@ body.nav-open {
   @apply overflow-hidden;
 }
 
-/* Foundation prototype helper: visually hide heading text that is replaced
-   by a title image, while keeping it in the document for a11y/SEO. */
-.text-hide {
-  @apply text-transparent! text-shadow-none! bg-transparent! border-0!;
-  font: 0/0 a !important;
-}

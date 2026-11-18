@@ -9,7 +9,7 @@
     <?php
     if ( has_post_thumbnail() ) { ?>
       <div class="mb-8">
-        <div class="caption-container">
+        <div class="group relative">
           <?php the_post_thumbnail('eight-columns'); ?>
           <?php get_template_part( 'template-parts/partials/post-thumbnail-caption' ); ?>
         </div>
@@ -18,7 +18,7 @@
     ?>
   <?php endif;
   ?>
-  <div class="transparent-bg">
+  <div class="bg-translucent-white">
     <?php
     if ( have_posts() ) {
       while ( have_posts() ) {

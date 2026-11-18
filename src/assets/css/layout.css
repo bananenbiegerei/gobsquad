@@ -92,69 +92,8 @@
   @apply -rotate-135;
 }
 
-/* Off-canvas (Alpine-driven: see template-parts/partials/header-mobile.php)
-   background-image uses an absolute /wp-content/... path (not a relative
-   Vite-resolved one): in dev mode Vite injects this CSS via a <script>
-   module served cross-origin from the dev server, and the browser
-   resolves relative url()s in injected <style> tags against the *page's*
-   origin (gob.local), not the dev server's — an absolute path is the only
-   form that works identically in dev and in the built production CSS. */
-.offcanvas-backdrop {
-  @apply fixed inset-0 z-[998] bg-black/50;
-}
-.off-canvas {
-  @apply fixed top-0 left-0 bottom-0 z-[999] w-64 max-w-[85vw] overflow-y-auto bg-white bg-no-repeat bg-bottom-right bg-auto transition-transform duration-300 ease-[ease];
-  background-image: url("/wp-content/themes/gobsquad/dist/assets/img/lady.png");
-}
-.off-canvas img.logo.mobile {
-  @apply ml-small h-[calc(var(--mobile-header-height)_-_2rem)];
-}
-
-/* HEADER */
-.site-header {
-  @apply absolute top-0 left-0 w-full z-[999] transition-all duration-800 ease-[ease];
-}
-/* Scroll-away state (not toggled by any JS at the moment; kept for parity
-   with the old theme — named so it can't collide with Tailwind's `hidden`). */
-.site-header.is-scrolled-away {
-  @apply -top-[60px];
-}
-.site-header #main-menu {
-  @apply h-(--header-height);
-}
-.site-header img.logo.mobile {
-  @apply h-[calc(var(--mobile-header-height)_-_2rem)];
-}
-/* Mobile nav is a <nav> that must not be reachable while closed. */
-.off-canvas[aria-hidden="true"] {
-  @apply invisible;
-}
-.mobile-header {
-  @apply bg-transparent z-[9];
-}
-.mobile-header .menu-button {
-  @apply text-primary bg-white;
-}
-.mobile-header .menu-button:hover {
-  @apply bg-white;
-}
-.mobile-header .menu-button i {
-  @apply text-lg;
-}
-
-/* FOOTER */
-.site-footer {
-  @apply h-(--mobile-footer-height) overflow-hidden bg-no-repeat bg-center bg-contain sm:h-(--footer-height);
-}
-.site-footer p {
-  @apply text-xs leading-copy;
-}
-.site-footer .menu li a {
+/* Footer menu size (links are WP-generated; keep the override here). */
+.site-footer .menu li a,
+footer .menu li a {
   @apply text-md sm:text-lg;
-}
-
-/* LAYOUT */
-.main-content {
-  @apply mt-(--mobile-header-height) min-h-[calc(100vh_-_(var(--mobile-header-height)_+_var(--mobile-footer-height)))]
-    md:mt-(--header-height) md:min-h-[calc(100vh_-_(var(--header-height)_+_var(--footer-height)))];
 }

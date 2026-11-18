@@ -53,6 +53,6 @@ $dates_meta_image_size = 'full';
   </div>
   <?php if ( ! empty( $dates_meta_image['url'] ) ) : ?>
     <?php // Decorative background illustration. ?>
-    <img class="meta-image" src="<?php echo esc_url( $dates_meta_image['url'] ); ?>" alt="" aria-hidden="true" />
+    <img class="absolute z-[-1] -bottom-[80px] left-0 w-[500px]" src="<?php echo esc_url( $dates_meta_image['url'] ); ?>" alt="" aria-hidden="true" />
   <?php endif; ?>
 </section>

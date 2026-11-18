@@ -4,10 +4,10 @@ $location    = get_field('location');
 $start_date  = get_field('start');
 $end_date    = get_field('end');
 ?>
-<div class="card">
-  <div class="card-section">
+<div class="flex flex-col grow mb-4 overflow-hidden text-black [&_:last-child]:mb-0">
+  <div class="flex-[1_0_auto] py-4 px-0 [&_:last-child]:mb-0">
     <?php the_post_thumbnail('four-columns-four-three'); ?>
-    <h2 class="pt-small text-hide"><?php the_title(); ?></h2>
+    <h2 class="pt-small screen-reader-text"><?php the_title(); ?></h2>
     <h2>
     <?php if( $post_object ): ?>
       <a href="<?php echo esc_url( get_permalink($post_object->ID) ); ?>"

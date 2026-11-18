@@ -1,5 +1,5 @@
-<section class="block">
-  <div class="transparent-bg">
+<section class="mb-medium">
+  <div class="bg-translucent-white">
     <?php the_sub_field('text') ?>
   </div>
 </section>

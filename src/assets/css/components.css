@@ -1,4 +1,6 @@
-/* Button (Foundation button settings + _custom.scss overrides) */
+/* Button (Foundation button settings + _custom.scss overrides).
+   Kept as a component class: WooCommerce templates and colour schemes still
+   target `.button`. Theme templates may also layer utilities via gob_button_*. */
 .button {
   font-family: inherit;
   @apply inline-block align-middle m-0 py-[0.85em] px-[1em] border border-transparent rounded-none bg-primary text-white
@@ -34,44 +36,9 @@
   @apply content-[''] block absolute top-[3px] -left-[8px] w-[calc(100%_+_16px)] h-[calc(100%_-_6px)] border-2 border-primary;
 }
 
-/* Label (Foundation) */
+/* Label (Foundation) — still used by WooCommerce sale flash */
 .label {
   @apply inline-block py-[0.33333rem] px-2 rounded-none text-xs leading-none whitespace-nowrap cursor-default bg-primary text-white;
-}
-
-/* Callout */
-.callout {
-  @apply relative m-0 mb-4 p-4 border-[3px] border-primary rounded-none bg-[white] text-black;
-}
-.callout > :first-child {
-  @apply mt-0;
-}
-.callout > :last-child {
-  @apply mb-0;
-}
-
-/* Card */
-.card {
-  @apply flex flex-col grow mb-4 border-0 border-light-gray rounded-none bg-transparent shadow-none overflow-hidden text-black;
-}
-.card > :last-child,
-.card-section > :last-child {
-  @apply mb-0;
-}
-.card-section {
-  @apply flex-[1_0_auto] py-4 px-0;
-}
-.card-divider {
-  @apply flex flex-[0_1_auto] py-4 px-0 bg-light-gray;
-}
-
-/* Close button */
-.close-button {
-  @apply absolute z-10 right-4 top-2 text-[3em] leading-none text-black bg-transparent border-none cursor-pointer;
-}
-.close-button:hover,
-.close-button:focus {
-  @apply text-black;
 }
 
 /* Table */
@@ -83,85 +50,26 @@ table td {
   @apply py-2 px-2.5 border-b border-light-gray;
 }
 
-/* Responsive embed (video/iframe wrapper) */
-.embed-container {
-  @apply relative pb-[56.25%] overflow-hidden max-w-full h-auto;
-}
-.embed-container iframe,
-.embed-container object,
-.embed-container embed {
-  @apply absolute top-0 left-0 w-full h-full;
-}
-
-/* Accordion (FAQ) — Alpine-driven, see template-parts/partials/faq-card.php */
-.accordion {
-  @apply m-0 p-0 list-none bg-translucent-white;
-}
-.accordion-item {
-  @apply border-b-2 border-primary;
-}
-/* The title is a <button> inside an <h3> (disclosure pattern); reset the
-   button chrome so it renders like the old block-level link. */
-.accordion-heading {
-  font-size: inherit;
-  @apply m-0;
-}
-.accordion-title {
-  font: inherit;
-  @apply relative block w-full m-0 py-[1em] pr-[1.6rem] pl-[0.8rem] border-2 border-b-0 border-primary rounded-none bg-transparent
-    text-md font-bold leading-heading text-left cursor-pointer text-primary sm:text-lg;
-}
-.accordion-title:hover,
-.accordion-title:focus {
-  @apply bg-transparent;
-}
+/* Accordion (FAQ) — Alpine-driven. Visual chrome lives as utilities on the
+   template; these rules cover the +/- glyph and the colour-scheme hooks. */
 .accordion-title::before {
   @apply content-['+'] absolute top-1/2 right-4 -mt-2 text-base leading-none;
 }
 .accordion-title.is-active::before,
 .accordion-title[aria-expanded="true"]::before {
-  /* en dash, Foundation's "minus" glyph */
   @apply content-['–'];
 }
 
-/* Press kit disclosure toggle (template-parts/partials/press-card.php):
-   a <button> styled as the heading link it replaced. */
-.press-toggle {
-  font: inherit;
-  @apply m-0 p-0 border-0 bg-transparent text-left text-primary cursor-pointer;
-}
+/* Press kit disclosure toggle */
 .press-toggle::after {
   @apply content-['_+'];
 }
 .press-toggle[aria-expanded="true"]::after {
   @apply content-['_–'];
 }
-.accordion-content {
-  @apply hidden p-4 border-2 border-b-0 border-primary bg-white text-black;
-}
-.accordion-content.is-active {
-  @apply block;
-}
 
-/* Tabs (project detail) — Alpine-driven, see single-projects.php */
-.tabs {
-  @apply flex flex-wrap m-0 p-0 border border-transparent bg-white list-none;
-}
-.tabs-title > a {
-  @apply block py-0 px-4 text-sm leading-none text-white;
-}
-.tabs-title > a:first-child {
-  @apply pl-0;
-}
-.tabs-title:not(.is-active) > a .button {
+/* Tabs — inactive tab buttons stay medium-grey */
+.tabs-title:not(.is-active) > a .button,
+.tabs-title:not(.is-active) > .button {
   @apply bg-medium-gray;
-}
-.tabs-content {
-  @apply border border-t-0 border-transparent bg-translucent-white text-black transition-all duration-500 ease-[ease];
-}
-.tabs-panel {
-  @apply hidden py-4 px-0;
-}
-.tabs-panel.is-active {
-  @apply block;
 }

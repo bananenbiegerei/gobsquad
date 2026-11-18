@@ -195,7 +195,6 @@ body.green,
   .menu li a {
     @apply text-black;
   }
-  .caption,
   .label,
   a.button:not(.hollow) {
     @apply text-white bg-(--scheme-text);
@@ -217,7 +216,6 @@ body.green,
   .swiper-button-prev {
     @apply text-(--scheme-text);
   }
-  .caption,
   .label {
     @apply bg-(--scheme-text);
   }

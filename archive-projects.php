@@ -1,7 +1,7 @@
 <?php
 //Template Name: Archive Template for Projects
 get_header(); ?>
-<div class="mx-auto max-w-320 px-gutter-half page-background">
+<div class="mx-auto max-w-320 px-gutter-half">
 	<div class="grid grid-cols-12 gap-x-gutter pb-large">
 		<?php get_template_part('template-parts/page/page-title') ?>
 	</div>

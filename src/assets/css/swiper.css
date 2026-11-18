@@ -23,22 +23,9 @@
   @apply opacity-0;
 }
 
-.swiper-pagination-container {
-  @apply flex justify-center items-center;
-}
-.swiper-pagination-container .swiper-pagination {
-  @apply relative text-center;
-}
-.swiper-pagination-container .swiper-pagination span {
-  @apply inline-block mx-[3.75px];
-}
-
 /* Overlay nav (project galleries): each arrow covers half of the slider
    and the pointer becomes a chevron. Absolute asset path for the same
-   reason as `.off-canvas` in layout.css. */
-.swiper.overlay-nav {
-  @apply relative;
-}
+   reason as the off-canvas lady.png. */
 .swiper.overlay-nav .swiper-button-next,
 .swiper.overlay-nav .swiper-button-prev {
   @apply absolute top-0 h-full w-1/2;
