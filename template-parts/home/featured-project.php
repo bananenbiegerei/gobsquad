@@ -18,7 +18,7 @@ if( $posts ): ?>
     <?php the_post_thumbnail('six-columns'); ?>
     <?php get_template_part('template-parts/partials/post-thumbnail-caption'); ?>
   </div>
-<h2 class="mt-small"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
+<h2 class="mt-4"><a href="<?php the_permalink(); ?>"><?php the_title(); ?></a></h2>
 <?php the_excerpt(); ?>
 <a href="<?php the_permalink(); ?>" class="button" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: project title */ __( 'More about %s', 'gobsquad' ), get_the_title() ) ); ?>"><?php esc_html_e( 'More', 'gobsquad' ); ?></a>
 <?php endforeach; ?>

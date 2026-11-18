@@ -1,9 +1,9 @@
 <?php get_header();?>
-<div class="mx-auto max-w-320 px-gutter-half">
-	<div class="grid grid-cols-12 gap-x-gutter pb-large">
+<div class="mx-auto max-w-320 px-3 sm:px-4">
+	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8 pb-8 md:pb-16">
 		<?php get_template_part('template-parts/page/page-title') ?>
 	</div>
-	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-gutter">
+	<div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-x-6 sm:gap-x-8">
 		<?php
 			$args = array(
 				'post_type'					=> array( 'projects' ),

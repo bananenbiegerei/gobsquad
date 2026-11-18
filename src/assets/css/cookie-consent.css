@@ -5,7 +5,7 @@
 #cookie-law-info-bar,
 .cli-modal-content,
 #cookie-law-info-again {
-  @apply bg-light-gray! shadow-default! text-left! rounded-none! text-[14.4px]! p-gutter!;
+  @apply bg-light-gray! shadow-default! text-left! rounded-none! text-[14.4px]! p-6! sm:p-8!;
 }
 #cookie-law-info-bar .cli-plugin-button,
 #cookie-law-info-bar .cli_setting_save_button,
@@ -40,5 +40,5 @@
 }
 
 #cookie-law-info-again {
-  @apply left-gutter!;
+  @apply left-6! sm:left-8!;
 }

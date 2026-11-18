@@ -9,7 +9,7 @@ $query = new WP_Query( $args );
 if ( $query->have_posts() ) {
   while ( $query->have_posts() ) {
     $query->the_post(); ?>
-    <div class="mb-small">
+    <div class="mb-4">
       <a href="<?php the_permalink(); ?>">
       <?php
       $image = get_field('title_image');

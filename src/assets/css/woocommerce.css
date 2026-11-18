@@ -44,7 +44,7 @@ ul.wc_payment_methods label[for="payment_method_paypal"] img {
 /* "View cart" link injected after an AJAX add-to-cart. (The old rule read
    the never-defined `--gutter`; it now uses the gutter token.) */
 .product.cell a.added_to_cart {
-  @apply block mt-gutter;
+  @apply block mt-6 sm:mt-8;
 }
 
 /* Shipping */

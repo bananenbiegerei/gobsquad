@@ -16,7 +16,7 @@
             <hr>
           <?php endif; ?>
           <?php if ( have_rows('files') ): ?>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-gutter">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 sm:gap-x-8">
               <?php while ( have_rows('files') ) : the_row(); ?>
                 <div class="min-w-0">
                   <?php
@@ -32,7 +32,7 @@
                       $icon =  $file['sizes']['two-columns'];
                     }
                     ?>
-                    <div class="mb-xsmall pt-4 text-center">
+                    <div class="mb-2 pt-4 text-center">
                       <a href="<?php echo esc_url( $url ); ?>" target="_blank" rel="noopener"
                          aria-label="<?php echo esc_attr( sprintf( /* translators: %s: file title */ __( 'Download %s (opens in a new tab)', 'gobsquad' ), $title ) ); ?>">
                         <img src="<?php echo esc_url( $icon ); ?>" alt="" aria-hidden="true" />

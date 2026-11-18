@@ -148,9 +148,9 @@ initSwiperGroup('.swiper.swiper-dates', {
   pagination: true,
   spaceBetween: 30,
   autoHeight: false,
-  slidesPerView: 4,
+  slidesPerView: 3,
   breakpoints: {
-    1024: { slidesPerView: 4 },
+    1024: { slidesPerView: 3 },
     768: { slidesPerView: 2 },
     640: { slidesPerView: 2, spaceBetween: 15 },
   },

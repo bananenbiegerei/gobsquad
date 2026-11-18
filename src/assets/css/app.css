@@ -99,30 +99,6 @@
   --leading-heading: 1.2;
   --leading-small: 1.35;
 
-  /*
-   * Named spacing scale (Foundation's $gutter: 15px derived scale), additive
-   * to Tailwind's default numeric scale. With the 18px root, Tailwind's
-   * numeric step is 4.5px, so the old rem helpers map to whole steps:
-   * margin-bottom-1 (1rem) -> mb-4, -2 (2rem) -> mb-8, -3 (3rem) -> mb-12.
-   * The values below are the *mobile*
-   * values; Foundation stepped them up above its `large` breakpoint
-   * (-> `md` here), which is reproduced with the :root overrides further
-   * down so that e.g. `pt-large` is 30px on mobile and 60px from `md`,
-   * exactly like the old `.padding-top-large` helper.
-   *
-   * gutter / gutter-half mirror Foundation's $grid-column-gutter
-   * (20px small, 30px medium): container padding is `px-gutter-half`,
-   * column gaps are `gap-x-gutter`.
-   */
-  --spacing-gutter: 20px;
-  --spacing-gutter-half: 10px;
-  --spacing-xsmall: 7.5px;
-  --spacing-small: 15px;
-  --spacing-medium: 15px;
-  --spacing-large: 30px;
-  --spacing-xlarge: 75px;
-  --spacing-xxlarge: 120px;
-
   --radius-global: 0px;
 
   --shadow-default: 0 3px 1px 0 rgba(0, 0, 0, 0.1);
@@ -139,20 +115,6 @@
 
 /* Touch devices (no hover): used to keep hover-revealed captions visible. */
 @custom-variant touch (@media (hover: none));
-
-/* Responsive step-ups for the named spacing scale (see note in @theme). */
-:root {
-  @variant sm {
-    --spacing-gutter: 30px;
-    --spacing-gutter-half: 15px;
-  }
-  @variant md {
-    --spacing-medium: 30px;
-    --spacing-large: 60px;
-    --spacing-xlarge: 90px;
-    --spacing-xxlarge: 180px;
-  }
-}
 
 /* One-off layout constants: not a reusable scale, so plain custom properties
    rather than @theme tokens. Templates read them with `h-(--header-height)`. */

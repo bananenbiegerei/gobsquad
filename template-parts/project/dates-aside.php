@@ -26,12 +26,12 @@ $related_dates = get_posts(array(
   'order'     			=> 'ASC',
 ));
 ?>
-<div class="grid grid-cols-12 gap-x-gutter">
+<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
   <?php if($related_dates):?>
     <div class="col-span-12 sm:col-span-6">
       <h3>Forthcoming Dates:</h3>
       <?php foreach($related_dates as $related_date):?>
-        <div class="grid grid-cols-2 gap-x-gutter mb-4">
+        <div class="grid grid-cols-2 gap-x-6 sm:gap-x-8 mb-4">
           <div class="pb-4">
             <?php $thumb_url = wp_get_attachment_image_src(get_post_thumbnail_id($related_date->ID), array('220','220'), true );?>
             <img src="<?php echo esc_url( $thumb_url[0] );?>" alt=""/>
@@ -101,7 +101,7 @@ $related_dates = get_posts(array(
     ?>
     <?php  if($related_dates):?>
       <h3>Past Dates:</h3>
-      <div class="grid grid-cols-1 gap-x-gutter">
+      <div class="grid grid-cols-1 gap-x-6 sm:gap-x-8">
         <?php foreach($related_dates as $related_date):?>
           <div class="mb-4">
             <?php $date = DateTime::createFromFormat('Ymd', $related_date->end);?>

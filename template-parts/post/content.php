@@ -1,4 +1,4 @@
-<article id="post-<?php the_ID(); ?>" <?php post_class('mb-xxlarge'); ?>>
+<article id="post-<?php the_ID(); ?>" <?php post_class('mb-28 md:mb-40'); ?>>
 	<p><?php echo get_the_date(); ?></p>
 	<a href="<?php the_permalink(); ?>" title="<?php the_title_attribute(); ?>">
 		<h2><?php the_title(); ?></h2>

@@ -7,8 +7,8 @@
 * @since Twenty Fifteen 1.0
 */
 get_header(); ?>
-<section class="error-404 not-found mx-auto max-w-320 px-gutter-half">
-	<div class="grid grid-cols-12 gap-x-gutter">
+<section class="error-404 not-found mx-auto max-w-320 px-3 sm:px-4">
+	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
 	<div class="col-span-12 sm:col-span-8 sm:col-start-3 text-center">
 		<img class="404-image" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/404-image.png" alt="4040 Image">
 		<h1 class="page-title">This page could not be found</h1>

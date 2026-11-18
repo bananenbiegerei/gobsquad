@@ -4,8 +4,8 @@ $dates_title_image_size = 'full';
 $dates_meta_image = get_field('meta_image', 56);
 $dates_meta_image_size = 'full';
 ?>
-<section class="dates green relative pb-xxlarge">
-  <div class="text-center mb-large">
+<section class="dates green relative pb-28 md:pb-40">
+  <div class="text-center mb-8 md:mb-16">
     <a href="<?php the_permalink(56); ?>">
       <?php gob_the_title_image( $dates_title_image, $dates_title_image_size, get_the_title( 56 ) ); ?>
     </a>

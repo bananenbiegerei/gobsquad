@@ -9,7 +9,7 @@ $query = new WP_Query( $args );
 if ( $query->have_posts() ) {
   while ( $query->have_posts() ) {
     $query->the_post(); ?>
-    <div class="mb-small">
+    <div class="mb-4">
       <a href="<?php the_permalink(); ?>">
       <?php
       $image = get_field('title_image');
@@ -21,7 +21,7 @@ if ( $query->have_posts() ) {
       </a>
     </div>
     <?php the_post_thumbnail(); ?>
-    <a href="<?php the_permalink(); ?>"><h2 class="mt-small sr-only"><?php the_title(); ?></h2></a>
+    <a href="<?php the_permalink(); ?>"><h2 class="mt-4 sr-only"><?php the_title(); ?></h2></a>
     <?php the_content(); ?>
   <?php }
 } else {

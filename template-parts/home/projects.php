@@ -2,8 +2,8 @@
 $projects_title_image = get_field('title_image', 201);
 $projects_title_image_size = 'full';
 ?>
-<section class="projects purple-color pb-xxlarge relative">
-  <div class="text-center mb-large">
+<section class="projects purple-color pb-28 md:pb-40 relative">
+  <div class="text-center mb-8 md:mb-16">
       <a href="<?php the_permalink(201); ?>">
       <?php gob_the_title_image( $projects_title_image, $projects_title_image_size, get_the_title( 201 ) ); ?>
     </a>
@@ -48,7 +48,7 @@ $projects_title_image_size = 'full';
   if( ! empty( $image['url'] ) ): ?>
 
   <?php // Decorative background illustration. ?>
-  <img class="absolute -bottom-xlarge right-0 z-[-1]" src="<?php echo esc_url( $image['url'] ); ?>" alt="" aria-hidden="true" />
+  <img class="absolute -bottom-16 md:-bottom-20 right-0 z-[-1]" src="<?php echo esc_url( $image['url'] ); ?>" alt="" aria-hidden="true" />
 
   <?php endif; ?>
 </section>

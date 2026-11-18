@@ -1,6 +1,6 @@
 <header id="site-header" class="absolute top-0 left-0 w-full z-[999] transition-all duration-800 ease-[ease] hidden md:block [&_#main-menu]:h-(--header-height)" role="banner">
-  <div class="mx-auto max-w-320 px-gutter-half">
-    <div class="flex items-center gap-x-gutter" id="main-menu">
+  <div class="mx-auto max-w-320 px-3 sm:px-4">
+    <div class="flex items-center gap-x-6 sm:gap-x-8" id="main-menu">
       <div class="flex-1">
         <a href="<?php echo esc_url(home_url('/')); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: site name */ __( '%s – home', 'gobsquad' ), get_bloginfo( 'name' ) ) ); ?>">
           <img class="logo desktop" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/gob-squad-logo.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">

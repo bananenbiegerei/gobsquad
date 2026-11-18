@@ -95,7 +95,7 @@ p {
 blockquote {
   /* Old build: rem-calc(30) on every side. The named token keeps 30px on
      desktop and halves on mobile like the other Foundation spacing helpers. */
-  @apply m-0 mb-4 p-medium leading-copy text-black;
+  @apply m-0 mb-4 p-4 md:p-8 leading-copy text-black;
 }
 hr {
   @apply clear-both max-w-full h-0 my-5 mx-auto border-0 border-b border-medium-gray;

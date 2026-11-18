@@ -1,6 +1,6 @@
 <?php get_header();?>
-<div class="mx-auto max-w-320 px-gutter-half">
-	<div class="grid grid-cols-12 gap-x-gutter">
+<div class="mx-auto max-w-320 px-3 sm:px-4">
+	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
 		<div class="col-span-12">
 		  <?php $post = get_queried_object(); ?>
 		  <?php

@@ -1,4 +1,4 @@
-<div class="col-span-12 sm:col-span-6 min-w-0 overflow-x-hidden text-center pt-xlarge">
+<div class="col-span-12 sm:col-span-6 min-w-0 overflow-x-hidden text-center pt-16 md:pt-20">
 
   <?php //echo do_shortcode('[elfsight_twitter_feed id="1"]'); ?>
   <?php /* <a class="twitter-timeline" data-height="900" data-dnt="true" href="https://twitter.com/GobSquad?ref_src=twsrc%5Etfw">Tweets by GobSquad</a> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> */ ?>

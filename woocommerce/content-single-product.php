@@ -32,11 +32,11 @@ if ( post_password_required() ) {
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
-	<div class="grid grid-cols-12 gap-x-gutter">
+	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
 		<div class="col-span-12 sm:col-span-3 order-2 sm:order-1">
 			<?php get_template_part('woocommerce/single-product/product-image'); ?>
 		</div>
-		<div class="col-span-12 sm:col-span-5 order-1 sm:order-2 mb-medium">
+		<div class="col-span-12 sm:col-span-5 order-1 sm:order-2 mb-4 md:mb-8">
 			<div class="summary entry-summary">
 				<?php get_template_part('woocommerce/single-product/title'); ?>
 				<?php get_template_part('woocommerce/single-product/tabs/description'); ?>

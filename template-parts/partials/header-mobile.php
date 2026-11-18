@@ -2,10 +2,10 @@
      @keydown.escape.window="if (navOpen) { navOpen = false; $refs.menuButton.focus() }"
      x-effect="document.body.classList.toggle('nav-open', navOpen)">
 <header class="absolute top-0 left-0 w-full z-[9] transition-all duration-800 ease-[ease] bg-transparent md:hidden">
-  <div class="flex items-center gap-x-gutter px-gutter-half h-(--mobile-header-height)">
+  <div class="flex items-center gap-x-6 sm:gap-x-8 px-3 sm:px-4 h-(--mobile-header-height)">
     <div class="flex-1">
       <a href="<?php echo esc_url( home_url( '/' ) ); ?>" aria-label="<?php echo esc_attr( sprintf( /* translators: %s: site name */ __( '%s – home', 'gobsquad' ), get_bloginfo( 'name' ) ) ); ?>">
-        <img class="logo mobile ml-small h-[calc(var(--mobile-header-height)_-_2rem)]" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/gob-squad-logo.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
+        <img class="logo mobile ml-4 h-[calc(var(--mobile-header-height)_-_2rem)]" src="<?php echo get_stylesheet_directory_uri() ?>/dist/assets/img/gob-squad-logo.png" alt="<?php echo esc_attr( get_bloginfo( 'name' ) ); ?>">
       </a>
     </div>
     <div class="shrink-0">

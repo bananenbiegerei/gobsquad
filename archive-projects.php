@@ -1,8 +1,8 @@
 <?php
 //Template Name: Archive Template for Projects
 get_header(); ?>
-<div class="mx-auto max-w-320 px-gutter-half">
-	<div class="grid grid-cols-12 gap-x-gutter pb-large">
+<div class="mx-auto max-w-320 px-3 sm:px-4">
+	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8 pb-8 md:pb-16">
 		<?php get_template_part('template-parts/page/page-title') ?>
 	</div>
 	<?php
@@ -53,12 +53,12 @@ get_header(); ?>
 										<?php else: // closing divs if not 1st loop ?>
 											</div></div></div>
 										<?php endif;?>
-										<div class="grid grid-cols-12 gap-x-gutter pb-large">
+										<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8 pb-8 md:pb-16">
 											<div class="col-span-12 sm:col-span-4 md:col-span-3">
 												<img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>" />
 											</div>
 											<div class="col-span-12 sm:col-span-8 md:col-span-9">
-												<div class="grid grid-cols-12 gap-x-gutter">
+												<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
 										<?php endif; ?>
 									<?php endif; ?>
 								<?php endwhile; ?>

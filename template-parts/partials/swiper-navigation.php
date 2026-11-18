@@ -1,4 +1,4 @@
-<div class="flex items-center gap-x-gutter">
+<div class="flex items-center gap-x-6 sm:gap-x-8">
   <div class="shrink-0 relative">
     <?php // Swiper upgrades these to role=button + aria-label; the static label covers no-JS and the first paint. ?>
     <div class="swiper-button-prev" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Previous slide', 'gobsquad' ); ?>"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>

@@ -6,7 +6,7 @@ $projects_meta_image_size = 'full';
 $projects_meta_image_url = ( is_array( $projects_meta_image ) && ! empty( $projects_meta_image['url'] ) ) ? $projects_meta_image['url'] : '';
 ?>
 <section class="projects purple-color"<?php if ( $projects_meta_image_url ) : ?> style="background-image: url('<?php echo esc_url( $projects_meta_image_url ); ?>')"<?php endif; ?>>
-  <div class="text-center mb-large">
+  <div class="text-center mb-8 md:mb-16">
     <a href="<?php the_permalink(106) ?>">
     <?php gob_the_title_image( $projects_title_image, $projects_title_image_size, get_the_title( 106 ) ); ?>
     </a>

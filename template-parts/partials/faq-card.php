@@ -19,9 +19,9 @@
        aria-labelledby="<?php echo esc_attr( $faq_id ); ?>-label"
        :class="{ 'is-active': open }" x-show="open" x-collapse x-cloak>
     <?php if ( have_rows('faq_videos') ): ?>
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-gutter">
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-x-6 sm:gap-x-8">
         <?php while ( have_rows('faq_videos') ) : the_row(); ?>
-          <div class="mb-medium">
+          <div class="mb-4 md:mb-8">
             <?php if( get_sub_field( 'faq_video_title' ) ) : ?>
               <h4>
                 <?php the_sub_field('faq_video_title'); ?>
