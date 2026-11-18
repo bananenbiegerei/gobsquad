@@ -22,3 +22,9 @@ require_once(get_template_directory().'/functions/woocommerce.php');
 
 // Register custom features
 require_once(get_template_directory().'/functions/features.php');
+
+// Accessibility helpers (skip link, alt fallbacks, WooCommerce a11y filters)
+require_once(get_template_directory().'/functions/a11y.php');
+
+// SEO titles, meta descriptions, Open Graph
+require_once(get_template_directory().'/functions/seo.php');

@@ -4,7 +4,7 @@
   $size = 'full'; // (thumbnail, medium, large, full or custom size)
   if ( $image ) : ?>
     <div class="now-image-container">
-      <?php echo wp_get_attachment_image( $image, $size ); ?>
+      <?php gob_the_title_image( $image, $size, __( 'Shop', 'gobsquad' ) ); ?>
     </div>
   <?php endif;?>
 <?php endif; ?>

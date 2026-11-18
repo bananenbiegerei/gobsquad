@@ -5,11 +5,11 @@ $projects_title_image_size = 'full';
 <section class="projects purple-color pb-xxlarge relative">
   <div class="text-center mb-large">
       <a href="<?php the_permalink(201); ?>">
-      <?php echo wp_get_attachment_image( $projects_title_image, $projects_title_image_size ); ?>
+      <?php gob_the_title_image( $projects_title_image, $projects_title_image_size, get_the_title( 201 ) ); ?>
     </a>
   </div>
 
-  <div class="swiper swiper-current-projects">
+  <div class="swiper swiper-current-projects" role="region" aria-label="<?php esc_attr_e( 'Current projects', 'gobsquad' ); ?>">
     <?php get_template_part('template-parts/partials/swiper-navigation') ?>
     <div class="swiper-wrapper mt-4">
       <?php
@@ -39,15 +39,16 @@ $projects_title_image_size = 'full';
 
   </div>
   <div class="text-center">
-    <a class="button" href="<?php the_permalink('201') ?>">More projects</a>
+    <a class="button" href="<?php the_permalink('201') ?>"><?php esc_html_e( 'More projects', 'gobsquad' ); ?></a>
   </div>
   <?php
 
   $image = get_field('meta_image', 201);
 
-  if( !empty($image) ): ?>
+  if( ! empty( $image['url'] ) ): ?>
 
-  <img class="meta-image" src="<?php echo $image['url']; ?>" alt="<?php echo $image['alt']; ?>" />
+  <?php // Decorative background illustration. ?>
+  <img class="meta-image" src="<?php echo esc_url( $image['url'] ); ?>" alt="" aria-hidden="true" />
 
   <?php endif; ?>
 </section>

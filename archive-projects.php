@@ -1,7 +1,7 @@
 <?php
 //Template Name: Archive Template for Projects
 get_header(); ?>
-<div class="mx-auto max-w-360 px-gutter-half page-background">
+<div class="mx-auto max-w-320 px-gutter-half page-background">
 	<div class="grid grid-cols-12 gap-x-gutter pb-large">
 		<?php get_template_part('template-parts/page/page-title') ?>
 	</div>
@@ -43,7 +43,8 @@ get_header(); ?>
 										<?php if (!empty($image)) :
 											// vars
 											$url = $image['url'];
-											$alt = $image['alt'];
+											// Image of the year number: fall back to the year as alt text (WCAG 1.1.1).
+											$alt = ! empty( $image['alt'] ) ? $image['alt'] : $year;
 											// thumbnail
 											$size = 'two-columns';
 											$thumb = $image['sizes'][$size];

@@ -11,7 +11,7 @@ $press_page_id = '64';
     $size = 'full'; // (thumbnail, medium, large, full or custom size)
 
     if ( $image ) : ?>
-      <?php echo wp_get_attachment_image( $image, $size ); ?>
+      <?php /* Decorative: the visually hidden <h1> above carries the title text. */ echo wp_get_attachment_image( $image, $size, false, array( 'alt' => '', 'aria-hidden' => 'true' ) ); ?>
     <?php endif;?>
   <?php else : ?>
     <h1><?php the_archive_title();?></h1>

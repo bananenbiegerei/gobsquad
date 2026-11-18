@@ -15,7 +15,7 @@ if ( $query->have_posts() ) {
       $image = get_field('title_image');
       $size = 'six-columns'; // (thumbnail, medium, large, full or custom size)
       if( $image ) {
-        echo wp_get_attachment_image( $image, $size );
+        gob_the_title_image( $image, $size, get_the_title() );
       }
       ?>
       </a>

@@ -9,6 +9,33 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 
 Alpine.plugin(collapse);
+
+/*
+ * Project detail tabs (single-projects.php) — WAI-ARIA tabs pattern with a
+ * roving tabindex: Left/Right cycle, Home/End jump, selection follows focus.
+ */
+Alpine.data('projectTabs', (initial) => ({
+  activeTab: initial,
+  select(id) {
+    this.activeTab = id;
+  },
+  onKeydown(e) {
+    const keys = ['ArrowLeft', 'ArrowRight', 'Home', 'End'];
+    if (!keys.includes(e.key)) return;
+    const tabs = Array.from(this.$el.querySelectorAll('[role="tab"]'));
+    const current = tabs.indexOf(document.activeElement);
+    if (current === -1) return;
+    e.preventDefault();
+    let next = current;
+    if (e.key === 'ArrowRight') next = (current + 1) % tabs.length;
+    if (e.key === 'ArrowLeft') next = (current - 1 + tabs.length) % tabs.length;
+    if (e.key === 'Home') next = 0;
+    if (e.key === 'End') next = tabs.length - 1;
+    tabs[next].focus();
+    this.select(tabs[next].getAttribute('aria-controls'));
+  },
+}));
+
 window.Alpine = Alpine;
 Alpine.start();
 
@@ -17,6 +44,74 @@ Alpine.start();
 document.querySelectorAll('.drilldown-link').forEach((link) => {
   link.addEventListener('click', (e) => e.stopPropagation());
 });
+
+/*
+ * Desktop navigation dropdowns (disclosure pattern, markup from
+ * insertcart_walker in functions/menu.php). Hover reveal is pure CSS; this
+ * adds the keyboard side:
+ *  - the <button class="submenu-toggle"> opens/closes its submenu and
+ *    mirrors the state in aria-expanded (also set while :focus-within
+ *    reveals it, so AT and visuals agree),
+ *  - Escape closes the open submenu and returns focus to its toggle,
+ *  - Up/Down arrows move through the links of an open submenu,
+ *  - focus leaving the item closes it.
+ */
+document.querySelectorAll('.top-menu .menu-item-has-children').forEach((item) => {
+  const toggle = item.querySelector(':scope > .submenu-toggle');
+  const submenu = item.querySelector(':scope > .dropdown-submenu');
+  if (!toggle || !submenu) return;
+
+  const setOpen = (open) => {
+    item.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  toggle.addEventListener('click', () => {
+    setOpen(!item.classList.contains('is-open'));
+  });
+
+  item.addEventListener('focusin', () => setOpen(true));
+  item.addEventListener('focusout', (e) => {
+    if (!item.contains(e.relatedTarget)) setOpen(false);
+  });
+  item.addEventListener('mouseenter', () => toggle.setAttribute('aria-expanded', 'true'));
+  item.addEventListener('mouseleave', () => {
+    if (!item.classList.contains('is-open')) toggle.setAttribute('aria-expanded', 'false');
+  });
+
+  item.addEventListener('keydown', (e) => {
+    const links = Array.from(submenu.querySelectorAll('a'));
+    const idx = links.indexOf(document.activeElement);
+    if (e.key === 'Escape') {
+      e.preventDefault();
+      setOpen(false);
+      toggle.focus();
+    } else if (e.key === 'ArrowDown') {
+      e.preventDefault();
+      setOpen(true);
+      (links[idx + 1] || links[0])?.focus();
+    } else if (e.key === 'ArrowUp' && idx > -1) {
+      e.preventDefault();
+      (links[idx - 1] || toggle).focus();
+    }
+  });
+});
+
+/*
+ * Third-party embeds (Elfsight Instagram feed, Facebook page plugin) inject
+ * role="progressbar" loaders without an accessible name (axe:
+ * aria-progressbar-name). We can't change their markup, so label any
+ * unnamed progressbar as it appears.
+ */
+const labelProgressbars = (root) => {
+  root.querySelectorAll?.('[role="progressbar"]:not([aria-label]):not([aria-labelledby])').forEach((el) => {
+    el.setAttribute('aria-label', 'Loading');
+  });
+};
+labelProgressbars(document);
+new MutationObserver((mutations) => {
+  mutations.forEach((m) => m.addedNodes.forEach((n) => n.nodeType === 1 && labelProgressbars(n)));
+}).observe(document.body, { childList: true, subtree: true });
 
 function initSwiperGroup(selector, options) {
   document.querySelectorAll(selector).forEach((el) => {

@@ -1,25 +1,25 @@
+<?php
+$post_object = get_field('related_project');
+$location    = get_field('location');
+$start_date  = get_field('start');
+$end_date    = get_field('end');
+?>
 <div class="card">
   <div class="card-section">
     <?php the_post_thumbnail('four-columns-four-three'); ?>
     <h2 class="pt-small text-hide"><?php the_title(); ?></h2>
     <h2>
-    <?php
-      $post_object = get_field('related_project');
-      if( $post_object ):
-    ?>
-      <a href="<?php echo get_permalink($post_object->ID); ?>"><?php echo get_the_title($post_object->ID); ?></a>
+    <?php if( $post_object ): ?>
+      <a href="<?php echo esc_url( get_permalink($post_object->ID) ); ?>"
+         aria-label="<?php echo esc_attr( sprintf( /* translators: 1: project title, 2: location */ __( '%1$s in %2$s – project page', 'gobsquad' ), get_the_title($post_object->ID), $location ) ); ?>"><?php echo esc_html( get_the_title($post_object->ID) ); ?></a>
     <?php endif;?>
     <br />
-    <?php echo get_field('location'); ?></h2>
-    <?php
-      $start_date = get_field('start');
-      $end_date = get_field('end');
-    ?>
-    <?php if(get_field('start')): ?>
+    <?php echo esc_html( $location ); ?></h2>
+    <?php if( $start_date ): ?>
       <p>
-        <?php echo get_field( 'start' ); ?>
-        <?php if(get_field('end')&&(get_field('start')!=get_field('end'))):?>
-          <?php echo '- '. get_field('end');?>
+        <?php echo esc_html( $start_date ); ?>
+        <?php if( $end_date && ( $start_date != $end_date ) ):?>
+          <?php echo '- ' . esc_html( $end_date );?>
         <?php endif;?>
       </p>
     <?php endif;?>
@@ -30,8 +30,10 @@
         $link_url = $link['url'];
         $link_title = $link['title'];
         $link_target = $link['target'] ? $link['target'] : '_self';
+        $new_tab = ( '_blank' === $link_target );
         ?>
-        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"><?php echo esc_html($link_title); ?></a>
+        <a href="<?php echo esc_url($link_url); ?>" target="<?php echo esc_attr($link_target); ?>"<?php if ( $new_tab ) : ?> rel="noopener"<?php endif; ?>
+           aria-label="<?php echo esc_attr( $link_title . ( $new_tab ? ' (' . __( 'opens in a new tab', 'gobsquad' ) . ')' : '' ) ); ?>"><?php echo esc_html($link_title); ?></a>
     <?php endif; ?>
   </div>
 </div>

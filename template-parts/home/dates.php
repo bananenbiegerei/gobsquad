@@ -7,11 +7,11 @@ $dates_meta_image_size = 'full';
 <section class="dates green relative pb-xxlarge">
   <div class="text-center mb-large">
     <a href="<?php the_permalink(56); ?>">
-      <?php echo wp_get_attachment_image( $dates_title_image, $dates_title_image_size ); ?>
+      <?php gob_the_title_image( $dates_title_image, $dates_title_image_size, get_the_title( 56 ) ); ?>
     </a>
   </div>
 
-  <div class="swiper swiper-dates green-color">
+  <div class="swiper swiper-dates green-color" role="region" aria-label="<?php esc_attr_e( 'Upcoming dates', 'gobsquad' ); ?>">
     <?php get_template_part('template-parts/partials/swiper-navigation') ?>
     <div class="swiper-wrapper">
       <?php
@@ -49,9 +49,10 @@ $dates_meta_image_size = 'full';
 
   </div>
   <div class="text-center">
-    <a class="button" href="<?php the_permalink('56') ?>">View all dates</a>
+    <a class="button" href="<?php the_permalink('56') ?>"><?php esc_html_e( 'View all dates', 'gobsquad' ); ?></a>
   </div>
   <?php if ( ! empty( $dates_meta_image['url'] ) ) : ?>
-    <img class="meta-image" src="<?php echo esc_url( $dates_meta_image['url'] ); ?>" alt="<?php echo esc_attr( $dates_meta_image['alt'] ?? '' ); ?>" />
+    <?php // Decorative background illustration. ?>
+    <img class="meta-image" src="<?php echo esc_url( $dates_meta_image['url'] ); ?>" alt="" aria-hidden="true" />
   <?php endif; ?>
 </section>

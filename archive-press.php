@@ -1,7 +1,7 @@
 <?php
 //Template Name: Archive Template for Press items
 get_header(); ?>
-<div class="mx-auto max-w-360 px-gutter-half">
+<div class="mx-auto max-w-320 px-gutter-half">
 	<div class="grid grid-cols-12 gap-x-gutter pb-large">
 		<?php get_template_part('template-parts/page/page-title-press') ?>
 	</div>

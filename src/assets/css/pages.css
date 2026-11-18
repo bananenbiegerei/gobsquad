@@ -91,8 +91,18 @@ section.block {
   position: relative;
 }
 .caption-container:hover .caption,
-.swiper:hover .caption {
+.caption-container:focus-within .caption,
+.swiper:hover .caption,
+.swiper:focus-within .caption {
   opacity: 1;
+}
+/* Touch devices have no hover: keep the image context text visible. The
+   text is always in the DOM (opacity, not display:none) so screen readers
+   get it regardless. */
+@media (hover: none) {
+  .caption-container .caption {
+    opacity: 1;
+  }
 }
 .caption-container .caption {
   text-shadow: none;
@@ -133,14 +143,44 @@ section.block {
   margin-bottom: var(--spacing-medium);
 }
 
-/* Newsletter (Mailchimp embed) */
+/* Newsletter (Mailchimp embed). Labels, hints and the required marker use
+   full-contrast colours (black / primary) — the medium grey Mailchimp
+   default fails WCAG 1.4.3. Inputs get a dark-grey border (5.3:1) so the
+   field boundary itself meets 1.4.11. */
+#mc_embed_signup label {
+  display: block;
+  margin-bottom: 0.25rem;
+  font-weight: bold;
+  color: var(--color-black);
+}
+#mc_embed_signup .required-mark {
+  color: var(--color-primary);
+}
+#mc_embed_signup .indicates-required,
+#mc_embed_signup .field-hint {
+  display: block;
+  color: var(--color-black);
+}
+#mc_embed_signup .field-hint {
+  margin: -0.5rem 0 1rem;
+}
 #mc_embed_signup input[type="email"],
 #mc_embed_signup input[type="text"] {
   display: block;
   width: 100%;
   margin-bottom: 1rem;
   padding: 0.5rem;
-  border: 1px solid var(--color-medium-gray);
+  border: 2px solid var(--color-dark-gray);
   background: var(--color-white);
+  color: var(--color-black);
   font-size: var(--text-base);
+}
+#mc_embed_signup input::placeholder {
+  color: var(--color-dark-gray);
+  opacity: 1;
+}
+#mc_embed_signup .response {
+  margin: 0.5rem 0 1rem;
+  font-weight: bold;
+  color: var(--color-black);
 }

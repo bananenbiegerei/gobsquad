@@ -30,39 +30,39 @@ $related_dates = get_posts(array(
   'order'     			=> 'ASC',
 ));
 ?>
-<div class="mx-auto max-w-360 px-gutter-half">
+<div class="mx-auto max-w-320 px-gutter-half">
   <div class="grid grid-cols-12 gap-x-gutter">
     <div class="col-span-12">
       <?php get_template_part('template-parts/page/page-title-project'); ?>
     </div>
-    <div class="col-span-12 sm:col-span-8 sm:col-start-3 min-w-0" x-data="{ activeTab: 'panel1' }">
+    <div class="col-span-12 sm:col-span-8 sm:col-start-3 min-w-0" x-data="projectTabs('panel1')">
       <?php get_template_part('template-parts/partials/project-gallery'); ?>
-      <ul class="tabs mt-9" id="example-tabs">
+      <?php
+      /*
+       * WAI-ARIA tabs pattern. Each tab is a single <button role="tab"> (the
+       * old markup nested a <button> inside an <a>, axe: nested-interactive).
+       * Roving tabindex + Left/Right/Home/End handling lives in the
+       * `projectTabs` Alpine component (src/assets/js/app.js).
+       */
+      ?>
+      <ul class="tabs mt-8" role="tablist" aria-label="<?php esc_attr_e( 'Project information', 'gobsquad' ); ?>" @keydown="onKeydown($event)">
         <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel1' }">
-          <a href="#panel1" role="tab" aria-controls="panel1" id="panel1-label" @click.prevent="activeTab = 'panel1'">
-            <button type="button" name="button" class="button">
-              Info
-            </button>
-          </a>
+          <button type="button" class="button" role="tab" id="panel1-label" aria-controls="panel1"
+                  :aria-selected="(activeTab === 'panel1').toString()" :tabindex="activeTab === 'panel1' ? 0 : -1"
+                  @click="select('panel1')"><?php esc_html_e( 'Info', 'gobsquad' ); ?></button>
         </li>
         <?php if($related_dates):?>
           <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel2' }">
-            <a href="#panel2" role="tab" aria-controls="panel2" id="panel2-label" @click.prevent="activeTab = 'panel2'">
-              <button type="button" name="button" class="button">
-                Tour Dates
-              </button>
-            </a>
+            <button type="button" class="button" role="tab" id="panel2-label" aria-controls="panel2"
+                    :aria-selected="(activeTab === 'panel2').toString()" :tabindex="activeTab === 'panel2' ? 0 : -1"
+                    @click="select('panel2')"><?php esc_html_e( 'Tour Dates', 'gobsquad' ); ?></button>
           </li>
         <?php endif; ?>
         <?php if ( have_rows('custom_meta_infos') ): ?>
           <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel<?php echo $uniq_id; ?>' }">
-            <a href="#panel<?php echo $uniq_id; ?>" role="tab" aria-controls="panel<?php echo $uniq_id; ?>" id="panel<?php echo $uniq_id; ?>-label" @click.prevent="activeTab = 'panel<?php echo $uniq_id; ?>'">
-              <h3 class="m-0">
-                <button type="button" name="button" class="button">
-                  Credits
-                </button>
-              </h3>
-            </a>
+            <button type="button" class="button" role="tab" id="panel<?php echo $uniq_id; ?>-label" aria-controls="panel<?php echo $uniq_id; ?>"
+                    :aria-selected="(activeTab === 'panel<?php echo $uniq_id; ?>').toString()" :tabindex="activeTab === 'panel<?php echo $uniq_id; ?>' ? 0 : -1"
+                    @click="select('panel<?php echo $uniq_id; ?>')"><?php esc_html_e( 'Credits', 'gobsquad' ); ?></button>
           </li>
         <?php endif; ?>
         <?php if ( have_rows( 'custom_infos' ) ) : ?>
@@ -71,34 +71,27 @@ $related_dates = get_posts(array(
           ?>
           <?php while ( have_rows( 'custom_infos' ) ) : the_row(); ?>
             <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel-custom-info-<?php echo $i; ?>' }">
-              <a href="#panel-custom-info-<?php echo $i; ?>" role="tab" aria-controls="panel-custom-info-<?php echo $i; ?>" id="panel<?php echo $uniq_id; ?>-label" @click.prevent="activeTab = 'panel-custom-info-<?php echo $i; ?>'">
-                <h3 class="m-0">
-                  <button type="button" name="button" class="button">
-                    <?php the_sub_field( 'custom_meta_infos_title' ); ?>
-                  </button>
-                </h3>
-              </a>
+              <button type="button" class="button" role="tab" id="panel-custom-info-<?php echo $i; ?>-label" aria-controls="panel-custom-info-<?php echo $i; ?>"
+                      :aria-selected="(activeTab === 'panel-custom-info-<?php echo $i; ?>').toString()" :tabindex="activeTab === 'panel-custom-info-<?php echo $i; ?>' ? 0 : -1"
+                      @click="select('panel-custom-info-<?php echo $i; ?>')"><?php the_sub_field( 'custom_meta_infos_title' ); ?></button>
             </li>
             <?php
             $i++;
             ?>
           <?php endwhile; ?>
-        <?php else : ?>
         <?php endif; ?>
 
         <?php if( have_rows('project_videos') ):?>
           <li class="tabs-title" role="presentation" :class="{ 'is-active': activeTab === 'panel-video' }">
-            <a href="#panel-video" role="tab" aria-controls="panel-video" id="panel-video-label" @click.prevent="activeTab = 'panel-video'">
-              <button type="button" name="button" class="button">
-                Video
-              </button>
-            </a>
+            <button type="button" class="button" role="tab" id="panel-video-label" aria-controls="panel-video"
+                    :aria-selected="(activeTab === 'panel-video').toString()" :tabindex="activeTab === 'panel-video' ? 0 : -1"
+                    @click="select('panel-video')"><?php esc_html_e( 'Video', 'gobsquad' ); ?></button>
           </li>
         <?php endif; ?>
       </ul>
 
       <div class="tabs-content">
-        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel1' }" x-show="activeTab === 'panel1'" id="panel1" role="tabpanel" aria-labelledby="panel1-label">
+        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel1' }" x-show="activeTab === 'panel1'" id="panel1" role="tabpanel" tabindex="0" aria-labelledby="panel1-label">
           <?php
           if (have_posts()) {
             while (have_posts()) {
@@ -108,10 +101,10 @@ $related_dates = get_posts(array(
           } // end if
           ?>
         </div>
-        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel2' }" x-show="activeTab === 'panel2'" id="panel2" role="tabpanel" aria-labelledby="panel2-label">
+        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel2' }" x-show="activeTab === 'panel2'" id="panel2" role="tabpanel" tabindex="0" aria-labelledby="panel2-label">
           <?php include(locate_template("template-parts/project/dates-aside.php")) ?>
         </div>
-        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel<?php echo $uniq_id; ?>' }" x-show="activeTab === 'panel<?php echo $uniq_id; ?>'" id="panel<?php echo $uniq_id; ?>" role="tabpanel" aria-labelledby="panel<?php echo $uniq_id; ?>-label">
+        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel<?php echo $uniq_id; ?>' }" x-show="activeTab === 'panel<?php echo $uniq_id; ?>'" id="panel<?php echo $uniq_id; ?>" role="tabpanel" tabindex="0" aria-labelledby="panel<?php echo $uniq_id; ?>-label">
           <?php if (have_rows('custom_meta_infos')) : ?>
             <?php while (have_rows('custom_meta_infos')) : the_row(); ?>
               <?php
@@ -126,7 +119,7 @@ $related_dates = get_posts(array(
           $j = 0;
           ?>
           <?php while ( have_rows( 'custom_infos' ) ) : the_row(); ?>
-            <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel-custom-info-<?php echo $j; ?>' }" x-show="activeTab === 'panel-custom-info-<?php echo $j; ?>'" id="panel-custom-info-<?php echo $j; ?>" role="tabpanel" aria-labelledby="panel-custom-info-<?php echo $j; ?>-label">
+            <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel-custom-info-<?php echo $j; ?>' }" x-show="activeTab === 'panel-custom-info-<?php echo $j; ?>'" id="panel-custom-info-<?php echo $j; ?>" role="tabpanel" tabindex="0" aria-labelledby="panel-custom-info-<?php echo $j; ?>-label">
               <?php the_sub_field( 'custom_meta_infos_content' ); ?>
             </div>
             <?php
@@ -135,7 +128,7 @@ $related_dates = get_posts(array(
           <?php endwhile; ?>
         <?php else : ?>
         <?php endif; ?>
-        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel-video' }" x-show="activeTab === 'panel-video'" id="panel-video" role="tabpanel" aria-labelledby="panel-video-label">
+        <div class="tabs-panel" :class="{ 'is-active': activeTab === 'panel-video' }" x-show="activeTab === 'panel-video'" id="panel-video" role="tabpanel" tabindex="0" aria-labelledby="panel-video-label">
           <?php if( have_rows('project_videos') ):?>
             <?php while ( have_rows('project_videos') ) : the_row(); ?>
               <div class="embed-container mb-4">

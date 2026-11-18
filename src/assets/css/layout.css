@@ -44,28 +44,41 @@
   margin-left: -1rem;
 }
 
-/* Desktop dropdown (CSS-only hover/focus reveal; markup from
-   insertcart_walker in functions/menu.php) */
+/* Desktop dropdown (disclosure navigation: hover/focus-within reveal in
+   CSS, plus a real toggle <button> for keyboard/AT users — markup from
+   insertcart_walker in functions/menu.php, behaviour in app.js) */
 .top-menu .menu-item-has-children {
   position: relative;
+  display: flex;
+  align-items: center;
 }
 .top-menu .menu-item-has-children > a {
-  position: relative;
-  padding-right: 1.5rem;
+  padding-right: 0.25rem;
 }
-/* Foundation's dropdown caret */
-.top-menu .menu-item-has-children > a::after {
-  content: "";
-  position: absolute;
-  right: 5px;
-  top: 50%;
-  margin-top: -3px;
+/* The toggle button carries Foundation's old dropdown caret. */
+.submenu-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  margin-right: 0.5rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--color-black);
+  cursor: pointer;
+}
+.submenu-caret {
   width: 0;
   height: 0;
   border: inset 6px;
   border-bottom-width: 0;
   border-top-style: solid;
-  border-color: var(--color-black) transparent transparent;
+  border-color: currentColor transparent transparent;
+}
+.submenu-toggle[aria-expanded="true"] .submenu-caret {
+  transform: rotate(180deg);
 }
 .dropdown-submenu {
   display: none;
@@ -84,7 +97,12 @@
   left: 100%;
 }
 .menu-item-has-children:hover > .dropdown-submenu,
-.menu-item-has-children:focus-within > .dropdown-submenu {
+.menu-item-has-children:focus-within > .dropdown-submenu,
+.menu-item-has-children.is-open > .dropdown-submenu {
+  display: block;
+}
+/* Submenu is a vertical list; override the horizontal flex of .menu. */
+.top-menu .dropdown-submenu li {
   display: block;
 }
 
@@ -185,6 +203,10 @@
 }
 .site-header img.logo.mobile {
   height: calc(var(--mobile-header-height) - 2rem);
+}
+/* Mobile nav is a <nav> that must not be reachable while closed. */
+.off-canvas[aria-hidden="true"] {
+  visibility: hidden;
 }
 .mobile-header {
   background-color: transparent;

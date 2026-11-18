@@ -5,7 +5,7 @@ $projects_title_image_size = 'full';
 <div class="col-span-12">
   <div class="text-center mb-large">
     <a href="<?php the_permalink(59); ?>">
-      <?php echo wp_get_attachment_image( $projects_title_image, $projects_title_image_size ); ?>
+      <?php gob_the_title_image( $projects_title_image, $projects_title_image_size, get_the_title( 59 ) ); ?>
     </a>
   </div>
 </div>

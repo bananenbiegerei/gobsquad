@@ -9,8 +9,13 @@ function custom_excerpt_length( $length ) {
 }
 add_filter( 'excerpt_length', 'custom_excerpt_length', 999 );
 
+/*
+ * Excerpts end with an ellipsis only. The previous empty <a class="read-more">
+ * had no accessible name (axe: link-name); every card that prints an excerpt
+ * already carries a named link to the same permalink.
+ */
 function new_excerpt_more( $more ) {
-	return ' … <a class="read-more" href="' . get_permalink( get_the_ID() ) . '">' . __( '' ) . '</a>';
+	return ' …';
 }
 add_filter( 'excerpt_more', 'new_excerpt_more' );
 

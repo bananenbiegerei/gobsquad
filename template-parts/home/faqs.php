@@ -8,7 +8,7 @@ $projects_meta_image_url = ( is_array( $projects_meta_image ) && ! empty( $proje
 <section class="projects purple-color"<?php if ( $projects_meta_image_url ) : ?> style="background-image: url('<?php echo esc_url( $projects_meta_image_url ); ?>')"<?php endif; ?>>
   <div class="text-center mb-large">
     <a href="<?php the_permalink(106) ?>">
-    <?php echo wp_get_attachment_image( $projects_title_image, $projects_title_image_size ); ?>
+    <?php gob_the_title_image( $projects_title_image, $projects_title_image_size, get_the_title( 106 ) ); ?>
     </a>
   </div>
 <?php
@@ -26,6 +26,6 @@ if( $posts ): ?>
 <?php endif; ?>
 
 <div class="text-center">
-  <a class="button" href="<?php the_permalink('106') ?>">More FAQs</a>
+  <a class="button" href="<?php the_permalink('106') ?>"><?php esc_html_e( 'More FAQs', 'gobsquad' ); ?></a>
 </div>
 </section>

@@ -12,14 +12,59 @@ function custom_navigation_menus() {
 }
 add_action( 'init', 'custom_navigation_menus' );
 
-// %%%%%%%%%% Desktop dropdown menu (CSS-only hover reveal, see .dropdown-submenu in layout.css) %%%%%%%%%%
+// %%%%%%%%%% Desktop dropdown menu %%%%%%%%%%
+/*
+ * Markup follows the WAI-ARIA "disclosure navigation menu" pattern rather
+ * than role=menubar/menuitem (which axe flagged as aria-required-children /
+ * aria-required-parent and which is meant for application menus, not site
+ * navigation): a plain <ul>, each parent item is a normal link plus a
+ * <button aria-expanded aria-controls> that toggles the submenu. Hover and
+ * :focus-within reveal is CSS (layout.css); the button + Escape / arrow-key
+ * handling is in src/assets/js/app.js.
+ */
 class insertcart_walker extends Walker_Nav_Menu
 {
     function start_lvl( &$output, $depth = 0, $args = array() ) {
         $indent = str_repeat( "\t", $depth );
         $output .= "\n$indent<ul class=\"dropdown-submenu\">\n";
     }
+
+    function start_el( &$output, $item, $depth = 0, $args = array(), $id = 0 ) {
+        $classes      = empty( $item->classes ) ? array() : (array) $item->classes;
+        $has_children = in_array( 'menu-item-has-children', $classes, true );
+
+        parent::start_el( $output, $item, $depth, $args, $id );
+
+        if ( ! $has_children ) {
+            return;
+        }
+
+        $submenu_id = 'submenu-' . (int) $item->ID;
+        $title      = wp_strip_all_tags( apply_filters( 'the_title', $item->title, $item->ID ) );
+        $button     = sprintf(
+            '<button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="%1$s" aria-label="%2$s"><span class="submenu-caret" aria-hidden="true"></span></button>',
+            esc_attr( $submenu_id ),
+            /* translators: %s: menu item title */
+            esc_attr( sprintf( __( '%s submenu', 'gobsquad' ), $title ) )
+        );
+
+        // Insert the toggle right after the item's own link.
+        $pos = strrpos( $output, '</a>' );
+        if ( false !== $pos ) {
+            $output = substr_replace( $output, '</a>' . $button, $pos, 4 );
+        }
+        // Give the following <ul> the id the button points to.
+        $output .= '<!--submenu:' . esc_attr( $submenu_id ) . '-->';
+    }
+
+    function end_el( &$output, $item, $depth = 0, $args = array() ) {
+        $output .= "</li>\n";
+    }
 }
+// Move the submenu id marker onto the actual <ul>.
+add_filter( 'wp_nav_menu_items', function ( $items ) {
+    return preg_replace( '/<!--submenu:([^>]+)-->\s*(<ul class="dropdown-submenu")/', '$2 id="$1"', $items );
+}, 5 );
 //Optional fallback
 function f6_topbar_menu_fallback($args)
 {

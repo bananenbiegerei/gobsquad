@@ -179,16 +179,34 @@ table td {
 .accordion-item {
   border-bottom: 2px solid var(--color-primary);
 }
+/* The title is a <button> inside an <h3> (disclosure pattern); reset the
+   button chrome so it renders like the old block-level link. */
+.accordion-heading {
+  margin: 0;
+  font-size: inherit;
+}
 .accordion-title {
   position: relative;
   display: block;
+  width: 100%;
+  margin: 0;
   padding: 1em 1.6rem 1em 0.8rem;
   border: 2px solid var(--color-primary);
   border-bottom: 0;
-  font-size: var(--text-2xs);
-  line-height: 1;
+  border-radius: 0;
+  background: transparent;
+  font: inherit;
+  font-size: var(--text-md);
+  font-weight: bold;
+  line-height: var(--leading-heading);
+  text-align: left;
   cursor: pointer;
   color: var(--color-primary);
+}
+@media (width >= theme(--breakpoint-sm)) {
+  .accordion-title {
+    font-size: var(--text-lg);
+  }
 }
 .accordion-title:hover,
 .accordion-title:focus {
@@ -200,9 +218,31 @@ table td {
   top: 50%;
   right: 1rem;
   margin-top: -0.5rem;
+  font-size: var(--text-base);
+  line-height: 1;
 }
-.accordion-title.is-active::before {
+.accordion-title.is-active::before,
+.accordion-title[aria-expanded="true"]::before {
   content: "\2013"; /* en dash, Foundation's "minus" glyph */
+}
+
+/* Press kit disclosure toggle (template-parts/partials/press-card.php):
+   a <button> styled as the heading link it replaced. */
+.press-toggle {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  font: inherit;
+  text-align: left;
+  color: var(--color-primary);
+  cursor: pointer;
+}
+.press-toggle::after {
+  content: " +";
+}
+.press-toggle[aria-expanded="true"]::after {
+  content: " \2013";
 }
 .accordion-content {
   display: none;

@@ -1,11 +1,12 @@
 <div class="flex items-center gap-x-gutter">
   <div class="shrink-0 relative">
-    <div class="swiper-button-prev"><i class="fas fa-chevron-left"></i></div>
+    <?php // Swiper upgrades these to role=button + aria-label; the static label covers no-JS and the first paint. ?>
+    <div class="swiper-button-prev" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Previous slide', 'gobsquad' ); ?>"><i class="fas fa-chevron-left" aria-hidden="true"></i></div>
   </div>
   <div class="flex-1 min-w-0 swiper-pagination-container">
     <div class="swiper-pagination"></div>
   </div>
   <div class="shrink-0">
-    <div class="swiper-button-next"><i class="fas fa-chevron-right"></i></div>
+    <div class="swiper-button-next" role="button" tabindex="0" aria-label="<?php esc_attr_e( 'Next slide', 'gobsquad' ); ?>"><i class="fas fa-chevron-right" aria-hidden="true"></i></div>
   </div>
 </div>

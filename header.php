@@ -22,7 +22,8 @@ $page_background_url = ( is_array( $page_background_image ) && ! empty( $page_ba
 	: '';
 ?>
 <body <?php body_class( 'page-background-image' ); ?><?php if ( $page_background_url ) : ?> style="background-image: url('<?php echo esc_url( $page_background_url ); ?>')"<?php endif; ?>>
+	<?php gob_skip_link(); ?>
 	<div class="off-canvas-content">
 	<?php get_template_part('template-parts/partials/header-desktop'); ?>
 	<?php get_template_part('template-parts/partials/header-mobile'); ?>
-<main id="main-content" class="main-content">
+<main id="main-content" class="main-content" tabindex="-1">

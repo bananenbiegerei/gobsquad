@@ -12,14 +12,17 @@ if ($images) : ?>
     <div class="swiper-slide">
       <div class="caption-container">
         <?php the_post_thumbnail('eight-columns');?>
-        <p class="small caption"><?php echo get_post(get_post_thumbnail_id())->post_content; ?></p>
+        <?php get_template_part( 'template-parts/partials/post-thumbnail-caption' ); ?>
       </div>
     </div>
     <?php foreach ($images as $image) : ?>
       <div class="swiper-slide">
         <div class="caption-container">
         <?php echo wp_get_attachment_image( $image['ID'], $size, false, ['loading' => 'eager'] ); ?>
-          <p class="small caption"><?php echo $image['description']; ?></p>
+          <?php $caption = $image['description'] ?: $image['caption']; ?>
+          <?php if ( $caption ) : ?>
+            <p class="small caption"><?php echo wp_kses_post( $caption ); ?></p>
+          <?php endif; ?>
         </div>
       </div>
     <?php endforeach; ?>

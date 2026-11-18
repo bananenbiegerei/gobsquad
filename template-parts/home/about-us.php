@@ -15,7 +15,10 @@ if ( $query->have_posts() ) {
       $image = get_field('title_image');
       $size = 'six-columns'; // (thumbnail, medium, large, full or custom size)
       if( $image ) {
-        echo wp_get_attachment_image( $image, $size );
+        // Image of the words "About Us": alt falls back to the page title (WCAG 1.1.1).
+        gob_the_title_image( $image, $size, get_the_title() );
+      } else {
+        echo '<h2>' . esc_html( get_the_title() ) . '</h2>';
       }
       ?>
       </a>
@@ -26,7 +29,7 @@ if ( $query->have_posts() ) {
     </div>
 
     <?php the_excerpt(); ?>
-    <a href="<?php the_permalink(); ?>" class="button">More about us</a>
+    <a href="<?php the_permalink(); ?>" class="button"><?php esc_html_e( 'More about us', 'gobsquad' ); ?></a>
   <?php }
 } else {
   // no posts found
