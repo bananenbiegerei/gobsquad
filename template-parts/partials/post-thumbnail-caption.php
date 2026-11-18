@@ -17,5 +17,5 @@ if ( isset( $args ) && array_key_exists( 'caption', $args ) ) {
 }
 ?>
 <?php if ( $caption ) { ?>
-  <p class="absolute translate-y-full bottom-0 mb-0 w-auto px-[10px] text-xs leading-[2rem] text-white text-shadow-none bg-[var(--scheme-text,var(--color-primary))] opacity-50 group-hover:opacity-100 group-focus-within:opacity-100 group-hover/swiper:opacity-100 group-focus-within/swiper:opacity-100 touch:opacity-100"><?php echo wp_kses_post( $caption ); ?></p>
+  <p class="absolute bottom-0 left-0 mb-0 w-auto p-4 text-xs leading-none text-white text-shadow-none bg-[var(--scheme-text,var(--color-primary))] opacity-0 group-hover:opacity-100 group-focus-within:opacity-100 group-hover/swiper:opacity-100 group-focus-within/swiper:opacity-100 touch:opacity-100"><?php echo wp_kses_post( $caption ); ?></p>
 <?php } ?>

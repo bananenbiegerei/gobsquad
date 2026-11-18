@@ -1,31 +1,14 @@
-import { defineConfig } from 'vite';
+import { defineConfig, loadEnv } from 'vite';
 import tailwindcss from '@tailwindcss/vite';
+import fullReload from 'vite-plugin-full-reload';
 import fs from 'node:fs';
 import path from 'node:path';
 
 const hotFile = path.resolve(import.meta.dirname, 'dist/hot');
-
-/**
- * Local (localwp.com) site host. The WordPress site is served over HTTPS at
- * this host; Safari refuses mixed content even from http://localhost, so the
- * dev server must also be HTTPS. We reuse Local's already-trusted certificate
- * for the site, which makes the dev server reachable as https://gob.local:5173.
- * If the certificate isn't present (other machine / no Local), we fall back
- * to plain http://localhost, which Chrome and Firefox accept.
- */
-const localSiteHost = 'gob.local';
 const localCertsDir = path.join(
   process.env.HOME ?? '',
   'Library/Application Support/Local/run/router/nginx/certs'
 );
-const localCert = path.join(localCertsDir, `${localSiteHost}.crt`);
-const localKey = path.join(localCertsDir, `${localSiteHost}.key`);
-const useLocalHttps = fs.existsSync(localCert) && fs.existsSync(localKey);
-
-const devServerHttps = useLocalHttps
-  ? { cert: fs.readFileSync(localCert), key: fs.readFileSync(localKey) }
-  : undefined;
-const devServerHost = useLocalHttps ? localSiteHost : 'localhost';
 
 /**
  * Writes dist/hot with the dev server's origin while `vite` is running,
@@ -33,7 +16,7 @@ const devServerHost = useLocalHttps ? localSiteHost : 'localhost';
  * decide whether to point enqueued assets at the dev server or the
  * manifest-based production build.
  */
-function hotFilePlugin() {
+function hotFilePlugin(devServerHost) {
   return {
     name: 'gobsquad-hot-file',
     configureServer(server) {
@@ -55,29 +38,70 @@ function hotFilePlugin() {
   };
 }
 
-export default defineConfig({
-  root: '.',
-  publicDir: 'public',
-  plugins: [tailwindcss(), hotFilePlugin()],
-  server: {
-    // The dev server is fetched cross-origin from the WordPress site
-    // (e.g. https://gob.local) rather than being same-origin, so CORS
-    // must be explicitly allowed or the browser blocks @vite/client and
-    // the entry module.
-    cors: true,
-    https: devServerHttps,
-    // Requests arrive with Host: gob.local:5173, which Vite rejects by
-    // default (only localhost/IPs are allowed) unless listed here.
-    allowedHosts: useLocalHttps ? [localSiteHost] : undefined,
-  },
-  build: {
-    outDir: 'dist',
-    manifest: true,
-    emptyOutDir: true,
-    rollupOptions: {
-      input: {
-        app: 'src/assets/js/app.js',
+export default defineConfig(({ mode }) => {
+  // .env keys match the BrowserSync setup used in other BB projects.
+  const env = loadEnv(mode, process.cwd(), '');
+  const siteUrl = env.BROWSERSYNC_PROXY_URL || 'https://gob.local';
+  const openBrowser = String(env.BROWSERSYNC_OPEN_BROWSER || '').toLowerCase() === 'true';
+
+  let siteHost = 'localhost';
+  try {
+    siteHost = new URL(siteUrl).hostname;
+  } catch {
+    // keep localhost
+  }
+
+  const localCert = path.join(localCertsDir, `${siteHost}.crt`);
+  const localKey = path.join(localCertsDir, `${siteHost}.key`);
+  const useLocalHttps = fs.existsSync(localCert) && fs.existsSync(localKey);
+
+  // Local (localwp.com) serves the site over HTTPS; Safari refuses mixed
+  // content, so the Vite dev server must also be HTTPS with Local's cert.
+  const devServerHttps = useLocalHttps
+    ? { cert: fs.readFileSync(localCert), key: fs.readFileSync(localKey) }
+    : undefined;
+  const devServerHost = useLocalHttps ? siteHost : 'localhost';
+
+  return {
+    root: '.',
+    publicDir: 'public',
+    plugins: [
+      tailwindcss(),
+      hotFilePlugin(devServerHost),
+      // PHP / template changes are not Vite modules — trigger a full page
+      // reload in the browser via the already-enqueued @vite/client.
+      fullReload(['*.php', '**/*.php'], {
+        delay: 150,
+        root: import.meta.dirname,
+      }),
+    ],
+    server: {
+      // WordPress (e.g. https://gob.local) loads assets cross-origin from
+      // the Vite server, so CORS must be allowed.
+      cors: true,
+      https: devServerHttps,
+      host: devServerHost,
+      // Open the WordPress site (not the Vite origin) so @vite/client connects
+      // from the real page and HMR / full-reload work.
+      open: openBrowser ? siteUrl : false,
+      // Requests arrive with Host: gob.local:5173.
+      allowedHosts: useLocalHttps ? [siteHost] : true,
+      hmr: useLocalHttps
+        ? {
+            host: siteHost,
+            protocol: 'wss',
+          }
+        : undefined,
+    },
+    build: {
+      outDir: 'dist',
+      manifest: true,
+      emptyOutDir: true,
+      rollupOptions: {
+        input: {
+          app: 'src/assets/js/app.js',
+        },
       },
     },
-  },
+  };
 });
