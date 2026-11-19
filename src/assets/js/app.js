@@ -231,3 +231,31 @@ document.querySelectorAll('.swiper.project-gallery').forEach((el) => {
     },
   });
 });
+
+/**
+ * Shop loop: after AJAX add-to-cart, move focus to the injected "View basket"
+ * link so keyboard users stay on the archive with a clear next step.
+ */
+function initAjaxAddToCartFocus() {
+  const $ = window.jQuery;
+  if (!$ || !$.fn) {
+    return;
+  }
+
+$(document.body).on('added_to_cart', (_event, _fragments, _cartHash, $button) => {
+    const button = $button && $button[0];
+    if (!button) {
+      return;
+    }
+
+    requestAnimationFrame(() => {
+      const actions = button.closest('.product-card__actions') || button.parentElement;
+      const viewBasket = actions && actions.querySelector('a.added_to_cart');
+      if (viewBasket instanceof HTMLElement) {
+        viewBasket.focus();
+      }
+    });
+  });
+}
+
+initAjaxAddToCartFocus();

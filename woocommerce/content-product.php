@@ -24,7 +24,7 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	return;
 }
 ?>
-<div <?php wc_product_class( 'mb-4 md:mb-8 relative', $product ); ?>>
+<div <?php wc_product_class( 'product-card mb-4 md:mb-8 relative', $product ); ?>>
 	<?php
 	/**
 	 * Hook: woocommerce_before_shop_loop_item.
@@ -59,9 +59,11 @@ if ( ! is_a( $product, WC_Product::class ) || ! $product->is_visible() ) {
 	/**
 	 * Hook: woocommerce_after_shop_loop_item.
 	 *
-	 * @hooked woocommerce_template_loop_product_link_close - 5
 	 * @hooked woocommerce_template_loop_add_to_cart - 10
+	 * (Product link open/close removed — title link is stretched instead.)
 	 */
-	do_action( 'woocommerce_after_shop_loop_item' );
 	?>
+	<div class="product-card__actions">
+		<?php do_action( 'woocommerce_after_shop_loop_item' ); ?>
+	</div>
 </div>

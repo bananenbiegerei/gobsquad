@@ -122,9 +122,8 @@ add_filter(
 );
 
 /**
- * Single product gallery: the zoom link wraps an image whose alt may be
- * empty, which leaves the link unnamed (axe: link-name). Fall back to the
- * product title.
+ * Single product gallery: ensure images have a non-empty alt (product title
+ * fallback). Enlarge links are stripped in functions/woocommerce.php.
  */
 add_filter(
 	'woocommerce_single_product_image_thumbnail_html',
@@ -137,16 +136,7 @@ add_filter(
 		if ( '' === $alt ) {
 			$alt = wp_strip_all_tags( $product->get_name() );
 		}
-		$html = preg_replace( '/\salt=""/', ' alt="' . esc_attr( $alt ) . '"', $html ) ?? $html;
-		if ( ! str_contains( $html, 'aria-label=' ) ) {
-			$html = preg_replace(
-				'/<a([^>]*)href="/',
-				'<a$1aria-label="' . esc_attr( sprintf( /* translators: %s: product name */ __( 'View larger image of %s', 'gobsquad' ), $alt ) ) . '" href="',
-				$html,
-				1
-			) ?? $html;
-		}
-		return $html;
+		return preg_replace( '/\salt=""/', ' alt="' . esc_attr( $alt ) . '"', $html ) ?? $html;
 	},
 	10,
 	2

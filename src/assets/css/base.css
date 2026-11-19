@@ -166,3 +166,8 @@ a {
 body.nav-open {
   @apply overflow-hidden;
 }
+
+/* Forms overwrites */
+select {
+  @apply w-full;
+}

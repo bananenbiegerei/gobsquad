@@ -3,9 +3,57 @@
   @apply absolute top-0 left-0;
 }
 
-/* Single product */
+
+/* Accessible product cards: product permalink only on the title.
+   Tab order: title link → add to basket → view basket (after AJAX add).
+   No stretched ::after — that overlay stole ATC clicks/Enter. */
+.products .product {
+  @apply relative;
+}
+.products .product .woocommerce-LoopProduct-link {
+  @apply text-inherit no-underline;
+}
+.products .product .woocommerce-LoopProduct-link:focus-visible {
+  outline: 1px solid var(--color-alert);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--color-alert) 50%, transparent);
+}
+.products .product a.added_to_cart {
+  @apply block mt-6 sm:mt-8;
+}
+.products .product a.added_to_cart:focus-visible,
+.products .product .product-card__actions .add_to_cart_button:focus-visible {
+  outline: 1px solid var(--color-alert);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--color-alert) 50%, transparent);
+}
+
+/* No zoom/lightbox UI on single product images. */
+.woocommerce-product-gallery__trigger {
+  @apply hidden;
+}
+
+/* Single product — no cell borders; no brand text-stroke on labels */
+table.variations,
+table.variations th,
+table.variations td,
+table.variations tr {
+  border: none;
+  border-width: 0;
+  border-bottom: none;
+}
+table.variations th,
+table.variations th label,
+table.variations td {
+  text-shadow: none;
+}
 .variations select {
   @apply mb-0;
+  text-shadow: none;
+}
+/* WC toggles visibility only; collapse so "Clear" does not reserve a gap. */
+a.reset_variations[style*="visibility: hidden"] {
+  display: none !important;
 }
 
 /* Messages */
@@ -41,11 +89,6 @@ ul.wc_payment_methods label[for="payment_method_paypal"] img {
   @apply inline-block text-center w-[30px];
 }
 
-/* "View cart" link injected after an AJAX add-to-cart. (The old rule read
-   the never-defined `--gutter`; it now uses the gutter token.) */
-.product.cell a.added_to_cart {
-  @apply block mt-6 sm:mt-8;
-}
 
 /* Shipping */
 ul#shipping_method {

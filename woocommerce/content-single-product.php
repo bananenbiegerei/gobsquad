@@ -33,10 +33,10 @@ if ( post_password_required() ) {
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
-		<div class="col-span-12 sm:col-span-3 order-2 sm:order-1">
+		<div class="col-span-12 sm:col-span-4 order-2 sm:order-1">
 			<?php wc_get_template( 'single-product/product-image.php' ); ?>
 		</div>
-		<div class="col-span-12 sm:col-span-5 order-1 sm:order-2 mb-4 md:mb-8">
+		<div class="col-span-12 sm:col-span-8 order-1 sm:order-2 mb-4 md:mb-8">
 			<div class="summary entry-summary">
 				<?php wc_get_template( 'single-product/title.php' ); ?>
 				<?php wc_get_template( 'single-product/tabs/description.php' ); ?>

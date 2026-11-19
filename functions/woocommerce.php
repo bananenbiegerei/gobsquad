@@ -8,14 +8,13 @@
 defined( 'ABSPATH' ) || exit;
 
 /**
- * Theme support for WooCommerce gallery features.
+ * Theme support for WooCommerce. Gallery images are display-only (no zoom /
+ * lightbox) — product shots are large enough without a click-to-enlarge.
  */
 add_action(
 	'after_setup_theme',
 	static function (): void {
 		add_theme_support( 'woocommerce' );
-		add_theme_support( 'wc-product-gallery-zoom' );
-		add_theme_support( 'wc-product-gallery-lightbox' );
 		add_theme_support( 'wc-product-gallery-slider' );
 	}
 );
@@ -49,15 +48,30 @@ remove_action( 'woocommerce_before_main_content', 'woocommerce_breadcrumb', 20 )
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_result_count', 20 );
 remove_action( 'woocommerce_before_shop_loop', 'woocommerce_catalog_ordering', 30 );
 
-// Loop product title markup.
+// Accessible product cards: one link on the title (stretched via CSS ::after).
+// Tab order: product link → add to basket (no wrapping <a> around the card).
+remove_action( 'woocommerce_before_shop_loop_item', 'woocommerce_template_loop_product_link_open', 10 );
+remove_action( 'woocommerce_after_shop_loop_item', 'woocommerce_template_loop_product_link_close', 5 );
 remove_action( 'woocommerce_shop_loop_item_title', 'woocommerce_template_loop_product_title', 10 );
 add_action( 'woocommerce_shop_loop_item_title', 'gobsquad_woocommerce_template_loop_product_title', 10 );
 
 /**
- * Output the product title in the shop loop.
+ * Output the product title as the sole permalink in the shop loop.
  */
 function gobsquad_woocommerce_template_loop_product_title(): void {
-	echo '<h2 class="text-h3 mt-4">' . esc_html( get_the_title() ) . '</h2>';
+	global $product;
+
+	if ( ! is_a( $product, WC_Product::class ) ) {
+		return;
+	}
+
+	$link = apply_filters( 'woocommerce_loop_product_link', get_the_permalink(), $product );
+
+	printf(
+		'<h2 class="woocommerce-loop-product__title text-h3 mt-4"><a href="%1$s" class="woocommerce-LoopProduct-link woocommerce-loop-product__link">%2$s</a></h2>',
+		esc_url( $link ),
+		esc_html( get_the_title() )
+	);
 }
 
 // Single product: title/meta/excerpt are rendered from content-single-product.php.
@@ -133,4 +147,27 @@ add_filter(
 		return $fields;
 	},
 	20
+);
+
+
+/**
+ * Render single-product gallery images without clickable enlarge links.
+ *
+ * @param string $html          Gallery image HTML.
+ * @param int    $attachment_id Attachment ID.
+ * @return string
+ */
+add_filter(
+	'woocommerce_single_product_image_thumbnail_html',
+	static function ( string $html, $attachment_id ): string {
+		// Keep the outer wrapper div; drop only the enlarge <a>.
+		$unlinked = preg_replace( '#<a\b[^>]*>#i', '', $html, 1 );
+		if ( is_string( $unlinked ) ) {
+			$html = $unlinked;
+		}
+		$unlinked = preg_replace( '#</a>#i', '', $html, 1 );
+		return is_string( $unlinked ) ? $unlinked : $html;
+	},
+	20,
+	2
 );

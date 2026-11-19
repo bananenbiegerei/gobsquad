@@ -201,7 +201,6 @@ body.green,
   .menu li a {
     @apply text-black;
   }
-  .label,
   a.button:not(.hollow) {
     @apply text-white bg-(--scheme-text);
   }
