@@ -1,4 +1,4 @@
-<div class="relative flex flex-col grow mb-4 overflow-hidden text-black purple-color [&_:last-child]:mb-0">
+<div class="relative flex flex-col grow mb-4 text-black purple-color [&_:last-child]:mb-0">
   <?php
   /*
    * Stretched headline link (WCAG 2.4.4): one named link covers the card

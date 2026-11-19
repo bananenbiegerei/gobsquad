@@ -18,9 +18,12 @@ add_action( 'init', 'custom_navigation_menus' );
  * than role=menubar/menuitem (which axe flagged as aria-required-children /
  * aria-required-parent and which is meant for application menus, not site
  * navigation): a plain <ul>, each parent item is a normal link plus a
- * <button aria-expanded aria-controls> that toggles the submenu. Hover and
- * :focus-within reveal is CSS (layout.css); the button + Escape / arrow-key
- * handling is in src/assets/js/app.js.
+ * <button aria-expanded aria-controls> that toggles the submenu.
+ *
+ * Tab order (Figma): 1) parent link  2) caret toggle (submenu still closed)
+ * 3) submenu links only after the toggle opens it. Link + toggle sit in
+ * `.menu-item-control` so link focus can ring the whole trigger. Hover
+ * reveal is CSS (layout.css); toggle / Escape / arrows are in app.js.
  */
 class insertcart_walker extends Walker_Nav_Menu
 {
@@ -48,10 +51,18 @@ class insertcart_walker extends Walker_Nav_Menu
             esc_attr( sprintf( __( '%s submenu', 'gobsquad' ), $title ) )
         );
 
-        // Insert the toggle right after the item's own link.
+        // Wrap link + caret so "focus tap 1" can ring both as one unit.
+        $li_pos = strrpos( $output, '<li' );
+        if ( false !== $li_pos ) {
+            $gt = strpos( $output, '>', $li_pos );
+            if ( false !== $gt ) {
+                $output = substr_replace( $output, '><span class="menu-item-control">', $gt, 1 );
+            }
+        }
+
         $pos = strrpos( $output, '</a>' );
         if ( false !== $pos ) {
-            $output = substr_replace( $output, '</a>' . $button, $pos, 4 );
+            $output = substr_replace( $output, '</a>' . $button . '</span>', $pos, 4 );
         }
         // Give the following <ul> the id the button points to.
         $output .= '<!--submenu:' . esc_attr( $submenu_id ) . '-->';

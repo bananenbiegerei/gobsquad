@@ -21,6 +21,12 @@
  * 0,1,1) so the cascade against .menu / .drilldown rules is unchanged.
  */
 
+/* Default when the page has no ACF colour scheme (e.g. home). */
+:root {
+  --scheme-accent: var(--color-primary);
+  --scheme-text: var(--color-primary);
+}
+
 body.primary-color,
 .primary-color,
 .primary-color-color {

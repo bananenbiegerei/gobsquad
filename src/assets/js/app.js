@@ -7,6 +7,9 @@ import { Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import '@fortawesome/fontawesome-free/css/fontawesome.css';
+import '@fortawesome/fontawesome-free/css/solid.css';
+import '@fortawesome/fontawesome-free/css/brands.css';
 
 Alpine.plugin(collapse);
 
@@ -48,16 +51,16 @@ document.querySelectorAll('.drilldown-link').forEach((link) => {
 /*
  * Desktop navigation dropdowns (disclosure pattern, markup from
  * insertcart_walker in functions/menu.php). Hover reveal is pure CSS; this
- * adds the keyboard side:
- *  - the <button class="submenu-toggle"> opens/closes its submenu and
- *    mirrors the state in aria-expanded (also set while :focus-within
- *    reveals it, so AT and visuals agree),
- *  - Escape closes the open submenu and returns focus to its toggle,
- *  - Up/Down arrows move through the links of an open submenu,
- *  - focus leaving the item closes it.
+ * adds the keyboard side matching Figma tab order:
+ *  - Tab 1: parent link (submenu stays closed)
+ *  - Tab 2: caret <button> (still closed until activated)
+ *  - Tab 3+: submenu links only after the toggle opens `.is-open`
+ *  - Escape closes and returns focus to the toggle
+ *  - ArrowDown opens and moves into the submenu; ArrowUp moves back
+ *  - focus leaving the item closes it
  */
 document.querySelectorAll('.top-menu .menu-item-has-children').forEach((item) => {
-  const toggle = item.querySelector(':scope > .submenu-toggle');
+  const toggle = item.querySelector('.submenu-toggle');
   const submenu = item.querySelector(':scope > .dropdown-submenu');
   if (!toggle || !submenu) return;
 
@@ -67,10 +70,13 @@ document.querySelectorAll('.top-menu .menu-item-has-children').forEach((item) =>
   };
 
   toggle.addEventListener('click', () => {
-    setOpen(!item.classList.contains('is-open'));
+    const willOpen = !item.classList.contains('is-open');
+    setOpen(willOpen);
+    if (willOpen) {
+      submenu.querySelector('a')?.focus();
+    }
   });
 
-  item.addEventListener('focusin', () => setOpen(true));
   item.addEventListener('focusout', (e) => {
     if (!item.contains(e.relatedTarget)) setOpen(false);
   });

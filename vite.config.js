@@ -65,6 +65,10 @@ export default defineConfig(({ mode }) => {
   return {
     root: '.',
     publicDir: 'public',
+    // Production CSS/font URLs must resolve under the theme dist folder
+    // (default `base: '/'` would request `/assets/...` from the site root).
+    // Dev keeps `/` so the Vite server can serve modules/HMR normally.
+    base: mode === 'production' ? '/wp-content/themes/gobsquad/dist/' : '/',
     plugins: [
       tailwindcss(),
       hotFilePlugin(devServerHost),
@@ -81,6 +85,14 @@ export default defineConfig(({ mode }) => {
       cors: true,
       https: devServerHttps,
       host: devServerHost,
+      port: 5173,
+      strictPort: true,
+      // Prefix absolute CSS urls (Font Awesome webfonts, etc.) with the Vite
+      // origin. Without this, url(/node_modules/...) resolves against
+      // gob.local and 404s while `npm run dev` is running.
+      origin: useLocalHttps
+        ? `https://${devServerHost}:5173`
+        : 'http://localhost:5173',
       // Open the WordPress site (not the Vite origin) so @vite/client connects
       // from the real page and HMR / full-reload work.
       open: openBrowser ? siteUrl : false,

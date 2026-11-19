@@ -124,24 +124,28 @@ a {
   @apply outline-none;
 }
 :focus-visible {
-  @apply outline-3 outline-solid outline-primary outline-offset-2 ring-[5px] ring-white;
+  outline: 1px solid var(--scheme-accent);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
 }
 .button:focus-visible,
 .accordion-title:focus-visible,
-.submenu-toggle:focus-visible,
 .swiper-button-next:focus-visible,
 .swiper-button-prev:focus-visible {
-  @apply outline-3 outline-solid outline-black outline-offset-2 ring-[5px] ring-white;
+  outline: 1px solid var(--scheme-accent);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
 }
 
 /* Skip link (WCAG 2.4.1): visually hidden until focused, then pinned to
    the top-left above the header. */
 .skip-link {
-  @apply absolute top-0 left-0 z-[1000] py-3 px-4 bg-primary text-white font-bold no-underline text-shadow-none -translate-y-[150%] transition-transform duration-150 ease-[ease];
+  @apply absolute top-4 left-4 z-[1000] py-3 px-4 bg-white text-(--scheme-text) border-2 border-(--scheme-accent) font-bold no-underline text-shadow-none -translate-y-[150%] transition-transform duration-150 ease-[ease];
 }
 .skip-link:focus {
-  @apply translate-y-0 outline-3 outline-solid outline-black -outline-offset-3;
+  @apply translate-y-0;
 }
+
 #main-content:focus {
   @apply outline-none;
 }
@@ -156,4 +160,3 @@ a {
 body.nav-open {
   @apply overflow-hidden;
 }
-

@@ -5,7 +5,7 @@
 /* NAVIGATION MENUS (Foundation .menu + _custom.scss "Menues")
    Applied to the top and footer menus via the `menu` class on the <ul>. */
 .menu {
-  @apply relative flex flex-wrap m-0 p-0 list-none;
+  @apply relative flex flex-wrap m-0 p-0 list-none gap-1;
 }
 .menu a {
   @apply block py-[0.7rem] px-4 leading-none no-underline;
@@ -28,18 +28,39 @@
   @apply -ml-4;
 }
 
-/* Desktop dropdown (disclosure navigation: hover/focus-within reveal in
-   CSS, plus a real toggle <button> for keyboard/AT users — markup from
-   insertcart_walker in functions/menu.php, behaviour in app.js) */
+/* Desktop dropdown (disclosure navigation — markup from insertcart_walker
+   in functions/menu.php, behaviour in app.js). Tab order: parent link →
+   caret toggle (submenu closed) → submenu links only after `.is-open`.
+   Hover still reveals for pointer users; keyboard uses the toggle. */
 .top-menu .menu-item-has-children {
-  @apply relative flex items-center;
+  @apply relative;
 }
-.top-menu .menu-item-has-children > a {
+.menu-item-control {
+  @apply relative flex items-center bg-white;
+}
+.top-menu .menu-item-control > a {
   @apply pr-1;
+}
+/* Focus tap 1: ring wraps label + caret when the parent link is focused.
+   Plain outline/box-shadow so the scheme colour is not dropped by @apply. */
+.top-menu .menu-item-control:has(> a:focus-visible) {
+  outline: 1px solid var(--scheme-accent);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
+}
+.top-menu .menu-item-control > a:focus-visible {
+  outline: none;
+  box-shadow: none;
 }
 /* The toggle button carries Foundation's old dropdown caret. */
 .submenu-toggle {
   @apply inline-flex items-center justify-center size-6 mr-2 p-0 border-0 bg-transparent text-black cursor-pointer;
+}
+/* Focus tap 2: ring on the caret only (same scheme colour as the parent). */
+.submenu-toggle:focus-visible {
+  outline: 1px solid var(--scheme-accent);
+  outline-offset: 0;
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
 }
 /* CSS triangle: solid top border, transparent sides, no bottom. */
 .submenu-caret {
@@ -50,19 +71,21 @@
 }
 .dropdown-submenu {
   /* `bg-transparent!` ported from the old .is-dropdown-submenu override */
-  @apply hidden absolute top-full left-0 z-20 min-w-[300px] m-0 p-0 list-none bg-transparent!;
+  @apply hidden absolute top-full left-0 z-20 min-w-[300px] m-0 p-0 list-none bg-white;
 }
 .dropdown-submenu .dropdown-submenu {
   @apply top-0 left-full;
 }
 .menu-item-has-children:hover > .dropdown-submenu,
-.menu-item-has-children:focus-within > .dropdown-submenu,
 .menu-item-has-children.is-open > .dropdown-submenu {
   @apply block;
 }
 /* Submenu is a vertical list; override the horizontal flex of .menu. */
 .top-menu .dropdown-submenu li {
   @apply block;
+}
+.top-menu .dropdown-submenu a {
+  @apply p-4;
 }
 
 /* Mobile drilldown (native <details>/<summary>, see functions/menu.php) */
