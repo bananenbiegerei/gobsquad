@@ -11,7 +11,7 @@
   @apply block py-[0.7rem] px-4 leading-none no-underline;
 }
 .menu li a {
-  @apply text-black text-xl font-bold sm:text-lg;
+  @apply text-black bg-white text-xl font-bold sm:text-lg;
 }
 .menu li a:hover,
 .menu li a:active,
@@ -88,31 +88,33 @@
   @apply p-4;
 }
 
-/* Mobile drilldown (native <details>/<summary>, see functions/menu.php) */
-.drilldown-root,
-.drilldown-submenu {
-  @apply list-none m-0 p-0;
+/* Mobile drilldown (link + caret button, see functions/menu.php) */
+.drilldown-root {
+  @apply w-full list-none m-0 p-0 mt-16 bg-white;
 }
 .drilldown-submenu {
-  @apply pl-4;
+  @apply hidden list-none m-0 p-0 pl-4;
+}
+.drilldown-item.is-open > .drilldown-submenu {
+  @apply block;
 }
 .drilldown-item {
   @apply border-b border-light-gray;
 }
-.drilldown-summary {
-  @apply flex items-center justify-between cursor-pointer list-none;
-}
-.drilldown-summary::-webkit-details-marker {
-  @apply hidden;
+.drilldown-control {
+  @apply flex items-center justify-between;
 }
 .drilldown-link {
   @apply block flex-1 py-[0.7rem] px-4 text-black text-lg font-bold;
 }
-.drilldown-caret {
-  @apply size-2 mr-4 border-r-2 border-b-2 border-current rotate-45 transition-transform duration-200 ease-[ease];
+.drilldown-control .submenu-toggle {
+  @apply mr-2;
 }
-.drilldown-details[open] > .drilldown-summary .drilldown-caret {
-  @apply -rotate-135;
+.drilldown-caret {
+  @apply transition-transform duration-200 ease-[ease];
+}
+.drilldown-item.is-open > .drilldown-control .drilldown-caret {
+  @apply rotate-180;
 }
 
 /* Footer menu size (links are WP-generated; keep the override here). */

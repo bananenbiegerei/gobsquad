@@ -29,7 +29,10 @@ body .eapps-instagram-feed-posts-grid-load-more-text,
 body .eapps-instagram-feed,
 .no-text-stroke,
 .elfsight-widget,
-.select2-results__options {
+.select2-results__options,
+.menu a,
+.drilldown-link,
+.submenu-toggle {
   @apply text-shadow-none;
 }
 

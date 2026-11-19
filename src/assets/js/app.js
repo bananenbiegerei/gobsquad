@@ -42,10 +42,36 @@ Alpine.data('projectTabs', (initial) => ({
 window.Alpine = Alpine;
 Alpine.start();
 
-// Mobile drilldown menu: the submenu toggle is a native <details>/<summary>,
-// but the link inside <summary> must navigate without also toggling it.
-document.querySelectorAll('.drilldown-link').forEach((link) => {
-  link.addEventListener('click', (e) => e.stopPropagation());
+/*
+ * Mobile drilldown (same disclosure idea as desktop): caret toggle opens the
+ * submenu and moves focus to its first link. Escape closes that branch and
+ * returns focus to its caret (without closing the whole off-canvas).
+ */
+document.querySelectorAll('#mobile-navigation .drilldown-item.menu-item-has-children').forEach((item) => {
+  const toggle = item.querySelector(':scope > .drilldown-control .submenu-toggle');
+  const submenu = item.querySelector(':scope > .drilldown-submenu');
+  if (!toggle || !submenu) return;
+
+  const setOpen = (open) => {
+    item.classList.toggle('is-open', open);
+    toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+  };
+
+  toggle.addEventListener('click', () => {
+    const willOpen = !item.classList.contains('is-open');
+    setOpen(willOpen);
+    if (willOpen) {
+      submenu.querySelector('a')?.focus();
+    }
+  });
+
+  item.addEventListener('keydown', (e) => {
+    if (e.key !== 'Escape' || !item.classList.contains('is-open')) return;
+    e.preventDefault();
+    e.stopPropagation();
+    setOpen(false);
+    toggle.focus();
+  });
 });
 
 /*

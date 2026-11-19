@@ -86,11 +86,24 @@ function f6_topbar_menu_fallback($args)
     echo '<ul class="menu-horizontal">'.$fallback.'</ul>';
 }
 
-// %%%%%%%%%% Mobile drilldown menu (native <details>/<summary> disclosure, no custom JS state) %%%%%%%%%%
+/*
+ * Mobile drilldown — same disclosure pattern as desktop: parent link, then a
+ * focusable caret button, then the submenu (closed until the caret opens it).
+ * Tab order: item link → caret → (opened) children → … → close button.
+ */
 class F6_DRILL_MENU_WALKER extends Walker_Nav_Menu
 {
+    /**
+     * Submenu element ids keyed by depth, set in start_el for start_lvl.
+     *
+     * @var array<int, string>
+     */
+    private $submenu_ids = array();
+
     function start_lvl( &$output, $depth = 0, $args = array() ) {
-        $output .= "\n<ul class=\"drilldown-submenu\">\n";
+        $id      = isset( $this->submenu_ids[ $depth ] ) ? $this->submenu_ids[ $depth ] : '';
+        $id_attr = $id ? ' id="' . esc_attr( $id ) . '"' : '';
+        $output .= "\n<ul{$id_attr} class=\"drilldown-submenu\">\n";
     }
 
     function end_lvl( &$output, $depth = 0, $args = array() ) {
@@ -105,17 +118,25 @@ class F6_DRILL_MENU_WALKER extends Walker_Nav_Menu
         $item_classes = 'drilldown-item' . ( $has_children ? ' menu-item-has-children' : '' );
 
         if ( $has_children ) {
-            $output .= '<li class="' . esc_attr( $item_classes ) . '"><details class="drilldown-details"><summary class="drilldown-summary"><a href="' . $href . '" class="drilldown-link">' . $title . '</a><span class="drilldown-caret" aria-hidden="true"></span></summary>';
+            $submenu_id                   = 'drilldown-submenu-' . (int) $item->ID;
+            $this->submenu_ids[ $depth ]  = $submenu_id;
+            $plain_title                  = wp_strip_all_tags( $title );
+            $output                      .= '<li class="' . esc_attr( $item_classes ) . '">';
+            $output                      .= '<span class="drilldown-control">';
+            $output                      .= '<a href="' . $href . '" class="drilldown-link">' . $title . '</a>';
+            $output                      .= sprintf(
+                '<button type="button" class="submenu-toggle" aria-expanded="false" aria-controls="%1$s" aria-label="%2$s"><span class="submenu-caret drilldown-caret" aria-hidden="true"></span></button>',
+                esc_attr( $submenu_id ),
+                /* translators: %s: menu item title */
+                esc_attr( sprintf( __( '%s submenu', 'gobsquad' ), $plain_title ) )
+            );
+            $output .= '</span>';
         } else {
             $output .= '<li class="' . esc_attr( $item_classes ) . '"><a href="' . $href . '" class="drilldown-link drilldown-link--leaf">' . $title . '</a>';
         }
     }
 
     function end_el( &$output, $item, $depth = 0, $args = array() ) {
-        $classes = empty( $item->classes ) ? array() : (array) $item->classes;
-        if ( in_array( 'menu-item-has-children', $classes, true ) ) {
-            $output .= '</details>';
-        }
         $output .= "</li>\n";
     }
 }
