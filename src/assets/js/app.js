@@ -3,10 +3,13 @@ import '../css/app.css';
 import Alpine from 'alpinejs';
 import collapse from '@alpinejs/collapse';
 import Swiper from 'swiper';
-import { Navigation, Pagination } from 'swiper/modules';
+import { A11y, Keyboard, Navigation, Pagination } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/navigation';
 import 'swiper/css/pagination';
+import 'swiper/css/a11y';
+/* After Swiper’s own CSS so our caret/nav overrides win (unlayered). */
+import '../css/swiper.css';
 import '@fortawesome/fontawesome-free/css/fontawesome.css';
 import '@fortawesome/fontawesome-free/css/solid.css';
 import '@fortawesome/fontawesome-free/css/brands.css';
@@ -149,10 +152,16 @@ function initSwiperGroup(selector, options) {
   document.querySelectorAll(selector).forEach((el) => {
     const { pagination, ...rest } = options;
     new Swiper(el, {
-      modules: [Navigation, Pagination],
+      modules: [A11y, Keyboard, Navigation, Pagination],
+      a11y: true,
+      keyboard: {
+        enabled: true,
+        onlyInViewport: true,
+      },
       navigation: {
         nextEl: el.querySelector('.swiper-button-next'),
         prevEl: el.querySelector('.swiper-button-prev'),
+        addIcons: false,
       },
       pagination: pagination
         ? { el: el.querySelector('.swiper-pagination'), dynamicBullets: false }
@@ -197,10 +206,16 @@ initSwiperGroup('.swiper.swiper-flex', {
 
 document.querySelectorAll('.swiper.project-gallery').forEach((el) => {
   new Swiper(el, {
-    modules: [Navigation],
+    modules: [A11y, Keyboard, Navigation],
+    a11y: true,
+    keyboard: {
+      enabled: true,
+      onlyInViewport: true,
+    },
     navigation: {
       nextEl: el.querySelector('.swiper-button-next'),
       prevEl: el.querySelector('.swiper-button-prev'),
+      addIcons: false,
     },
     loop: true,
     spaceBetween: 0,

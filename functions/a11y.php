@@ -78,13 +78,9 @@ function gob_skip_link() {
 	echo '<a class="skip-link" href="#main-content">' . esc_html__( 'Skip to main content', 'gobsquad' ) . '</a>';
 }
 
-/**
- * WooCommerce sets autocomplete="email username" on billing_email, which is
- * not a valid token combination (axe: autocomplete-valid, WCAG 1.3.5).
- */
 add_filter(
 	'woocommerce_billing_fields',
-	function ( $fields ) {
+	static function ( array $fields ): array {
 		if ( isset( $fields['billing_email'] ) ) {
 			$fields['billing_email']['autocomplete'] = 'email';
 		}
@@ -94,8 +90,8 @@ add_filter(
 );
 add_filter(
 	'woocommerce_checkout_fields',
-	function ( $fields ) {
-		if ( isset( $fields['billing']['billing_email'] ) ) {
+	static function ( array $fields ): array {
+		if ( isset( $fields['billing']['billing_email'] ) && is_array( $fields['billing']['billing_email'] ) ) {
 			$fields['billing']['billing_email']['autocomplete'] = 'email';
 		}
 		return $fields;
@@ -110,13 +106,13 @@ add_filter(
  */
 add_filter(
 	'woocommerce_cart_item_thumbnail',
-	function ( $thumbnail, $cart_item ) {
-		if ( empty( $cart_item['data'] ) || ! is_a( $cart_item['data'], 'WC_Product' ) ) {
+	static function ( string $thumbnail, array $cart_item ): string {
+		if ( empty( $cart_item['data'] ) || ! is_a( $cart_item['data'], WC_Product::class ) ) {
 			return $thumbnail;
 		}
 		$name = wp_strip_all_tags( $cart_item['data']->get_name() );
-		if ( false !== strpos( $thumbnail, 'alt=""' ) || false === strpos( $thumbnail, 'alt=' ) ) {
-			$thumbnail = preg_replace( '/\salt=""/', '', $thumbnail );
+		if ( str_contains( $thumbnail, 'alt=""' ) || ! str_contains( $thumbnail, 'alt=' ) ) {
+			$thumbnail = preg_replace( '/\salt=""/', '', $thumbnail ) ?? $thumbnail;
 			$thumbnail = str_replace( '<img ', '<img alt="' . esc_attr( $name ) . '" ', $thumbnail );
 		}
 		return $thumbnail;
@@ -132,23 +128,23 @@ add_filter(
  */
 add_filter(
 	'woocommerce_single_product_image_thumbnail_html',
-	function ( $html, $post_thumbnail_id ) {
+	static function ( string $html, $post_thumbnail_id ): string {
 		global $product;
-		if ( ! $product ) {
+		if ( ! is_a( $product, WC_Product::class ) ) {
 			return $html;
 		}
-		$alt = trim( (string) get_post_meta( $post_thumbnail_id, '_wp_attachment_image_alt', true ) );
+		$alt = trim( (string) get_post_meta( (int) $post_thumbnail_id, '_wp_attachment_image_alt', true ) );
 		if ( '' === $alt ) {
 			$alt = wp_strip_all_tags( $product->get_name() );
 		}
-		$html = preg_replace( '/\salt=""/', ' alt="' . esc_attr( $alt ) . '"', $html );
-		if ( false === strpos( $html, 'aria-label=' ) ) {
+		$html = preg_replace( '/\salt=""/', ' alt="' . esc_attr( $alt ) . '"', $html ) ?? $html;
+		if ( ! str_contains( $html, 'aria-label=' ) ) {
 			$html = preg_replace(
 				'/<a([^>]*)href="/',
 				'<a$1aria-label="' . esc_attr( sprintf( /* translators: %s: product name */ __( 'View larger image of %s', 'gobsquad' ), $alt ) ) . '" href="',
 				$html,
 				1
-			);
+			) ?? $html;
 		}
 		return $html;
 	},

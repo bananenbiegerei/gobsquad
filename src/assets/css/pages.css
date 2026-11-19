@@ -14,10 +14,6 @@
   background-position: calc(100% + 60px) calc(-60px);
 }
 
-.single-projects .menu li#menu-item-73 a {
-  @apply no-underline not-italic;
-}
-
 /* FAQ */
 .tax-faq_categories .menu li.menu-item-faq a {
   @apply underline italic;

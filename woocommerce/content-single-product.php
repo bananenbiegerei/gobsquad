@@ -10,8 +10,8 @@
  * happen. When this occurs the version of the template file will be bumped and
  * the readme will list any important changes.
  *
- * @see     https://docs.woocommerce.com/document/template-structure/
- * @package WooCommerce/Templates
+ * @see     https://woocommerce.com/document/template-structure/
+ * @package WooCommerce\Templates
  * @version 3.6.0
  */
 
@@ -22,24 +22,24 @@ global $product;
 /**
  * Hook: woocommerce_before_single_product.
  *
- * @hooked wc_print_notices - 10
+ * @hooked woocommerce_output_all_notices - 10
  */
 do_action( 'woocommerce_before_single_product' );
 
 if ( post_password_required() ) {
-	echo get_the_password_form(); // WPCS: XSS ok.
+	echo get_the_password_form(); // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped
 	return;
 }
 ?>
 <div id="product-<?php the_ID(); ?>" <?php wc_product_class( '', $product ); ?>>
 	<div class="grid grid-cols-12 gap-x-6 sm:gap-x-8">
 		<div class="col-span-12 sm:col-span-3 order-2 sm:order-1">
-			<?php get_template_part('woocommerce/single-product/product-image'); ?>
+			<?php wc_get_template( 'single-product/product-image.php' ); ?>
 		</div>
 		<div class="col-span-12 sm:col-span-5 order-1 sm:order-2 mb-4 md:mb-8">
 			<div class="summary entry-summary">
-				<?php get_template_part('woocommerce/single-product/title'); ?>
-				<?php get_template_part('woocommerce/single-product/tabs/description'); ?>
+				<?php wc_get_template( 'single-product/title.php' ); ?>
+				<?php wc_get_template( 'single-product/tabs/description.php' ); ?>
 				<?php
 				/**
 				 * Hook: woocommerce_single_product_summary.

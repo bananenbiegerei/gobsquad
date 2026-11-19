@@ -136,7 +136,6 @@
 @import "./components.css" layer(components);
 @import "./color-schemes.css" layer(components);
 @import "./pages.css" layer(components);
-@import "./swiper.css" layer(components);
 @import "./woocommerce.css" layer(components);
 @import "./cookie-consent.css" layer(components);
 @import "./utilities.css";

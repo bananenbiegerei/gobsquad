@@ -117,33 +117,36 @@ a {
   @apply text-primary no-underline cursor-pointer;
 }
 /*
- * Focus (WCAG 2.4.7 Focus Visible). The old theme removed outlines
- * entirely; now mouse clicks stay outline-free via :focus-visible while
- * keyboard focus gets a thick, high-contrast double ring that works on
- * every colour scheme (primary blue inside, white outside so it is visible
- * on the coloured section backgrounds and photos too).
+ * Focus (WCAG 2.4.7 Focus Visible). Mouse clicks stay outline-free;
+ * keyboard focus always uses alert red — not the page colour scheme.
+ *
+ * Plain CSS (not @apply outline-none): Tailwind's outline-none sets
+ * `--tw-outline-style: none`, and `@apply outline` then resolves
+ * `outline-style: var(--tw-outline-style)` — so :focus-visible never
+ * drew a border while :focus also matched. Same pattern as the top-menu
+ * control / caret rings in layout.css.
  */
 :focus {
-  @apply outline-none;
+  outline: none;
 }
 :focus-visible {
-  outline: 1px solid var(--scheme-accent);
+  outline: 1px solid var(--color-alert);
   outline-offset: 0;
-  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--color-alert) 50%, transparent);
 }
 .button:focus-visible,
 .accordion-title:focus-visible,
 .swiper-button-next:focus-visible,
 .swiper-button-prev:focus-visible {
-  outline: 1px solid var(--scheme-accent);
+  outline: 1px solid var(--color-alert);
   outline-offset: 0;
-  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--color-alert) 50%, transparent);
 }
 
 /* Skip link (WCAG 2.4.1): visually hidden until focused, then pinned to
    the top-left above the header. */
 .skip-link {
-  @apply absolute top-4 left-4 z-[1000] py-3 px-4 bg-white text-(--scheme-text) border-2 border-(--scheme-accent) font-bold no-underline text-shadow-none -translate-y-[150%] transition-transform duration-150 ease-[ease];
+  @apply absolute top-4 left-4 z-[1000] py-3 px-4 bg-white text-black border-2 border-alert font-bold no-underline text-shadow-none -translate-y-[150%] transition-transform duration-150 ease-[ease];
 }
 .skip-link:focus {
   @apply translate-y-0;

@@ -18,7 +18,17 @@
 .menu li a:focus {
   @apply text-primary;
 }
-.menu li.current-menu-item > a {
+.menu li.current-menu-item > a,
+.menu li.current-menu-ancestor > a,
+.menu li.current-menu-parent > a,
+.menu li.current-menu-item > .menu-item-control > a,
+.menu li.current-menu-ancestor > .menu-item-control > a,
+.menu li.current-menu-parent > .menu-item-control > a {
+  @apply underline italic;
+}
+.drilldown-item.current-menu-item > .drilldown-link,
+.drilldown-item.current-menu-item > .drilldown-control > .drilldown-link,
+.drilldown-item.current-menu-ancestor > .drilldown-control > .drilldown-link {
   @apply underline italic;
 }
 /* Pull the first item's padding out so the link text aligns with the
@@ -42,11 +52,11 @@
   @apply pr-1;
 }
 /* Focus tap 1: ring wraps label + caret when the parent link is focused.
-   Plain outline/box-shadow so the scheme colour is not dropped by @apply. */
+   Alert red always — not the page colour scheme (same as base.css). */
 .top-menu .menu-item-control:has(> a:focus-visible) {
-  outline: 1px solid var(--scheme-accent);
+  outline: 1px solid var(--color-alert);
   outline-offset: 0;
-  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--color-alert) 50%, transparent);
 }
 .top-menu .menu-item-control > a:focus-visible {
   outline: none;
@@ -56,11 +66,11 @@
 .submenu-toggle {
   @apply inline-flex items-center justify-center size-6 mr-2 p-0 border-0 bg-transparent text-black cursor-pointer;
 }
-/* Focus tap 2: ring on the caret only (same scheme colour as the parent). */
+/* Focus tap 2: ring on the caret only (same alert red as the parent). */
 .submenu-toggle:focus-visible {
-  outline: 1px solid var(--scheme-accent);
+  outline: 1px solid var(--color-alert);
   outline-offset: 0;
-  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--scheme-accent) 50%, transparent);
+  box-shadow: 0 0 10px 0 color-mix(in srgb, var(--color-alert) 50%, transparent);
 }
 /* CSS triangle: solid top border, transparent sides, no bottom. */
 .submenu-caret {

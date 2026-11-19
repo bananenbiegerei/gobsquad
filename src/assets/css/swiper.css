@@ -1,40 +1,80 @@
+/* Loaded from app.js after Swiper’s CSS (not via app.css), so plain CSS only
+   — no @apply / Tailwind directives here. */
+
 .swiper-slide {
-  @apply flex flex-col justify-center items-center;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 .swiper-slide img {
-  @apply w-full h-auto;
+  width: 100%;
+  height: auto;
 }
 
+/* Shared prev/next chrome: visible CSS-triangle carets, normal pointer. */
 .swiper-button-next,
 .swiper-button-prev {
-  @apply relative top-0 m-0 size-[30px] rounded-[30px] bg-none bg-center bg-no-repeat text-center text-primary text-[30px] leading-[30px];
+  position: relative;
+  top: auto;
+  left: auto;
+  right: auto;
+  margin-top: 0;
+  width: 40px;
+  height: 40px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--scheme-accent);
+  cursor: pointer;
+  background: white;
 }
-.swiper-button-next {
-  @apply right-0;
+/* Don’t inject / show Swiper’s default SVG arrow. */
+.swiper-button-next > svg.swiper-navigation-icon,
+.swiper-button-prev > svg.swiper-navigation-icon {
+  display: none;
 }
-.swiper-button-prev {
-  @apply left-0;
+/* Same CSS triangle as nav `.submenu-caret`, larger; rotated to point L/R. */
+.swiper-caret {
+  display: block;
+  width: 0;
+  height: 0;
+  border-style: solid;
+  border-width: 12px 12px 0 12px;
+  border-color: currentColor transparent transparent transparent;
+}
+.swiper-button-prev .swiper-caret {
+  transform: rotate(90deg);
+}
+.swiper-button-next .swiper-caret {
+  transform: rotate(-90deg);
 }
 .swiper-pagination-bullet-active {
-  @apply bg-primary;
+  background-color: var(--scheme-accent);
 }
 .swiper-button-next.swiper-button-disabled,
 .swiper-button-prev.swiper-button-disabled {
-  @apply opacity-0;
+  opacity: 0;
+  pointer-events: none;
 }
 
-/* Overlay nav (project galleries): each arrow covers half of the slider
-   and the pointer becomes a chevron. Absolute asset path for the same
-   reason as the off-canvas lady.png. */
+/* Overlay nav (project galleries): caret buttons at the sides, not cursor images. */
 .swiper.overlay-nav .swiper-button-next,
 .swiper.overlay-nav .swiper-button-prev {
-  @apply absolute top-0 h-full w-1/2;
+  position: absolute;
+  top: 50%;
+  margin-top: -20px;
+  z-index: 10;
+  cursor: pointer;
 }
 .swiper.overlay-nav .swiper-button-next {
-  @apply right-0;
-  cursor: url("/wp-content/themes/gobsquad/dist/assets/img/chevron-right-solid.png"), auto;
+  right: 8px;
+  left: auto;
 }
 .swiper.overlay-nav .swiper-button-prev {
-  @apply left-0;
-  cursor: url("/wp-content/themes/gobsquad/dist/assets/img/chevron-left-solid.png"), auto;
+  left: 8px;
+  right: auto;
 }
